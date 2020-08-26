@@ -1,0 +1,24 @@
+{
+    "name":"Web_multi",
+    "description":"Projeto PHP",
+    "authors": [
+        {
+            "name": "Lázaro",
+           "email": "lazaro.sobral@facape.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Site\\":"app/site",
+            "App\\":"app",
+            "Src\\":"src"            
+        },
+        "files": [
+            "src/Config.php"
+        ]
+    },
+    "require": {        
+        "coffeecode/router": "1.0.*",
+        "league/plates": "v4.0.0-alpha"
+    }
+}
