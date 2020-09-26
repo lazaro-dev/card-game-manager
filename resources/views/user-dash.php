@@ -8,21 +8,14 @@
 <body>
     <div>
         
-        <?php if($nomes): 
-            foreach ($nomes as $nome):
-            ?>
-                <h2><?= $nome['usuario']; ?></h2>
-            <?php
-            endforeach;
-        else:
-        ?>
-            <h2>Sem dados</h2>
-        <?php
-        endif; ?>
+     <h1>USUARIO</h1>
 
     </div>
     <div >
         <a href="<?=url("login")?>">Login</a>
+    </div>
+    <div >
+        <a href="<?=url("logout")?>">Logout</a>
     </div>
 </body>
 </html>

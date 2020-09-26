@@ -3,6 +3,7 @@
 namespace Src\App;
 
 use League\Plates\Engine;
+use Src\Models\Usuario;
 
 // Inserir, retirar, alterar e gerar tabela
 class TableController 
@@ -15,8 +16,14 @@ class TableController
     }
     
     public function home():void
+    {        
+        $teste = new Usuario();        
+        echo $this->view->render("home", ["nomes" => $teste->getUsuarios()]);
+    }
+    
+    
+    public function login():void
     {
-        $teste = ['Irineu', 'Fulano'];
-        echo $this->view->render("home", ["nomes" => $teste]);
+        echo $this->view->render("login");
     }
 }
