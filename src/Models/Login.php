@@ -11,8 +11,8 @@ class Login {
     public function valLogin($request)
     {
         $mLog = new Select();
-        $mLog->read("SELECT * FROM usuarios WHERE usuario = :user", "user={$request['usuario']}");
-        $this->user = $mLog->getResult();
+        $this->user = $mLog->select("SELECT * FROM usuarios WHERE usuario = :user", "user={$request['usuario']}");
+        
         // var_dump($this->user);
         // die;
         if(isset($this->user[0]['senha'])&&password_verify($request['senha'],$this->user[0]['senha'])){

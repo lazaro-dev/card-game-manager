@@ -7,54 +7,33 @@ use Exception;
 class Update extends Connection
 {
 
-    private $Tabela;
-    private $Dados;
-    private $Query;
-    private $Conn;
-    private $Resultado;
-    private $Termos;
-    private $Values;
+    private $tabela;
+    private $dados;
+    private $query;
+    private $termos;
+    private $values;
 
-    function getResultado()
+    public function update($tabela, array $dados, $termos = null, $ParseString = null)
     {
-        return $this->Resultado;
-    }
+        $this->tabela = (string) $tabela;
+        $this->dados = $dados;
+        $this->termos = (string) $termos;
 
-    public function exeUpdate($Tabela, array $Dados, $Termos = null, $ParseString = null)
-    {
-        $this->Tabela = (string) $Tabela;
-        $this->Dados = $Dados;
-        $this->Termos = (string) $Termos;
-
-        parse_str($ParseString, $this->Values);
-        $this->getIntrucao();
-        $this->executarInstrucao();
-    }
-
-    private function getIntrucao()
-    {
-        foreach ($this->Dados as $key => $Value) {
-            $Values[] = $key . '= :' . $key;
+        parse_str($ParseString, $this->values);
+        
+        foreach ($this->dados as $key => $Value) {
+            $values[] = $key . '= :' . $key;
         }
-        $Values = implode(', ', $Values);
-        $this->Query = "UPDATE {$this->Tabela} SET {$Values} {$this->Termos}";
-    }
+        $values = implode(', ', $values);
+        $this->query = "UPDATE {$this->tabela} SET {$values} {$this->termos}";
 
-    private function executarInstrucao()
-    {
-        $this->conexao();
+        $this->query = parent::getConn()->prepare($this->query);
         try {
-            $this->Query->execute(array_merge($this->Dados, $this->Values));
-            $this->Resultado = true;
+            $this->query->execute(array_merge($this->dados, $this->values));
+            return true;
         } catch (Exception $ex) {
-            $this->Resultado = null;
+            return null;
         }
-    }
-
-    private function conexao()
-    {
-        $this->Conn = parent::getConn();
-        $this->Query = $this->Conn->prepare($this->Query);
-    }
+    }    
 
 }

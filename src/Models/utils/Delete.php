@@ -6,44 +6,26 @@ use Exception;
 
 class Delete extends Connection
 {
+    private $tabela;
+    private $termos;
+    private $values;
+    private $query;
 
-    private $Tabela;
-    private $Termos;
-    private $Values;
-    private $Resultado;
-    private $Query;
-    private $Conn;
-
-    function getResultado()
+    public function delete($tabela, $termos, $ParseString)
     {
-        return $this->Resultado;
-    }
+        $this->tabela = (string) $tabela;
+        $this->termos = (string) $termos;
+        parse_str($ParseString, $this->values);
 
-    public function exeDelete($Tabela, $Termos, $ParseString)
-    {
-        $this->Tabela = (string) $Tabela;
-        $this->Termos = (string) $Termos;
-        parse_str($ParseString, $this->Values);
+        $this->query = "DELETE FROM {$this->tabela} {$this->termos}";
+        $this->query = parent::getConn()->prepare($this->query);
 
-        $this->Query = "DELETE FROM {$this->Tabela} {$this->Termos}";
-        $this->executarIntrucao();
-    }
-
-    private function executarIntrucao()
-    {
-        $this->conexao();
         try {
-            $this->Query->execute($this->Values);
-            $this->Resultado = true;
+            $this->query->execute($this->values);
+            return true;
         } catch (Exception $ex) {
-            $this->Resultado = false;
+            return false;
         }
-    }
-
-    private function conexao()
-    {
-        $this->Conn = parent::getConn();
-        $this->Query = $this->Conn->prepare($this->Query);
     }
 
 }

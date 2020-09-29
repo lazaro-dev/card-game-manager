@@ -4,7 +4,6 @@ namespace Src\Models\utils;
 
 use FFI\Exception;
 use PDO;
-
 class Connection {
     public static $host    = HOST;
     public static $user    = USER;
@@ -27,7 +26,7 @@ class Connection {
     }
 
     public function getConn(){        
-        return self::conn();
+        return $this->conn();
     }
 
     public static function dd(...$variavel)

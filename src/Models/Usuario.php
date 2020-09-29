@@ -10,8 +10,7 @@ class Usuario {
     public function getUsuarios()
     {
         $model = new Select();
-        $model->read("SELECT * FROM usuarios");        
-
-        return $model->getResult();
+            
+        return $model->select("SELECT * FROM usuarios");
     }
 }

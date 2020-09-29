@@ -5,27 +5,23 @@ namespace Src\Models\utils;
 use FFI\Exception;
 use PDO;
 class Select extends Connection {
-    // private $select;
+ 
     private $links;
-    private $result;
     private $query;
-    // private $connection;
 
-    public function getResult(){
-        return $this->result;
-    }    
-
-    public function read($query,  $links = null){
+    public function select($query,  $links = null){
         $this->query = $query;  
         
         if(!empty($links)) {
             parse_str($links, $this->links);
         }
                 
-        $this->conn();
+        $this->query = parent::getConn()->prepare($this->query);
+
         try{
             if($this->links){
                 foreach ($this->links as $link => $valor) {
+
                     if($link=='limit'||$link == 'offset'){
                         $valor = (int)$valor; 
                     }                
@@ -47,16 +43,11 @@ class Select extends Connection {
             }
            
             $this->query->execute();
-            $this->result = $this->query->fetchAll();
+            return $this->query->fetchAll();
         
         }catch(Exception $e){
             echo 'Erro: '.$e->getMessage();
         }
     }
-
-    private function conn(){
-        $this->query = parent::getConn()->prepare($this->query);
-        // $this->query = $this->connection->prepare($this->select);
-        // $this->query->setFetchMode(PDO::FETCH_ASSOC);
-    }  
+  
 }

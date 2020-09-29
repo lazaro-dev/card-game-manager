@@ -1,6 +1,7 @@
 <?php
 session_start();
 ob_start();
+
 //URL DO PROJETO
 define('URL','http://localhost:83/CursoPHP(MVC)/multimidia');
 
@@ -13,6 +14,7 @@ function url(string $uri = null):string
     return URL;    
 }
 
+//Configurações de banco
 define('HOST','localhost');
 define('USER','root');
 define('PASS','');
