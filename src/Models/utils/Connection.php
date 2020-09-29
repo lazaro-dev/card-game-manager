@@ -5,14 +5,14 @@ namespace Src\Models\utils;
 use FFI\Exception;
 use PDO;
 
-class Conn{
+class Connection {
     public static $host    = HOST;
     public static $user    = USER;
     public static $pass    = PASS;
     public static $dbname  = DBNAME;
     public static $connect = null;
     
-    private static function conectar(){
+    private static function conn(){
         try{
             if(self::$connect==null){
                 self::$connect = new PDO('mysql:host='.
@@ -20,14 +20,14 @@ class Conn{
                 self::$user,self::$pass);
             }
         }catch(Exception $e){
-            echo 'Erro: '.$e->getMessage();
+            echo $e->getMessage();
             die;
         }
         return self::$connect;
     }
 
     public function getConn(){
-        return self::conectar();
+        return self::conn();
     }
 
     public static function dd(...$variavel)

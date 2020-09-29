@@ -4,13 +4,7 @@ namespace Src\Models\utils;
 
 use FFI\Exception;
 use PDO;
-
-if(!defined('URL')){
-    header("Location: /");
-    exit();
-}
-
-class Read extends Conn{
+class Read extends Connection{
     // private $select;
     private $links;
     private $result;

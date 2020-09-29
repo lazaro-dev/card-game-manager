@@ -32,14 +32,19 @@ class LoginController
     {
         // var_dump($request);
         // die; 
+        // echo $this->view->render("login");
+        
         $log = new Login();
 
         if($log->valLogin($request)){
+            // var_dump($_SESSION['user_acesso']);
+            // die;
             if($_SESSION['user_acesso'] == 1){
-                // echo $this->view->render("admin");                
-                $this->router->redirect("pag.adminHome");
+                            
+                $this->router->redirect("pag.admin");   
             }else if($_SESSION['user_acesso'] == 2){
-                echo $this->view->render("user-dash");
+                
+                $this->router->redirect("pag.userHome");
             }else {
                 $_SESSION['msg'] = "<div class='alert alert-danger'>Você não tem essa permissão!</div>";
                 echo $this->view->render("login", ['form' => $request['usuario']]);
@@ -55,10 +60,12 @@ class LoginController
         unset(
             $_SESSION['user_id'],
             $_SESSION['user'],
-            $_SESSION['user_acesso']
+            $_SESSION['user_acesso']            
         );
         session_destroy();
+        // session_start();
 
-        echo $this->view->render("home");
+        $this->router->redirect("");
+        // echo $this->view->render("login");
     }
 }

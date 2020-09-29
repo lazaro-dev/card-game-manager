@@ -1,3 +1,9 @@
+<?php
+    if(!isset($_SESSION['user_acesso'])||($_SESSION['user_acesso'] != 2 && isset($_SESSION['user_acesso']))){
+        header("Location: ".url("login"));
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

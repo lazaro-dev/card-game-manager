@@ -4,12 +4,7 @@ namespace Src\Models\utils;
 
 use Exception;
 
-if(!defined('URL')){
-    header("Location: /");
-    exit();
-}
-
-class Create extends Conn{
+class Create extends Connection{
 
     private $tabela;
     private $dados;

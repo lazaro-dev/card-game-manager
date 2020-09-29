@@ -18,21 +18,20 @@ $router->group('/logout');
 $router->get('/', 'LoginController:logout', 'pag.logout');
 
 
-
 $router->group('/ooops');
 $router->get('/{errcode}', "web:error");
 
-
-if($_SESSION['user_acesso'] == 1){
     
-    $router->group('/admin');
-    $router->get('/', "AdminController:home","pag.adminHome");
-}else if($_SESSION['user_acesso'] == 2){
-    
-    $router->group('/usuario');
-    $router->get('/', "UserController:home","pag.userHome");
-}
+$router->group('/admin');
+$router->get('/', "AdminController:home","pag.admin");
+$router->get('/edit-tabela', "AdminController:editTabela","pag.editTabela");
+$router->post('/edit-tabela', "AdminController:editarTabela","pag.editarTabela");
 
+
+$router->group('/usuario');
+$router->get('/', "UserController:home","pag.userHome");
+$router->get('/edit', "UserController:edit","pag.edit");
+$router->get('/editar', "UserController:editar","pag.editar");
 
 
 $router->dispatch();
