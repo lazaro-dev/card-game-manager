@@ -4,7 +4,7 @@ namespace Src\Models\utils;
 
 use FFI\Exception;
 use PDO;
-class Read extends Connection{
+class Select extends Connection {
     // private $select;
     private $links;
     private $result;
@@ -21,7 +21,7 @@ class Read extends Connection{
         if(!empty($links)) {
             parse_str($links, $this->links);
         }
-        
+                
         $this->conn();
         try{
             if($this->links){

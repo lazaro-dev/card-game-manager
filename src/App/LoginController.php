@@ -2,8 +2,6 @@
 
 namespace Src\App;
 
-// use App\adms\Controllers\Login;
-
 use CoffeeCode\Router\Router;
 use League\Plates\Engine;
 use Src\Models\Login;
@@ -29,16 +27,11 @@ class LoginController
     
     
     public function login($request):void
-    {
-        // var_dump($request);
-        // die; 
-        // echo $this->view->render("login");
-        
+    {        
         $log = new Login();
 
         if($log->valLogin($request)){
-            // var_dump($_SESSION['user_acesso']);
-            // die;
+    
             if($_SESSION['user_acesso'] == 1){
                             
                 $this->router->redirect("pag.admin");   
@@ -63,9 +56,7 @@ class LoginController
             $_SESSION['user_acesso']            
         );
         session_destroy();
-        // session_start();
-
+    
         $this->router->redirect("");
-        // echo $this->view->render("login");
     }
 }

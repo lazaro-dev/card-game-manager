@@ -12,7 +12,7 @@ class Connection {
     public static $dbname  = DBNAME;
     public static $connect = null;
     
-    private static function conn(){
+    private function conn(){
         try{
             if(self::$connect==null){
                 self::$connect = new PDO('mysql:host='.
@@ -26,7 +26,7 @@ class Connection {
         return self::$connect;
     }
 
-    public function getConn(){
+    public function getConn(){        
         return self::conn();
     }
 

@@ -2,7 +2,7 @@
 
 namespace Src\Models;
 
-use Src\Models\utils\Read;
+use Src\Models\utils\Select;
 
 class Login {
     
@@ -10,7 +10,7 @@ class Login {
 
     public function valLogin($request)
     {
-        $mLog = new Read();
+        $mLog = new Select();
         $mLog->read("SELECT * FROM usuarios WHERE usuario = :user", "user={$request['usuario']}");
         $this->user = $mLog->getResult();
         // var_dump($this->user);

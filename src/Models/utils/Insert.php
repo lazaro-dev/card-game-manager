@@ -4,7 +4,7 @@ namespace Src\Models\utils;
 
 use Exception;
 
-class Create extends Connection{
+class Insert extends Connection{
 
     private $tabela;
     private $dados;

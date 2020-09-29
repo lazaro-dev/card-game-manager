@@ -3,16 +3,14 @@
 namespace Src\Models;
 
 use Src\Models\utils\Create;
-use Src\Models\utils\Read;
+use Src\Models\utils\Select;
 
 class Usuario {
     
     public function getUsuarios()
     {
-        $model = new Read();
-        $model->read("SELECT * FROM usuarios");
-        $user = $model->getResult();
-
+        $model = new Select();
+        $model->read("SELECT * FROM usuarios");        
 
         return $model->getResult();
     }
