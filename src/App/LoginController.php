@@ -31,12 +31,12 @@ class LoginController
         $log = new Login();
 
         if($log->valLogin($request)){
-    
+           
             if($_SESSION['user_acesso'] == 1){
                             
                 $this->router->redirect("pag.admin");   
             }else if($_SESSION['user_acesso'] == 2){
-                
+             
                 $this->router->redirect("pag.userHome");
             }else {
                 $_SESSION['msg'] = "<div class='alert alert-danger'>Você não tem essa permissão!</div>";

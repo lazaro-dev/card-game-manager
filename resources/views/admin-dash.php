@@ -1,10 +1,10 @@
-<?php 
-        
-    if(!isset($_SESSION['user_acesso'])||($_SESSION['user_acesso'] != 1 && isset($_SESSION['user_acesso']))){
-        header("Location: ".url("login"));
-        exit();
-    }
+<?php      
+    // if(!isset($_SESSION['user_acesso'])||($_SESSION['user_acesso'] != 1 && isset($_SESSION['user_acesso']))){
+    //     header("Location: ".url("login"));
+    //     exit();
+    // }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

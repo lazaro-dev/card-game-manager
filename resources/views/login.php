@@ -3,14 +3,10 @@
     <form class="" method="POST" action="">
             
         <?php
-        
             if (isset($_SESSION['msg'])) {
                 echo $_SESSION['msg'];
                 unset($_SESSION['msg']);
             }
-            // if (isset($this->dados['form'])) {
-            //     $form = $this->dados['form'];
-            // }
         ?>
         <div class="">
             <label>Usuário</label>
