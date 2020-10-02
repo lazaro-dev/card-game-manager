@@ -3,6 +3,7 @@
 namespace Src\App;
 
 use League\Plates\Engine;
+use Src\Models\Usuario;
 
 class UserController 
 {
@@ -22,7 +23,8 @@ class UserController
     
     public function home():void
     {        
-                
+        $teste = new Usuario();
+        $table = $teste->getTable($_SESSION['user_id']);         
         echo $this->view->render("user-dash");
     }
     
