@@ -25,7 +25,7 @@ class UserController
     {        
         $teste = new Usuario();
         $table = $teste->getTable($_SESSION['user_id']);         
-        echo $this->view->render("user-dash");
+        echo $this->view->render("user-dash", ['coluna' => $table['colunas'][0], 'linha' => $table['linhas']]);
     }
     
 
