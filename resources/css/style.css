@@ -1,0 +1,83 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+ 
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 300;
+   line-height: 2.272rem;
+   color:#A7A1AE;
+   background-color:#1F2739;
+   font-size: 62.5%;
+}
+
+
+/* Cabeçalho */
+.header {
+   background: #56CCF2;  
+   background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2);
+   background: linear-gradient(to right, #2F80ED, #56CCF2);
+   padding: 1rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   position: sticky;
+   top: 0;
+   z-index: 1000;
+}
+ 
+.header__container {
+   perspective: 150rem;
+ }
+ 
+.header__div {
+   animation-duration: 3s;
+   animation-iteration-count: infinite;
+   animation-timing-function:linear;
+   backface-visibility: hidden;
+   color: blue;
+   font-family: Helvetica,Arial,sans-serif;
+   font-weight: bold;
+   padding: 10px;
+   position: absolute;
+   top: -2.2rem;
+   left: -.5rem;
+}
+  
+@-webkit-keyframes flip1 {
+   from { -webkit-transform: rotateY(0deg); }
+   to { -webkit-transform: rotateY(360deg); }
+}
+  
+.header__flip1 {
+   -webkit-animation-name: flip1;
+}
+  
+@-webkit-keyframes flip2 {
+   from { -webkit-transform: rotateY(-180deg); }
+   to { -webkit-transform: rotateY(180deg); }
+}
+  
+.header__flip2 {
+   -webkit-animation-name: flip2;
+}
+ 
+.header__menu:link, .header__menu:visited, 
+.header__login:link, .header__login:visited, 
+.header__alterar:link, .header__alterar:visited {
+   text-decoration: none;
+   font-size: 1.4rem;
+   padding: .5rem;
+   transition: all .3s;
+   color: #0c4661;
+}
+ 
+.header__menu:hover, 
+.header__login:hover, 
+.header__alterar:hover {
+   color: #FB667A;
+}

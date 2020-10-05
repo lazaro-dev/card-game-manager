@@ -24,6 +24,8 @@ class TableController
     
     public function login():void
     {
-        echo $this->view->render("login");
+        var_dump('che');
+        die;
+        echo $this->view->render("loginn/login");
     }
 }

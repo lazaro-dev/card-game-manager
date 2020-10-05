@@ -22,7 +22,7 @@ class LoginController
     public function index():void
     {        
                 
-        echo $this->view->render("login");
+        echo $this->view->render("loginn/login");
     }
     
     
@@ -44,7 +44,7 @@ class LoginController
             }
         }else{
             
-            echo $this->view->render("login", ['form' => $request['usuario']]);
+            echo $this->view->render("loginn/login", ['form' => $request['usuario']]);
         }        
     }
 

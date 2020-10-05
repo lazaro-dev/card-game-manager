@@ -1,26 +1,10 @@
-<?php
-    // if(!isset($_SESSION['user_acesso'])||($_SESSION['user_acesso'] != 2 && isset($_SESSION['user_acesso']))){
-    //     header("Location: ".url("login"));
-    //     exit();
-    // }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        }
-        th, td {
-        padding: 5px;
-        text-align: left;    
-        }
-    </style>
+    <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
 </head>
 <body>
     <div>
@@ -42,16 +26,26 @@
                 endforeach;
             ?>
         </tr>
-        <tr>
-            <td>Jill</td>
-            <td>Smith</td>
-            <td>50</td>
-        </tr>
-        <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-        </tr>
+        
+        <?php  
+            foreach ($cartas as $carta):
+        ?>
+
+        <tr>                       
+            <td><?= $carta['nome_jogo_carta_valor'] ?></td>                     
+            <td><?= $carta['nome_valor'] ?></td>   
+            <?php  
+                foreach ($carta['tipos_jogos'] as $tip):
+            ?>        
+                <td><?= $tip['string_camp']?></td>   
+            <?php
+                endforeach;
+            ?>
+        </tr> 
+        
+        <?php
+            endforeach;
+        ?>
     </table>
 
     </div>
