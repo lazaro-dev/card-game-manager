@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
-    <link rel="stylesheet" href="<?=url()?>/resources/views/loginn/style.css">
+    <link rel="stylesheet" href="<?=url()?>/resources/views/login/style.css">
 </head>
 <body>  
     <header class="header">
@@ -22,9 +22,9 @@
         </a>
 
         <div>
-            <a href="../Menu/index.html" class="header__menu">Menu</a>
-            <a href="../CadastroTabela/index.html" class="header__alterar">Alterar tabela</a>
-            <a href="index.html" class="header__login">Login</a>
+            <a href="../Menu/index.html" class="header__menu"> </a>
+            <!-- <a href="../CadastroTabela/index.html" class="header__alterar">Alterar tabela</a>
+            <a href="index.html" class="header__login">Login</a> -->
         </div>
 
     </header>
