@@ -25,7 +25,7 @@ class AdminController
     public function home():void
     {        
                 
-        echo $this->view->render("admin-dash");
+        echo $this->view->render("admin/admin-dash");
     }
     
 
