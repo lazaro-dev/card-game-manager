@@ -20,9 +20,9 @@ class Login {
             return true;
         }else{                    
             if(!empty($this->user)){
-                $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: Senha ou usuario invalido!</div>";
+                $_SESSION['msg'] = "Senha ou usuario invalido!";
             }else{
-                $_SESSION['msg'] = "<div class='alert alert-danger'>Erro: Usuário não encontrado!</div>";
+                $_SESSION['msg'] = "Usuário não encontrado!";
             }
         }
         return false;

@@ -31,6 +31,7 @@ form {
 }
 
 .login__secondary {
+    margin-top: 1rem;
     font-size: 1.6rem;
     color: #4285F4;
 }
@@ -54,4 +55,19 @@ form {
 
 .login__submit:hover {
     background: #56CCF2;
+}
+
+.login__error {
+    background-color: #fd002252;
+    width: 100%;
+    padding: .5rem 1rem;
+    color: rgb(161, 0, 0);
+    position: absolute;
+    top: 0;
+}
+
+@media only screen and (max-width: 37.5em) { 
+    .login__content {
+        width: 100%;
+    }
 }

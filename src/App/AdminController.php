@@ -17,7 +17,7 @@ class AdminController
         $this->view = Engine::create(__DIR__."/../../resources/views",'php');
 
         if(!isset($_SESSION['user_acesso'])||($_SESSION['user_acesso'] != 1 && isset($_SESSION['user_acesso']))){     
-            $_SESSION['msg'] = "<div class='alert alert-danger'>Você não tem essa permição!</div>";       
+            $_SESSION['msg'] = "Você não tem essa permição!";       
             $this->router->redirect("pag.login");            
         }
     }

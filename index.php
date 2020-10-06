@@ -30,6 +30,8 @@ $router->post('/edit-tabela', "AdminController:editarTabela","pag.editarTabela")
 
 $router->group('/usuario');
 $router->get('/', "UserController:home","pag.userHome");
+$router->get('/insert-card', "UserController:insertCard","pag.insertCard");
+// $router->post('/insert-card', "UserController:insertCardPost","pag.insertCardPost");
 $router->get('/edit', "UserController:edit","pag.edit");
 $router->get('/editar', "UserController:editar","pag.editar");
 

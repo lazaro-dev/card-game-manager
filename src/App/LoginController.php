@@ -20,8 +20,7 @@ class LoginController
     }
     
     public function index():void
-    {        
-                
+    {                        
         echo $this->view->render("login/login");
     }
     
@@ -39,7 +38,7 @@ class LoginController
              
                 $this->router->redirect("pag.userHome");
             }else {
-                $_SESSION['msg'] = "<div class='alert alert-danger'>Você não tem essa permissão!</div>";
+                $_SESSION['msg'] = "Você não tem essa permissão!";
                 echo $this->view->render("login", ['form' => $request['usuario']]);
             }
         }else{

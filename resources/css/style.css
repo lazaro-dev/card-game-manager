@@ -12,7 +12,6 @@ body {
    line-height: 2.272rem;
    color:#A7A1AE;
    background-color:#1F2739;
-   font-size: 62.5%;
 }
 
 
@@ -27,6 +26,7 @@ body {
    align-items: center;
    position: sticky;
    top: 0;
+   height: 5rem;
    z-index: 1000;
 }
  
@@ -42,8 +42,8 @@ body {
    color: blue;
    font-family: Helvetica,Arial,sans-serif;
    font-weight: bold;
-   padding: 10px;
    position: absolute;
+   padding: 10px;
    top: -2.2rem;
    left: -.5rem;
 }
@@ -80,4 +80,43 @@ body {
 .header__login:hover, 
 .header__alterar:hover {
    color: #FB667A;
+}
+
+@media only screen and (max-width: 62.5em) {
+   html {
+      font-size: 80%;
+   }
+
+   .header {
+      padding: 1.5rem;
+   }
+
+   .header__div {
+      top: -2.7rem
+   }
+}
+
+@media only screen and (max-width: 37.5em) {
+   .header {
+      flex-direction: column;
+   }
+
+   .header__container {
+      height: 4rem;
+      position: relative;
+   }
+
+   .header__div {
+      top: -1.2rem;
+      left: -1.8rem;
+   }
+
+}
+
+@media only screen and (max-width: 25em) { 
+   .header__menu:link, .header__menu:visited, 
+   .header__login:link, .header__login:visited, 
+   .header__alterar:link, .header__alterar:visited {
+      font-size: 1rem;
+   }
 }
