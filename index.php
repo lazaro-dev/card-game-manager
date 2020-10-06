@@ -19,7 +19,7 @@ $router->get('/', 'LoginController:logout', 'pag.logout');
 
 
 $router->group('/ooops');
-$router->get('/{errcode}', "web:error");
+$router->get('/{errcode}', "ErroController:error");
 
     
 $router->group('/admin');
@@ -30,8 +30,15 @@ $router->post('/edit-tabela', "AdminController:editarTabela","pag.editarTabela")
 
 $router->group('/usuario');
 $router->get('/', "UserController:home","pag.userHome");
-$router->get('/insert-card', "UserController:insertCard","pag.insertCard");
-// $router->post('/insert-card', "UserController:insertCardPost","pag.insertCardPost");
+
+$router->get('/insert-card-1', "UserController:getInsertCardPart1","pag.getInsert1");
+$router->post('/insert-card-1', "UserController:insertCardPart1","pag.insert1");
+$router->get('/insert-card-2', "UserController:insertCardPart2","pag.getInsert2");
+
+$router->get('/update-card-1/{id}', "UserController:getUpdateCardPart1","pag.getUpdate1");
+$router->post('/update-card-1/{id}', "UserController:updateCardPart1","pag.update1");
+// $router->post('/insert-card-1', "UserController:insertCardPart1IU","pag.insertCardPost1IU");
+
 $router->get('/edit', "UserController:edit","pag.edit");
 $router->get('/editar', "UserController:editar","pag.editar");
 

@@ -24,7 +24,7 @@
 
             <div>
                 <!-- <a href="../Menu/index.html" class="header__menu">Menu</a> -->
-                <a href="<?=url("usuario/insert-card")?>" class="header__alterar">Adicionar carta</a>
+                <a href="<?=url("usuario/insert-card-1")?>" class="header__alterar">Adicionar carta</a>
                 <a href="<?=url("logout")?>" class="header__login">Logout</a>
             </div>
         </header>        
@@ -64,7 +64,7 @@
                 ?>
                 <td class="container__td">
                     <div class="container__group">
-                        <a class="container__alterar" href="../CadastroTabela/index.html"></a>
+                        <a class="container__alterar" href="<?= url("usuario")."/update-card-1/{$carta['id_carta']}"?>"></a>
                         <a class="container__deletar" href="#popup"></a>
                     </div>
                 </td>

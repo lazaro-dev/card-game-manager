@@ -23,15 +23,54 @@ class UserController
     
     public function home():void
     {        
-        $teste = new Usuario();
-        $table = $teste->getTable($_SESSION['user_id']);
+        $ins = new Usuario();
+        $table = $ins->getTable($_SESSION['user_id']);
         echo $this->view->render("user/dash/user-dash", ['coluna' => $table['colunas'][0], 'cartas' => $table['cartas']]);
     }    
 
-    public function insertCard()
+    public function getInsertCardPart1()
+    {       
+        $teste = new Usuario();        
+        $campos = $teste->getCamposInserirCart1();        
+        echo $this->view->render("user/card/insert/insert-card-1", ["campos" => $campos]);
+    }
+
+    public function insertCardPart1IU($request)
     {
-        // var_dump("test");
+        // var_dump($request);
         // die;
-        echo $this->view->render("user/insertCard/insert-card");
+        $teste = new Usuario();
+        if(!empty($request))        
+            $campos = $teste->inserirCart1($request);
+        
+        $this->router->redirect("pag.insertCardId", ["id" => $campos]);
+    }
+
+
+    public function getUpdateCardPart1($request)
+    {
+        $up = new Usuario();        
+        $campos = $up->getUpdateCardPart1($request['id']);        
+        // var_dump($campos);
+        // die;
+        echo $this->view->render("user/card/update/update-card-1", ["campos" => $campos]);
+    }
+
+    public function updateCardPart1($request)
+    {
+        var_dump($request);
+        die;
     }
 }
+
+// public function insertCardPart1($request=null)
+// {       
+//     if(!empty($request)){
+//         var_dump($request);
+//         die;
+//     } else {
+//         $teste = new Usuario();
+//         $campos = $teste->getCamposInserirCart();        
+//     }
+//     echo $this->view->render("user/insertCard/insert-card-1", ["campos" => $campos]);
+// }
