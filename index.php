@@ -37,6 +37,10 @@ $router->get('/insert-card-2', "UserController:insertCardPart2","pag.getInsert2"
 
 $router->get('/update-card-1/{id}', "UserController:getUpdateCardPart1","pag.getUpdate1");
 $router->post('/update-card-1/{id}', "UserController:updateCardPart1","pag.update1");
+// $router->get('/update-card-2/{id}', "UserController:getUpdateCardPart2","pag.getUpdate2");
+$router->get('/update-modo/{id_carta}', "UserController:getUpdateCardModos","pag.getUpdateModos");
+$router->get('/update-modo/{id_carta}/{id_modo}', "UserController:getUpdateCardModo","pag.getUpdateModo");
+$router->post('/update-modo/{id_carta}/{id_modo}', "UserController:updateCardModoFinal","pag.updateModo");
 // $router->post('/insert-card-1', "UserController:insertCardPart1IU","pag.insertCardPost1IU");
 
 $router->get('/edit', "UserController:edit","pag.edit");

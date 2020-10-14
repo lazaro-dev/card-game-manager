@@ -3,10 +3,10 @@
 namespace Src\App;
 
 use League\Plates\Engine;
+use Src\Models\Card;
 use Src\Models\Usuario;
 class UserController 
 {
-
     private $view;
     private $router;
 
@@ -30,37 +30,66 @@ class UserController
 
     public function getInsertCardPart1()
     {       
-        $teste = new Usuario();        
-        $campos = $teste->getCamposInserirCart1();        
+        $card = new Card();        
+        $campos = $card->getCamposInserirCart1();        
         echo $this->view->render("user/card/insert/insert-card-1", ["campos" => $campos]);
     }
 
     public function insertCardPart1IU($request)
-    {
-        // var_dump($request);
-        // die;
-        $teste = new Usuario();
+    {       
+        $card = new Card();
         if(!empty($request))        
-            $campos = $teste->inserirCart1($request);
+        $campos = $card->inserirCart1($request);
         
         $this->router->redirect("pag.insertCardId", ["id" => $campos]);
     }
-
-
+    
     public function getUpdateCardPart1($request)
     {
-        $up = new Usuario();        
-        $campos = $up->getUpdateCardPart1($request['id']);        
-        // var_dump($campos);
-        // die;
+        $up = new Card();        
+        $campos = $up->getUpdateCardPart1($request['id']);
         echo $this->view->render("user/card/update/update-card-1", ["campos" => $campos]);
     }
-
+    
     public function updateCardPart1($request)
-    {
-        var_dump($request);
-        die;
+    {    
+        $card = new Card();
+        if ($card->updateCardPart1($request)) {
+            $_SESSION['msg'] = "Atualizado com sucesso!";
+            // url("/update-modo").'/'.$id_carta.'/'.$mod['id_modo_jogo']
+            $this->router->redirect("pag.getUpdateModos", ["id_carta" => $request['id']]);
+        } else {
+            $_SESSION['msg'] = "Não foi possivel atualizar!";
+            $this->router->redirect("pag.getUpdate1", ["id" => $request['id']]);
+        }
     }
+
+    public function getUpdateCardModos($request)
+    {
+        // var_dump($request);
+        // die;
+        $modos = new Card();        
+        $campos = $modos->getUpdateCardModos($request['id_carta']);
+        echo $this->view->render("user/card/modos/modos", ["modos" => $campos, "id_carta" => $request["id_carta"]]);
+    }
+    
+    public function getUpdateCardModo($request)
+    {    
+        // var_dump($request);
+        // die;
+        $modo = new Card();
+        $campos = $modo->getUpdateCardModo($request['id_carta'], $request['id_modo']);
+        echo $this->view->render("user/card/modos/update/modo", ["modos" => $campos]);
+        // if ($card->updateCardPart1($request)) {
+        //     $_SESSION['msg'] = "Atualizado com sucesso!";
+        //     $this->router->redirect("pag.getUpdate2", ["id" => $request['id']]);
+        // } else {
+        //     $_SESSION['msg'] = "Não foi possivel atualizar!";
+        //     $this->router->redirect("pag.getUpdate1", ["id" => $request['id']]);
+        // }
+    }
+
+
 }
 
 // public function insertCardPart1($request=null)

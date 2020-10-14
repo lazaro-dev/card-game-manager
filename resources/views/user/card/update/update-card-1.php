@@ -26,6 +26,12 @@
     </header>
 
     <section class="section__form">
+        <?php            
+            if (isset($_SESSION['msg'])&&!empty($_SESSION['msg'])) {
+                echo "<div class='login__error'>".$_SESSION['msg'] . "</div>";
+                unset($_SESSION['msg']);
+            }
+        ?>
         <form action="" method="POST">
             <div class="form__container">
                 <!-- <div class="form__box">
@@ -41,7 +47,7 @@
 
                 <div class="form__box">
                     <label for="fcarta" class="form__label"><?= $campos['carta_campos']['nome_carta_campo'] ?></label>
-                    <input type="text" name="nome_valor_carta" id="fcarta" class="form__input" required value="<?php if (isset($campos['card_info'])) {
+                    <input type="text" name="nome_valor" id="fcarta" class="form__input" required value="<?php if (isset($campos['card_info'])) {
                                                                                                             echo $campos['card_info']['nome_carta_valor'];
                                                                                                         } ?>">
                 </div>                

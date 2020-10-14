@@ -1,0 +1,216 @@
+.section__form {
+    width: 93%;
+    margin: 0 auto;
+    padding: 2rem;
+    margin-top: 2rem;
+    animation-name: flash;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+}
+
+/* Formulario */
+form {
+    text-align: center;
+}
+
+.form__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(430px,1fr))
+}
+
+.form__box {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__label {
+    padding: .3rem;
+    font-size: .9rem;
+    color: #2391c4;
+    font-family: inherit;
+}
+
+.form__input {
+    padding: .5rem;
+    border-radius: 3px;
+    border: none;
+    width: 20rem;
+    font-family: inherit;
+}
+
+.form__input:focus {
+    outline: none;
+}
+
+.form__btn {
+    margin-top: 3rem;
+    padding: .7rem .5rem;
+    width: 10rem;
+    border-radius: 3px;
+    cursor: pointer;
+    justify-self: center;
+    grid-column: 2 / 3;
+    transition: all .3s;
+    background-color: #2391c4;
+    border: none;
+    color: white;
+    font-family: inherit;
+}
+
+.form__btn:hover {
+    transform: translateY(-.2rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.form__btn:active {
+    transform: translateY(0);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.form__card {
+    margin-top: 2rem;
+    align-self: center;
+    justify-self: center;
+}
+
+/* Card */
+.form__pepctive {
+    perspective: 150rem;
+    position: relative;
+    height: 27rem;
+    width: 20rem;
+}
+
+.form__cards {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: all .8s ease;
+}
+
+.form__card--from {
+    background: #00B4DB; 
+    background: -webkit-linear-gradient(to left, #0083B0, #00B4DB);  
+    background: linear-gradient(to left, #0083B0, #00B4DB); 
+}
+
+.form__card--back {
+    background: #000428; 
+    background: -webkit-linear-gradient(to left, #004e92, #000428);  
+    background: linear-gradient(to left, #004e92, #000428);
+    transform: rotateY(180deg);
+
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__pepctive:hover .form__card--from {
+    transform: rotateY(180deg);
+}
+
+.form__pepctive:hover .form__card--back {
+    transform: rotateY(360deg);
+}
+
+.form__list--card {
+    list-style: none;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.form__list {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.form__item {
+    font-size: 1.1rem;
+}
+
+.form__paragh {
+    font-size: 1.4rem;
+    color: white;
+}
+
+.form__link:visited,
+.form__link:link {
+    justify-self: center;
+    background: #56CCF2;  
+    color: white;
+    text-decoration: none;
+    font-size: 1.4rem;
+    border-radius: 30px;
+    display: inline-block;
+    width: 9rem;
+    padding: .3rem 0;
+    text-align: center;
+    transition: all .2s;
+}
+
+.form__link:hover,
+.form__link:active {
+    background: #29a1f1;  
+}
+
+.form__link:hover {
+    transform: translateY(-.2rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.form__link:active {
+    transform: translateY(0);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.form__adjuster {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+}
+
+@keyframes flash {
+    0% {
+       opacity: 0;
+       transform: scale(0);
+    }
+ 
+    100% {
+       opacity: 1;
+       transform: scale(1);
+    }
+ }
+
+ @media only screen and (max-width: 63.3125em) {
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .form__btn {
+        justify-self: center;
+    }
+}
+
+@media only screen and (max-width: 31.25em) {
+    .form__box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form__container {
+        display: flex;
+        flex-direction: column;
+    }
+}
