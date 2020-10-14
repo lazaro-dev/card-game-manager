@@ -39,7 +39,7 @@ class UserController
     {       
         $card = new Card();
         if(!empty($request))        
-        $campos = $card->inserirCart1($request);
+            $campos = $card->inserirCart1($request);
         
         $this->router->redirect("pag.insertCardId", ["id" => $campos]);
     }
@@ -55,8 +55,7 @@ class UserController
     {    
         $card = new Card();
         if ($card->updateCardPart1($request)) {
-            $_SESSION['msg'] = "Atualizado com sucesso!";
-            // url("/update-modo").'/'.$id_carta.'/'.$mod['id_modo_jogo']
+            $_SESSION['msg'] = "Atualizado com sucesso!";            
             $this->router->redirect("pag.getUpdateModos", ["id_carta" => $request['id']]);
         } else {
             $_SESSION['msg'] = "Não foi possivel atualizar!";
@@ -66,8 +65,6 @@ class UserController
 
     public function getUpdateCardModos($request)
     {
-        // var_dump($request);
-        // die;
         $modos = new Card();        
         $campos = $modos->getUpdateCardModos($request['id_carta']);
         echo $this->view->render("user/card/modos/modos", ["modos" => $campos, "id_carta" => $request["id_carta"]]);
@@ -91,15 +88,3 @@ class UserController
 
 
 }
-
-// public function insertCardPart1($request=null)
-// {       
-//     if(!empty($request)){
-//         var_dump($request);
-//         die;
-//     } else {
-//         $teste = new Usuario();
-//         $campos = $teste->getCamposInserirCart();        
-//     }
-//     echo $this->view->render("user/insertCard/insert-card-1", ["campos" => $campos]);
-// }

@@ -22,8 +22,7 @@ class LoginController
     public function index():void
     {                        
         echo $this->view->render("login/login");
-    }
-    
+    }    
     
     public function login($request):void
     {        
@@ -41,8 +40,7 @@ class LoginController
                 $_SESSION['msg'] = "Você não tem essa permissão!";
                 echo $this->view->render("login", ['form' => $request['usuario']]);
             }
-        }else{
-            
+        }else{            
             echo $this->view->render("login/login", ['form' => $request['usuario']]);
         }        
     }

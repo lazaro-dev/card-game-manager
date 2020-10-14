@@ -23,7 +23,7 @@ class Card {
         return $modos;
     }
 
-    public function getCamposInserirCart1($request=null)
+    public function getCamposInserirCart1()
     {
         $model = new Select();
         $carta['carta_campos'] = $model->select("SELECT nome_carta_campo, nome_jogo_carta_campo 
@@ -31,7 +31,7 @@ class Card {
         return $carta;
     }
 
-    public function inserirCart1($request=null)
+    public function inserirCart1($request)
     {
         
     }
@@ -42,8 +42,8 @@ class Card {
         $carta['carta_campos'] = $model->select("SELECT nome_carta_campo, nome_jogo_carta_campo 
                                                  FROM jogos WHERE usuario_id = {$_SESSION['user_id']}")[0];        
 
-$carta['card_info'] = $model->select("SELECT id id_carta, nome_valor nome_carta_valor, nome_jogo_carta_valor 
-                                              FROM cartas WHERE id = {$request}")[0];        
+        $carta['card_info'] = $model->select("SELECT id id_carta, nome_valor nome_carta_valor, nome_jogo_carta_valor 
+                                               FROM cartas WHERE id = {$request}")[0];        
         return $carta;
     }
     
@@ -51,9 +51,9 @@ $carta['card_info'] = $model->select("SELECT id id_carta, nome_valor nome_carta_
     {
         $model = new Update();        
         if($model->update("cartas", $request, "WHERE id = :id", "id={$request['id']}"))
-        return true;
+            return true;
         else
-        return false;
+            return false;
     }
     
     public function getUpdateCardModos(int $request)
@@ -76,9 +76,7 @@ $carta['card_info'] = $model->select("SELECT id id_carta, nome_valor nome_carta_
                                                                     INNER JOIN items ON atributo_items.item_id = items.id 
                                                                     WHERE carta_modos.modo_jogo_id = {$modo['id_modo_jogo']}
                                                     ");                       
-        }   
-        // var_dump($modos);
-        // die;    
+        }           
         return $modos;
     }
 
