@@ -2,9 +2,7 @@
 
 namespace Src\App;
 
-// use App\adms\Controllers\Login;
 use League\Plates\Engine;
-
 class AdminController 
 {
     

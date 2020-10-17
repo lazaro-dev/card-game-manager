@@ -38,11 +38,11 @@ class Usuario {
             $cartas[$i]['tipos_jogos'] = $table->select("SELECT modo_item_cartas.carta_modo_id, carta_modos.modo_jogo_id, 
                                                    GROUP_CONCAT(SUBSTRING(atributo_items.descricao, 1, 1) ORDER BY modo_item_cartas.id) AS string_camp
                                             FROM carta_modos
-                                            INNER JOIN modo_item_cartas ON modo_item_cartas.carta_modo_id = carta_modos.id
-                                            INNER JOIN atributo_items ON modo_item_cartas.atributo_item_id = atributo_items.id
+                                            LEFT JOIN modo_item_cartas ON modo_item_cartas.carta_modo_id = carta_modos.id 
+                                            LEFT JOIN atributo_items ON modo_item_cartas.atributo_item_id = atributo_items.id
                                             WHERE carta_modos.carta_id = {$carta['id_carta']}
                                             GROUP BY modo_item_cartas.carta_modo_id,carta_modos.modo_jogo_id
-                                            ORDER BY modo_item_cartas.carta_modo_id ASC");
+                                            ORDER BY carta_modos.modo_jogo_id ASC");
             
             // var_dump($modos_jogo_linha[$i]);
             // die;

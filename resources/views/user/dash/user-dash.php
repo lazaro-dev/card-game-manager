@@ -37,12 +37,12 @@
                 <th class="container__th"><h2 class="container__secondary"><?= $coluna['nome_carta_campo']  ?></h2></th>
 
                 <?php  
-                    foreach ($coluna['tipos_col'] as $col):
+                    foreach ($coluna['tipos_col'] as $col):                        
                 ?>
 
                     <th class="container__th"><h2 class="container__secondary"><?= $col['descricao_modo'] ?></h2></th>
                 
-                <?php
+                <?php                       
                     endforeach;
                 ?>
             </tr>
@@ -55,11 +55,12 @@
 
                 <td class="container__td red"><?= $carta['nome_jogo_carta_valor'] ?></td>                     
                 <td class="container__td red"><?= $carta['nome_valor'] ?></td>   
-                <?php  
-                    foreach ($carta['tipos_jogos'] as $tip):
+                <?php                      
+                    foreach ($carta['tipos_jogos'] as $tip): 
                 ?>        
                     <td class="container__td"><?= $tip['string_camp']?></td>   
                 <?php
+
                     endforeach;
                 ?>
                 <td class="container__td">

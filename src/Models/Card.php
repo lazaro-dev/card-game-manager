@@ -60,29 +60,50 @@ class Card {
     {   
         $model = new Select();
         $modos = $model->select("SELECT modo_jogos.id id_modo_jogo, modo_jogos.descricao_modo                                                                                                                                                          
-                                                FROM carta_modos
-                                                INNER JOIN modo_jogos ON modo_jogos.id = carta_modos.modo_jogo_id                               
-                                                WHERE carta_modos.carta_id = {$request}
-                                                ORDER BY modo_jogos.id ASC"); 
+                                 FROM carta_modos
+                                 INNER JOIN modo_jogos ON modo_jogos.id = carta_modos.modo_jogo_id                               
+                                 WHERE carta_modos.carta_id = {$request}
+                                 ORDER BY modo_jogos.id ASC"); 
         
         foreach ($modos as $i => $modo) {            
             $modos[$i]['items'] = $model->select("SELECT carta_modos.modo_jogo_id, items.descricao item_desc, 
-                                                                        (CASE WHEN atributo_items.descricao = 'ZNão se aplica' THEN 'Não se aplica'
-                                                                         ELSE atributo_items.descricao
-                                                                         END) atr_desc
-                                                                    FROM carta_modos
-                                                                    INNER JOIN modo_item_cartas ON modo_item_cartas.carta_modo_id = carta_modos.id
-                                                                    INNER JOIN atributo_items ON modo_item_cartas.atributo_item_id = atributo_items.id
-                                                                    INNER JOIN items ON atributo_items.item_id = items.id 
-                                                                    WHERE carta_modos.modo_jogo_id = {$modo['id_modo_jogo']}
+                                                            (CASE WHEN atributo_items.descricao = 'ZNão se aplica' THEN 'Não se aplica'
+                                                                ELSE atributo_items.descricao
+                                                                END) atr_desc
+                                                  FROM carta_modos
+                                                  INNER JOIN modo_item_cartas ON modo_item_cartas.carta_modo_id = carta_modos.id
+                                                  INNER JOIN atributo_items ON modo_item_cartas.atributo_item_id = atributo_items.id
+                                                  INNER JOIN items ON atributo_items.item_id = items.id 
+                                                  WHERE carta_modos.modo_jogo_id = {$modo['id_modo_jogo']}
                                                     ");                       
         }           
         return $modos;
     }
 
     public function getUpdateCardModo(int $id_card, int $id_modo)
-    {
-        // var_dump($id_card, $id_modo);
-        // die;
+    {   
+        $model = new Select();
+        $modo['cabeca'] = $model->select("SELECT modo_jogos.descricao_modo, cartas.nome_valor
+                                 FROM modo_jogos, cartas
+                                 WHERE cartas.id = {$id_card} AND modo_jogos.id = {$id_modo}
+                                 ")[0]; 
+        $modo['items_campo'] = $model->select("SELECT id id_item, descricao
+                                 FROM items                                 
+                                 ");         
+        
+        foreach ($modo['items_campo'] as $key => $item) {
+            $modo['items_campo'][$key]['valor'] = $model->select("SELECT id id_atributo_item, descricao descricao_valor
+                                                                  FROM  atributo_items
+                                                                  WHERE atributo_items.item_id = {$item['id_item']}
+                                                                ");
+        }
+
+        // $modo['items_campo'] = $model->select("SELECT id id_item, descricao
+        //                             FROM items                                 
+        //                          "); 
+         
+        var_dump($modo);
+        die;
+        return $modo;
     }
 }
