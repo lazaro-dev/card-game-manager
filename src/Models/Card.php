@@ -83,7 +83,7 @@ class Card {
     public function getUpdateCardModo(int $id_card, int $id_modo)
     {   
         $model = new Select();
-        $modo['cabeca'] = $model->select("SELECT modo_jogos.descricao_modo, cartas.nome_valor
+        $modo['cabeca'] = $model->select("SELECT modo_jogos.id, modo_jogos.descricao_modo, cartas.nome_valor
                                  FROM modo_jogos, cartas
                                  WHERE cartas.id = {$id_card} AND modo_jogos.id = {$id_modo}
                                  ")[0]; 
@@ -98,12 +98,15 @@ class Card {
                                                                 ");
         }
 
-        // $modo['items_campo'] = $model->select("SELECT id id_item, descricao
-        //                             FROM items                                 
-        //                          "); 
+        $modo['valores'] = $model->select("SELECT atributo_items.item_id, modo_item_cartas.atributo_item_id
+                                    FROM modo_item_cartas 
+                                    INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id
+                                    INNER JOIN atributo_items ON atributo_items.id = modo_item_cartas.atributo_item_id
+                                    WHERE modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card}
+                                 "); 
          
-        var_dump($modo);
-        die;
+        // var_dump($modo);
+        // die;
         return $modo;
     }
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
-    <link rel="stylesheet" href="<?=url()?>/resources/views/user/card/modo/style.css">
+    <link rel="stylesheet" href="<?=url()?>/resources/views/user/card/modos/style.css">
 </head>
 <body>  
     <header class="header">
