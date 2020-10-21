@@ -3,6 +3,9 @@
 namespace Src\Models;
 
 // use Src\Models\utils\Create;
+
+use Exception;
+use FFI\Exception as FFIException;
 use Src\Models\utils\Select;
 use Src\Models\utils\Update;
 
@@ -49,8 +52,13 @@ class Card {
     
     public function updateCardPart1($request)
     {
+        foreach ($request as $key => $value) {
+            if($key!='id')
+                $temp[$key] = $value;
+        }
+                
         $model = new Update();        
-        if($model->update("cartas", $request, "WHERE id = :id", "id={$request['id']}"))
+        if($model->update("cartas", $temp, "WHERE id = :id", "id={$request['id']}"))
             return true;
         else
             return false;
@@ -87,26 +95,138 @@ class Card {
                                  FROM modo_jogos, cartas
                                  WHERE cartas.id = {$id_card} AND modo_jogos.id = {$id_modo}
                                  ")[0]; 
-        $modo['items_campo'] = $model->select("SELECT id id_item, descricao
-                                 FROM items                                 
-                                 ");         
+
+        // $modo['items_campo'] = $model->select("SELECT id id_item, descricao FROM items");         
+        $modo['items_campo'] = $model->select("SELECT items.id id_item, items.descricao, 
+                                                        (SELECT 
+                                                        GROUP_CONCAT(CASE WHEN
+                                                                        EXISTS(SELECT *
+                                                                                FROM modo_item_cartas 
+                                                                                INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id                                                                                
+                                                                                WHERE 
+                                                                                modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id
+                                                                                )  
+                                                                     THEN (SELECT  GROUP_CONCAT(modo_item_cartas.id)
+                                                                            FROM modo_item_cartas 
+                                                                            INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id                                                                                
+                                                                            WHERE 
+                                                                            modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id                                                                            
+                                                                            ) 
+                                                                     ELSE null
+                                                                     END) id_atributo_item                                                              
+                                                                    
+                                                                  FROM  atributo_items
+                                                                  WHERE atributo_items.item_id = items.id
+                                                                  ) modo_item_carta_id
+                                                FROM items
+                                                ");         
         
         foreach ($modo['items_campo'] as $key => $item) {
-            $modo['items_campo'][$key]['valor'] = $model->select("SELECT id id_atributo_item, descricao descricao_valor
+            $modo['items_campo'][$key]['valor'] = $model->select("SELECT id id_atributo_item,
+                                                                         (CASE WHEN descricao = 'ZNão se aplica' THEN 'Não se aplica'
+                                                                         ELSE descricao
+                                                                         END) descricao,
+                                                                    (CASE WHEN
+                                                                        EXISTS(SELECT * 
+                                                                                FROM modo_item_cartas 
+                                                                                INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id                                                                                
+                                                                                WHERE 
+                                                                                modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id
+                                                                            ) 
+                                                                     THEN 'true'
+                                                                     ELSE 'false'
+                                                                     END) checked
                                                                   FROM  atributo_items
                                                                   WHERE atributo_items.item_id = {$item['id_item']}
                                                                 ");
+            // $modo['items_campo'][$key]['valor'] = $model->select("SELECT id id_atributo_item, descricao descricao_valor
+            //                                                       FROM  atributo_items
+            //                                                       WHERE atributo_items.item_id = {$item['id_item']}
+            //                                                     ");
         }
 
-        $modo['valores'] = $model->select("SELECT atributo_items.item_id, modo_item_cartas.atributo_item_id
-                                    FROM modo_item_cartas 
-                                    INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id
-                                    INNER JOIN atributo_items ON atributo_items.id = modo_item_cartas.atributo_item_id
-                                    WHERE modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card}
-                                 "); 
-         
+        // $modo['valores'] = $model->select("SELECT atributo_items.item_id, modo_item_cartas.atributo_item_id
+        //                             FROM modo_item_cartas 
+        //                             INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id
+        //                             INNER JOIN atributo_items ON atributo_items.id = modo_item_cartas.atributo_item_id
+        //                             WHERE modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card}
+        //                          "); 
+
         // var_dump($modo);
         // die;
         return $modo;
     }
+
+    public function updateCardModo($request)
+    {
+        $count = 0;
+        $model = new Update();        
+        try{
+
+            foreach ($request as $key => $value) {
+                if($key!='id_carta' && $key!='id_modo'){
+                    $temp['atributo_item_id'] = $value;
+                    $var = $model->update("modo_item_cartas", $temp, "WHERE id = :id", "id={$key}");            
+                }
+            }
+        }catch(Exception $e){
+            return false;
+        }        
+        return true;
+    }
 }
+
+
+
+// $modo['items_campo'][$key]['valor'] = $model->select("SELECT id id_atributo_item, 
+//                                                                          (CASE WHEN descricao = 'ZNão se aplica' THEN 'Não se aplica'
+//                                                                          ELSE descricao
+//                                                                          END) descricao,
+//                                                                     (CASE WHEN
+//                                                                         EXISTS(SELECT *
+//                                                                                 FROM modo_item_cartas 
+//                                                                                 INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id                                                                                
+//                                                                                 WHERE 
+//                                                                                 modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id
+//                                                                             ) 
+//                                                                      THEN 'true'   
+//                                                                      ELSE 'false'
+//                                                                      END) checked
+//                                                                   FROM  atributo_items
+//                                                                   WHERE atributo_items.item_id = {$item['id_item']}
+//                                                                 ");
+
+
+// $modo['items_campo'][$key]['valor'] = $model->select("SELECT 
+//                                                                     (CASE WHEN
+//                                                                         EXISTS(SELECT *
+//                                                                                 FROM modo_item_cartas 
+//                                                                                 INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id                                                                                
+//                                                                                 WHERE 
+//                                                                                 modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id
+//                                                                                 )  
+//                                                                      THEN (SELECT  GROUP_CONCAT(modo_item_cartas.id)
+//                                                                             FROM modo_item_cartas 
+//                                                                             INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id                                                                                
+//                                                                             WHERE 
+//                                                                             modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id                                                                            
+//                                                                             ) 
+//                                                                      ELSE ''
+//                                                                      END) id_atributo_item,
+
+//                                                                          (CASE WHEN descricao = 'ZNão se aplica' THEN 'Não se aplica'
+//                                                                          ELSE descricao
+//                                                                          END) descricao,
+//                                                                     (CASE WHEN
+//                                                                         EXISTS(SELECT * 
+//                                                                                 FROM modo_item_cartas 
+//                                                                                 INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id                                                                                
+//                                                                                 WHERE 
+//                                                                                 modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id
+//                                                                             ) 
+//                                                                      THEN 'true'
+//                                                                      ELSE 'false'
+//                                                                      END) checked
+//                                                                   FROM  atributo_items
+//                                                                   WHERE atributo_items.item_id = {$item['id_item']}
+//                                                                 ");

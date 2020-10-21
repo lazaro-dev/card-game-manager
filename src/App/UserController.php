@@ -76,8 +76,20 @@ class UserController
         // die;
         $modo = new Card();
         $campos = $modo->getUpdateCardModo($request['id_carta'], $request['id_modo']);
-        echo $this->view->render("user/card/modos/update/update-modo", ["modos" => $campos]);
+        echo $this->view->render("user/card/modos/update/update-modo", ["items" => $campos, "id_carta" => $request['id_carta']]);
     }
 
+    public function updateCardModoFinal($request)
+    {    
+        
+        $card = new Card();
+        if ($card->updateCardModo($request)) {
+            $_SESSION['msg'] = "Atualizado com sucesso!";
+            $this->router->redirect("pag.userHome");
+        } else {
+            $_SESSION['msg'] = "Não foi possivel atualizar!";
+            $this->router->redirect("pag.getUpdateModo", ["id_carta" => $request['id_carta'],"id_modo" => $request['id_modo']]);
+        }
+    }
 
 }

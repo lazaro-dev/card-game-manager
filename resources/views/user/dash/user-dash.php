@@ -22,13 +22,18 @@
                 </div>
             </a>
 
-            <div>
-                <!-- <a href="../Menu/index.html" class="header__menu">Menu</a> -->
+            <div>                
                 <a href="<?=url("usuario/insert-card-1")?>" class="header__alterar">Adicionar carta</a>
                 <a href="<?=url("logout")?>" class="header__login">Logout</a>
             </div>
         </header>        
     </header>
+    <?php            
+        if (isset($_SESSION['msg'])&&!empty($_SESSION['msg'])) {
+            echo "<div class='login__error'>".$_SESSION['msg'] . "</div>";
+            unset($_SESSION['msg']);
+        }
+    ?>
     <table class="container" id="tabela">
         <caption class="container__caption"><?= $coluna['tipo_jogo_campo']?>: <span><?= $coluna['tipo_jogo_valor'] ?></span></caption>
         <thead>
