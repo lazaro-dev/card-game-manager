@@ -23,7 +23,7 @@
             </a>
 
             <div>                
-                <a href="<?=url("usuario/insert-card-1")?>" class="header__alterar">Adicionar carta</a>
+                <a href="<?=url("usuario/insert-card")?>" class="header__alterar">Adicionar carta</a>
                 <a href="<?=url("logout")?>" class="header__login">Logout</a>
             </div>
         </header>        
@@ -71,28 +71,27 @@
                 <td class="container__td">
                     <div class="container__group">
                         <a class="container__alterar" href="<?= url("usuario")."/update-card-1/{$carta['id_carta']}"?>"></a>
-                        <a class="container__deletar" href="#popup"></a>
+                        <a class="container__deletar" href="#popup<?= $carta['id_carta'] ?>"></a>
                     </div>
                 </td>
             
+                <div class="popup" id="popup<?= $carta['id_carta'] ?>">
+                    <div class="popup__container">                        
+                        <div class="popup__group">
+                            <p class="popup__paragh">Deseja apagar?</p>
+                            <div class="popup__group--link">
+                                <a class="popup__confirm" href="<?= url("usuario")."/delete-card/{$carta['id_carta']}"?>"></a>
+                                <a class="container__deletar" href="#tabela"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <?php
                 endforeach;
             ?>
             </tr> 
         </tbody>
     </table>
-    <div class="popup" id="popup">
-        <div class="popup__container">
-            
-            <div class="popup__group">
-                <p class="popup__paragh">Deseja apagar?</p>
-                <div class="popup__group--link">
-                    <a class="popup__confirm" href=""></a>
-                    <a class="container__deletar" href="#tabela"></a>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>    
 </body>
 </html>

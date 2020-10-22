@@ -42,7 +42,7 @@
                     ?>                    
                         <div class="form__box">
                             <label for="<?= $valor['id_atributo_item'] ?>" class="form__label"><?= $valor['descricao'] ?></label>
-                            <input type="radio" name="<?= $item['modo_item_carta_id'] ?>" id="<?= $valor['id_atributo_item'] ?>" value="<?= $valor['id_atributo_item'] ?>" class="form__input" <?php if($valor['checked']=="true"){ echo "checked"; } ?>>
+                            <input type="radio" name="<?php echo ($item['modo_item_carta_id']!=null)?$item['modo_item_carta_id']: $item['id_item']?>" id="<?= $valor['id_atributo_item'] ?>" value="<?= $valor['id_atributo_item'] ?>" class="form__input" <?php if($valor['checked']=="true"){ echo "checked"; } ?>>
                         </div>
                     <?php
                         endforeach;

@@ -2,10 +2,8 @@
 
 namespace Src\Models;
 
-// use Src\Models\utils\Create;
-
 use Exception;
-use FFI\Exception as FFIException;
+use Src\Models\utils\Insert;
 use Src\Models\utils\Select;
 use Src\Models\utils\Update;
 
@@ -26,24 +24,63 @@ class Card {
         return $modos;
     }
 
-    public function getCamposInserirCart1()
+    public function getInsertCard()
     {
         $model = new Select();
-        $carta['carta_campos'] = $model->select("SELECT nome_carta_campo, nome_jogo_carta_campo 
-                                                 FROM jogos WHERE usuario_id = {$_SESSION['user_id']}")[0];              
+        $carta['carta_campos'] = $model->select("SELECT nome_carta_campo, nome_jogo_carta_campo, id jogo_id
+                                                 FROM jogos WHERE usuario_id = {$_SESSION['user_id']} LIMIT 1")[0];
+
+        $carta['jogos'] = $model->select("SELECT id jogo_id, tipo_jogo_valor
+                                          FROM jogos WHERE usuario_id = {$_SESSION['user_id']}");        
         return $carta;
     }
 
-    public function inserirCart1($request)
+    public function inserirCard($request)
     {
-        
+        $model = new Insert();    
+        $sel = new Select();
+        try{
+
+            $valida = $model->lastInsert("cartas", $request);
+            if($valida!=false){
+                $modos = $sel->select("SELECT id FROM modo_jogos ORDER BY id");
+                if(!empty($modos)){
+                    $temp['carta_id'] = $valida;          
+                    foreach ($modos as $key => $modo) {          
+                        $temp['modo_jogo_id'] = $modo['id'];          
+                        $val = $model->insert("carta_modos", $temp);
+                    }
+                }
+            }else{
+                return false;
+            }
+            return $valida;  
+        }catch(Exception $e){
+            return false;  
+        } 
+    }
+
+    public function getInsertModos(int $request)
+    {           
+        return $this->getUpdateCardModos($request);
+    }
+
+    public function getInsertCardModo(int $id_card, int $id_modo)
+    {
+        return $this->getUpdateCardModo($id_card, $id_modo);
     }
     
+    public function insertCardModo($request)
+    {
+        var_dump($request);
+        return $this->updateCardModo($request);
+    }
+
     public function getUpdateCardPart1(int $request)
     {
         $model = new Select();
         $carta['carta_campos'] = $model->select("SELECT nome_carta_campo, nome_jogo_carta_campo 
-                                                 FROM jogos WHERE usuario_id = {$_SESSION['user_id']}")[0];        
+                                                 FROM jogos WHERE usuario_id = {$_SESSION['user_id']}")[0];
 
         $carta['card_info'] = $model->select("SELECT id id_carta, nome_valor nome_carta_valor, nome_jogo_carta_valor 
                                                FROM cartas WHERE id = {$request}")[0];        
@@ -69,7 +106,7 @@ class Card {
         $model = new Select();
         $modos = $model->select("SELECT modo_jogos.id id_modo_jogo, modo_jogos.descricao_modo                                                                                                                                                          
                                  FROM carta_modos
-                                 INNER JOIN modo_jogos ON modo_jogos.id = carta_modos.modo_jogo_id                               
+                                 RIGHT JOIN modo_jogos ON modo_jogos.id = carta_modos.modo_jogo_id                               
                                  WHERE carta_modos.carta_id = {$request}
                                  ORDER BY modo_jogos.id ASC"); 
         
@@ -82,7 +119,7 @@ class Card {
                                                   INNER JOIN modo_item_cartas ON modo_item_cartas.carta_modo_id = carta_modos.id
                                                   INNER JOIN atributo_items ON modo_item_cartas.atributo_item_id = atributo_items.id
                                                   INNER JOIN items ON atributo_items.item_id = items.id 
-                                                  WHERE carta_modos.modo_jogo_id = {$modo['id_modo_jogo']}
+                                                  WHERE carta_modos.modo_jogo_id = {$modo['id_modo_jogo']} AND carta_modos.carta_id = {$request}
                                                     ");                       
         }           
         return $modos;
@@ -158,21 +195,53 @@ class Card {
     }
 
     public function updateCardModo($request)
-    {
-        $count = 0;
-        $model = new Update();        
-        try{
-
-            foreach ($request as $key => $value) {
-                if($key!='id_carta' && $key!='id_modo'){
-                    $temp['atributo_item_id'] = $value;
-                    $var = $model->update("modo_item_cartas", $temp, "WHERE id = :id", "id={$key}");            
+    {        
+        $sel = new Select();
+        $teste = $sel->select("SELECT * 
+                                 FROM modo_item_cartas 
+                                 INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id                                                                                
+                                 WHERE 
+                                 modo_item_cartas.carta_modo_id = {$request['id_modo']} AND carta_modos.carta_id = {$request['id_carta']}
+                                    ");
+        if(!empty($teste)) {
+            $up = new Update();
+            try{    
+                foreach ($request as $key => $value) {
+                    if($key!='id_carta' && $key!='id_modo'){
+                        $temp['atributo_item_id'] = $value;
+                        $var = $up->update("modo_item_cartas", $temp, "WHERE id = :id", "id={$key}");
+                    }
                 }
-            }
-        }catch(Exception $e){
-            return false;
-        }        
+            }catch(Exception $e){
+                return false;
+            }        
+        } else {
+            $ins = new Insert();
+            try{
+                $Carta_mod = $sel->select("SELECT id
+                                            FROM carta_modos                                             
+                                            WHERE 
+                                            carta_id = {$request['id_carta']} AND modo_jogo_id = {$request['id_modo']}
+                                            ")[0];
+
+                $temp['carta_modo_id'] = $Carta_mod['id'];
+                foreach ($request as $key => $value) {
+                    if($key!='id_carta' && $key!='id_modo'){
+                        $temp['atributo_item_id'] = $value;
+                        $var = $ins->insert("modo_item_cartas", $temp);
+                    }
+                }
+            }catch(Exception $e){
+                return false;
+            }      
+        }
         return true;
+    }
+
+    public function deleteCard(int $id_carta)
+    {
+        var_dump($id_carta);
+        die;
     }
 }
 

@@ -25,9 +25,33 @@ class Insert extends Connection{
         
         try{
             $this->query->execute($this->dados);
-            return $this->conn->lastInsertId();
+            // var_dump($this->dados);
+            // die;            
+            return true;
+            // return $this->conn->lastInsertId();
         }catch(Exception $e){
-            return $this->resultado = null;
+            return false;
+        }
+    }
+
+    public function lastInsert($tabela, array $dados){
+        
+        $this->tabela = (string) $tabela;
+        $this->dados = $dados;
+
+        $colunas = implode(', ',array_keys($this->dados));        
+        $valores = ':'.implode(', :', array_keys($this->dados));
+        
+        $this->query= "INSERT INTO {$this->tabela} ({$colunas}) VALUES ({$valores})";
+        
+        $this->query = parent::getConn()->prepare($this->query);
+        
+        try{
+            $this->query->execute($this->dados);            
+          
+            return parent::getConn()->lastInsertId();
+        }catch(Exception $e){
+            return false;
         }
     }
     

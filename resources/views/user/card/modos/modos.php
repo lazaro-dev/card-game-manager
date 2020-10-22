@@ -26,7 +26,12 @@
         </div>
     </header>
 
-    
+    <?php            
+        if (isset($_SESSION['msg'])&&!empty($_SESSION['msg'])) {
+            echo "<div class='login__error'>".$_SESSION['msg'] . "</div>";
+            unset($_SESSION['msg']);
+        }
+    ?>
     <section class="section__form">
         <!-- <form action="" method="POST"> -->
             <!-- <div class="form__container">        
@@ -66,7 +71,17 @@
                             </div>
                             <div class="form__card--back form__cards">
                                 <p class="form__paragh"><?=$mod['descricao_modo']?></p>
-                                <a href="<?=url("usuario/update-modo").'/'.$id_carta.'/'.$mod['id_modo_jogo']?>" class="form__link">Alterar</a>
+                                <?php
+                                    if($mod['items']!==null&&!empty($mod['items'])):   
+                                ?>
+                                    <a href="<?=url("usuario/update-modo").'/'.$id_carta.'/'.$mod['id_modo_jogo']?>" class="form__link">Alterar</a>
+                                <?php
+                                    else:
+                                ?>
+                                   <a href="<?=url("usuario/insert-modo").'/'.$id_carta.'/'.$mod['id_modo_jogo']?>" class="form__link">Inserir</a>
+                                <?php                                    
+                                    endif;
+                                ?>
                             </div>
                         </div>
                     </div>

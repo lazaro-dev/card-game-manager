@@ -31,20 +31,22 @@ $router->post('/edit-tabela', "AdminController:editarTabela","pag.editarTabela")
 $router->group('/usuario');
 $router->get('/', "UserController:home","pag.userHome");
 
-$router->get('/insert-card-1', "UserController:getInsertCardPart1","pag.getInsert1");
-$router->post('/insert-card-1', "UserController:insertCardPart1","pag.insert1");
-$router->get('/insert-card-2', "UserController:insertCardPart2","pag.getInsert2");
+$router->get('/insert-card', "UserController:getInsertCard","pag.getInsertCard");
+$router->post('/insert-card', "UserController:insertCard","pag.insertCard");
+$router->get('/insert-modo/{id_carta}', "UserController:getInsertModos","pag.getInsertModos");
+$router->get('/insert-modo/{id_carta}/{id_modo}', "UserController:getInsertCardModo","pag.getInsertCardModo");
+$router->post('/insert-modo/{id_carta}/{id_modo}', "UserController:insertCardModo","pag.insertCardModo");
 
-$router->get('/update-card-1/{id}', "UserController:getUpdateCardPart1","pag.getUpdate1");
-$router->post('/update-card-1/{id}', "UserController:updateCardPart1","pag.update1");
-// $router->get('/update-card-2/{id}', "UserController:getUpdateCardPart2","pag.getUpdate2");
+$router->get('/update-card-1/{id}', "UserController:getUpdateCard","pag.getUpdate1");
+$router->post('/update-card-1/{id}', "UserController:updateCard","pag.update1");
 $router->get('/update-modo/{id_carta}', "UserController:getUpdateCardModos","pag.getUpdateModos");
 $router->get('/update-modo/{id_carta}/{id_modo}', "UserController:getUpdateCardModo","pag.getUpdateModo");
-$router->post('/update-modo/{id_carta}/{id_modo}', "UserController:updateCardModoFinal","pag.updateModo");
-// $router->post('/insert-card-1', "UserController:insertCardPart1IU","pag.insertCardPost1IU");
+$router->post('/update-modo/{id_carta}/{id_modo}', "UserController:updateCardModo","pag.updateModo");
 
-$router->get('/edit', "UserController:edit","pag.edit");
-$router->get('/editar', "UserController:editar","pag.editar");
+$router->get('/delete-card/{id_carta}', "UserController:deleteCard","pag.deleteCard");
+
+// $router->get('/edit', "UserController:edit","pag.edit");
+// $router->get('/editar', "UserController:editar","pag.editar");
 
 
 $router->dispatch();
