@@ -80,7 +80,12 @@
                         <div class="popup__group">
                             <p class="popup__paragh">Deseja apagar?</p>
                             <div class="popup__group--link">
-                                <a class="popup__confirm" href="<?= url("usuario")."/delete-card/{$carta['id_carta']}"?>"></a>
+                            <form action="<?= url("usuario")."/delete-card"?>" method="POST">                           
+                                <input hidden type="text" name="_method" value="DELETE"/>
+                                <input hidden type="text" name="id_carta" value="<?= $carta['id_carta']?>"/> 
+                                <button type="submit" class="popup__confirm"></button>
+                            </form>
+                                <!-- <a class="popup__confirm" href="<?= url("usuario")."/delete-card/{$carta['id_carta']}"?>"></a> -->
                                 <a class="container__deletar" href="#tabela"></a>
                             </div>
                         </div>

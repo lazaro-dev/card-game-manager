@@ -43,7 +43,7 @@ $router->get('/update-modo/{id_carta}', "UserController:getUpdateCardModos","pag
 $router->get('/update-modo/{id_carta}/{id_modo}', "UserController:getUpdateCardModo","pag.getUpdateModo");
 $router->post('/update-modo/{id_carta}/{id_modo}', "UserController:updateCardModo","pag.updateModo");
 
-$router->get('/delete-card/{id_carta}', "UserController:deleteCard","pag.deleteCard");
+$router->delete('/delete-card', "UserController:deleteCard","pag.deleteCard");
 
 // $router->get('/edit', "UserController:edit","pag.edit");
 // $router->get('/editar', "UserController:editar","pag.editar");

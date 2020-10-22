@@ -134,8 +134,6 @@ class UserController
 
     public function deleteCard($request)
     {                  
-        var_dump($request);
-        die;  
         $card = new Card();
         if ($card->deleteCard($request['id_carta'])) {
             $_SESSION['msg'] = "Carta deletada com sucesso!";            
