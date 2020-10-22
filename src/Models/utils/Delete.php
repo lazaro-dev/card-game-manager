@@ -21,7 +21,7 @@ class Delete extends Connection
         $this->query = parent::getConn()->prepare($this->query);
 
         try {
-            $this->query->execute($this->values);
+            $this->query->execute($this->values);            
             return true;
         } catch (Exception $ex) {
             return false;

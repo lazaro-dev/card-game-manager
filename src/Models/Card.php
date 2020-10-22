@@ -3,6 +3,7 @@
 namespace Src\Models;
 
 use Exception;
+use Src\Models\utils\Delete;
 use Src\Models\utils\Insert;
 use Src\Models\utils\Select;
 use Src\Models\utils\Update;
@@ -239,9 +240,9 @@ class Card {
     }
 
     public function deleteCard(int $id_carta)
-    {
-        var_dump($id_carta);
-        die;
+    {  
+        $del = new Delete();
+        return $del->delete("cartas", "WHERE id =:id", "id={$id_carta}");
     }
 }
 
