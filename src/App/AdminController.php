@@ -29,4 +29,10 @@ class AdminController
         echo $this->view->render("admin/dash/admin-dash", ['users' => $users]);
     }    
 
+    public function getInsertUser()
+    {
+        // $model = new Admin();
+        // $users = $model->getUsers();
+        echo $this->view->render("admin/user/insert/insert-user");
+    }
 }

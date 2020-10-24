@@ -1,3 +1,25 @@
+/*style.css
+M
+Tipo
+Folha de estilo
+Tamanho
+5 KB (4.804 bytes)
+Armazenamento usado
+0 bytes
+Local
+Global
+Proprietário
+Marcus Vinicius
+Modificado em
+17:40 por Marcus Vinicius
+Aberto em
+22:09 por mim
+Criado em
+4 de out. de 2020
+Sem descrição
+Os leitores podem fazer o download
+ ALTERADO */
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
  
 * {
@@ -14,6 +36,9 @@ body {
    background-color:#1F2739;
 }
 
+input {
+   font-family: inherit;
+}
 
 /* Cabeçalho */
 .header {
@@ -82,6 +107,146 @@ body {
    color: #FB667A;
 }
 
+.mensagem__error {
+   background-color: #FB667A;
+   width: 100%;
+   padding: .5rem 1rem;
+   color: #7c0011;
+   font-size: 1.2rem;
+}
+
+.mensagem__sucesses {
+   background-color: #5bff63ad;
+   width: 100%;
+   padding: .5rem 1rem;
+   color: #004b0a;
+   font-size: 1.2rem;
+}
+
+
+/* POPUP */
+
+.popup {
+   position: fixed;
+   backdrop-filter: blur(10px);
+   height: 100%;
+   width: 100%;
+   left: 0;
+   top: 0;
+   z-index: 5000;
+   opacity: 0;
+   visibility: hidden;
+   transition: all .3s;
+   transform: scale(0)
+}
+
+.popup:target {
+   opacity: 1;
+   visibility: visible;
+   transform: scale(1);
+}
+
+.popup__container {
+   position: absolute;
+   transform: translate(-50%,-50%);
+   top: 50%;
+   left: 50%;
+   width: 22rem;
+   height: 17rem;
+   background-color:#f1f2f6;
+   border-radius: 3px;
+}
+
+.popup__paragh {
+   color: #2391c4;
+   font-size: 1.3rem;
+}
+
+.popup__group {
+   position: absolute;
+   transform: translate(-50%,-50%);
+   top: 50%;
+   left: 50%;
+   display: grid;
+   row-gap: 2rem;
+}
+
+.popup__group--link {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.popup__confirm {
+   clip-path: polygon(18% 35%, 30% 55%, 75% 18%, 88% 34%, 28% 84%, 2% 45%);
+   width: 2rem;
+   height: 2rem;
+   display: inline-block;
+   background-color: #2391c4;
+   transition: all .3s;
+   cursor: pointer;
+   margin-top: .5rem;
+}
+
+.popup__confirm:focus {
+   outline: none;
+}
+
+.popup__confirm:hover {
+   background-color: #1a7199;
+}
+
+
+@keyframes flash {
+   0% {
+      opacity: 0;
+      transform: scale(0);
+   }
+
+   100% {
+      opacity: 1;
+      transform: scale(1);
+   }
+}
+
+
+/* Media query */
+
+@media only screen and (max-width: 62.5em) {
+   .container__th, 
+   .container__td {
+      width: 200px;
+   } 
+}
+
+@media only screen and (max-width: 37.5em) {
+   .container__secondary {
+      font-size: 1.1rem;
+   }
+
+   .container__td {
+      font-size: .9rem;
+   }
+
+   .container__td {
+      width: 150px;
+   } 
+
+   .container__th {
+      width: 170px;
+   }
+
+   .container__deletar {
+      width: 1.2rem;
+      height: 1.2rem;
+   }
+   
+   .container__alterar {
+      width: 1.5rem;
+      height: 1.5rem;
+   }
+}
+
 @media only screen and (max-width: 62.5em) {
    html {
       font-size: 80%;
@@ -99,15 +264,18 @@ body {
 @media only screen and (max-width: 37.5em) {
    .header {
       flex-direction: column;
+      height: inherit;
    }
 
+   .header__menu {
+      
+   }
    .header__container {
       height: 4rem;
-      position: relative;
    }
 
    .header__div {
-      top: -1.2rem;
+      top: -.6rem;
       left: -1.8rem;
    }
 

@@ -32,8 +32,16 @@
     </header>
     <?php            
         if (isset($_SESSION['msg'])&&!empty($_SESSION['msg'])) {
-            echo "<div class='login__error'>".$_SESSION['msg'] . "</div>";
+            echo "<p class='mensagem__error'>".$_SESSION['msg'] . "</p>";
             unset($_SESSION['msg']);
+        }else{
+            unset($_SESSION['msg']);
+        }
+        if (isset($_SESSION['msgSuc'])&&!empty($_SESSION['msgSuc'])) {
+            echo "<p class='mensagem__sucesses'>".$_SESSION['msgSuc'] . "</p>";
+            unset($_SESSION['msgSuc']);
+        }else{
+            unset($_SESSION['msgSuc']);
         }
     ?>
     <?php  

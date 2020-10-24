@@ -30,6 +30,14 @@ form {
     border: none;
 }
 
+.input:focus {
+    outline: 0  ;
+}
+
+.input::-webkit-input-placeholder {
+    color: black;
+}
+
 .login__secondary {
     margin-top: 1rem;
     font-size: 1.6rem;
@@ -55,15 +63,6 @@ form {
 
 .login__submit:hover {
     background: #56CCF2;
-}
-
-.login__error {
-    background-color: #fd002252;
-    width: 100%;
-    padding: .5rem 1rem;
-    color: rgb(161, 0, 0);
-    position: absolute;
-    top: 0;
 }
 
 @media only screen and (max-width: 37.5em) { 

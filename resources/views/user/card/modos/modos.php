@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
-    <link rel="stylesheet" href="<?=url()?>/resources/views/user/card/insert/style.css">
+    <link rel="stylesheet" href="<?=url()?>/resources/views/user/card/modos/style.css">
 </head>
 <body>  
     <header class="header">
@@ -28,8 +28,16 @@
 
     <?php            
         if (isset($_SESSION['msg'])&&!empty($_SESSION['msg'])) {
-            echo "<div class='login__error'>".$_SESSION['msg'] . "</div>";
+            echo "<p class='mensagem__error'>".$_SESSION['msg'] . "</p>";
             unset($_SESSION['msg']);
+        }else{
+            unset($_SESSION['msg']);
+        }
+        if (isset($_SESSION['msgSuc'])&&!empty($_SESSION['msgSuc'])) {
+            echo "<p class='mensagem__sucesses'>".$_SESSION['msgSuc'] . "</p>";
+            unset($_SESSION['msgSuc']);
+        }else{
+            unset($_SESSION['msgSuc']);
         }
     ?>
     <section class="section__form">
@@ -59,12 +67,18 @@
                             <div class="form__card--from form__cards">
                                 <ul class="form__list--card">
                                 <?php
-                                    if($mod['items']!==null):
+                                    if($mod['items']):
                                         foreach ($mod['items'] as $atr):
                                 ?>
                                     <li class="form__list"><?=$atr['item_desc'] ?>: <span class="form__item"><?= $atr['atr_desc'] ?></span></li>       
                                 <?php
                                         endforeach;
+                                    else:
+                                ?>
+                                    <div class="form__icon">
+                                        <!-- Passe o mouse sobre o card -->
+                                    </div>
+                                <?php                                
                                     endif;
                                 ?>
                                 </ul>

@@ -1,4 +1,5 @@
-/* Tabela */
+/* ALTERADO */
+
 .container__secondary {
    font-weight: bold;
    font-size: 1.4rem;
@@ -25,7 +26,6 @@
    text-align: left;
    overflow: hidden;
    width: 100%;
-   margin: 0 auto;
    padding: 0 0 12.8rem 0;
    display: block;
    position: relative;
@@ -106,7 +106,7 @@
   box-shadow:  #7F7C21 -3px 3px;
   transform: translate(.3rem,-.3rem);
   
-   transition: all .4s;
+  transition: all .4s;
 }
 
 .container__group {
@@ -141,119 +141,3 @@
 .container__deletar:hover {
    background-color: #c94556;
 }
-
-@keyframes flash {
-   0% {
-      opacity: 0;
-      transform: scale(0);
-   }
-
-   100% {
-      opacity: 1;
-      transform: scale(1);
-   }
-}
-
-
-/* POPUP */
-
-.popup {
-   position: fixed;
-   backdrop-filter: blur(10px);
-   height: 100%;
-   width: 100%;
-   left: 0;
-   top: 0;
-   z-index: 5000;
-   opacity: 0;
-   visibility: hidden;
-   transition: all .3s;
-   transform: scale(0)
-}
-
-.popup:target {
-   opacity: 1;
-   visibility: visible;
-   transform: scale(1);
-}
-
-.popup__container {
-   position: absolute;
-   transform: translate(-50%,-50%);
-   top: 50%;
-   left: 50%;
-   width: 22rem;
-   height: 17rem;
-   background-color:#f1f2f6;
-   border-radius: 3px;
-}
-
-.popup__paragh {
-   color: #2391c4;
-   font-size: 1.3rem;
-}
-
-.popup__group {
-   position: absolute;
-   transform: translate(-50%,-50%);
-   top: 50%;
-   left: 50%;
-   display: grid;
-   row-gap: 2rem;
-}
-
-.popup__group--link {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-}
-
-.popup__confirm {
-   clip-path: polygon(18% 35%, 30% 55%, 75% 18%, 88% 34%, 28% 84%, 2% 45%);
-   width: 2rem;
-   height: 2rem;
-   display: inline-block;
-   background-color: #2391c4;
-   transition: all .3s;
-}
-
-
-.popup__confirm:hover {
-   background-color: #1a7199;
-}
-
-@media only screen and (max-width: 62.5em) {
-   .container__th, 
-   .container__td {
-      width: 200px;
-   } 
-}
-
-@media only screen and (max-width: 37.5em) {
-   .container__secondary {
-      font-size: 1.1rem;
-   }
-
-   .container__td {
-      font-size: .9rem;
-   }
-
-   .container__td {
-      width: 150px;
-   } 
-
-   .container__th {
-      width: 170px;
-   }
-
-   .container__deletar {
-      width: 1.2rem;
-      height: 1.2rem;
-   }
-   
-   .container__alterar {
-      width: 1.5rem;
-      height: 1.5rem;
-   }
-}
-

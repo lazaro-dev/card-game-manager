@@ -1,3 +1,5 @@
+/* ALTERADO */
+
 .section__form {
     width: 93%;
     margin: 0 auto;
@@ -8,14 +10,13 @@
     animation-timing-function: ease-in;
 }
 
-/* Formulario */
 form {
     text-align: center;
 }
 
 .form__container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(430px,1fr))
+    grid-template-columns: repeat(auto-fit, minmax(450px,1fr));
 }
 
 .form__box {
@@ -79,18 +80,18 @@ form {
 .form__pepctive {
     perspective: 150rem;
     position: relative;
-    height: 27rem;
-    width: 20rem;
+    height: 29rem;
+    width: 22rem;
 }
 
 .form__cards {
     position: absolute;
-    height: 100%;
     width: 100%;
     border-radius: 3px;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     transition: all .8s ease;
+    padding: 1rem 0;
 }
 
 .form__card--from {
@@ -104,6 +105,7 @@ form {
     background: -webkit-linear-gradient(to left, #004e92, #000428);  
     background: linear-gradient(to left, #004e92, #000428);
     transform: rotateY(180deg);
+    height: 100%;
 
     display: grid;
     text-align: center;
@@ -122,11 +124,8 @@ form {
 .form__list--card {
     list-style: none;
     text-align: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     height: 100%;
-    align-items: center;
-    justify-content: center;
+
 }
 
 .form__list {
@@ -176,21 +175,40 @@ form {
 .form__adjuster {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+    column-gap: 1.5rem;
 }
 
-@keyframes flash {
-    0% {
-       opacity: 0;
-       transform: scale(0);
-    }
- 
-    100% {
-       opacity: 1;
-       transform: scale(1);
-    }
- }
+.form__icon {
+    height: 27rem;
+    padding: 1rem 0;
+    position: relative;
+    color: white;
+    text-transform: uppercase;
+}
 
- @media only screen and (max-width: 63.3125em) {
+.form__icon::before {
+    content: '\2192';
+    display: inline-block;
+    position: absolute;
+    color: white;
+    transform: translate(-50%,-50%);
+    top: 42%;
+    left: 50%;
+    font-size: 10rem;   
+}
+
+.form__icon::after {
+    content: '\2190';
+    display: inline-block;
+    position: absolute;
+    color: white;
+    transform: translate(-50%,-50%);
+    top: 58%;
+    left: 50%;
+    font-size: 10rem;   
+}
+
+ @media only screen and (max-width: 65.9375em) {
     form {
         display: flex;
         align-items: center;
