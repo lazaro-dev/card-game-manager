@@ -48,11 +48,11 @@
         <form action="" method="POST">
             <fieldset class="user__fiel">
                 <!-- só use esse legend caso seja o formulario de editar o usuario  -->
-                <!-- <legend class="user__name">Username</legend> -->
+                <legend class="user__name"><?= $user['usuario'] ?></legend>
                 <div class="user__form">
                     <div class="user__group">
                         <label for="iuser" class="user__label">Usuário</label>
-                        <input type="text"  name="usuario" id="iuser"  class="user__input" required>
+                        <input type="text"  name="usuario" id="iuser"  class="user__input" value="<?= $user['usuario'] ?>" required>
                     </div>
 
                     <div class="user__group">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </fieldset>
-            <button type="submit" class="btn">Criar</button>
+            <button type="submit" class="btn">Atualizar</button>
         </form>
     </section>
           

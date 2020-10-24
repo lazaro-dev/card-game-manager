@@ -17,21 +17,20 @@ $router->post('/', 'LoginController:login', 'pag.loginForm');
 $router->group('/logout');
 $router->get('/', 'LoginController:logout', 'pag.logout');
 
-
 $router->group('/ooops');
 $router->get('/{errcode}', "ErroController:error");
-
     
 $router->group('/admin');
 $router->get('/', "AdminController:home","pag.admin");
 $router->get('/insert-user', "AdminController:getInsertUser","pag.getInsertUser");
 $router->post('/insert-user', "AdminController:insertUser","pag.insertUser");
-$router->get('/update-user', "AdminController:getUpdateUser","pag.getUpdateUser");
-$router->post('/update-user', "AdminController:updateUser","pag.updateUser");
-$router->delete('/delete-user', "UserController:deleteUser","pag.deleteUser");
+$router->get('/update-user/{id_user}', "AdminController:getUpdateUser","pag.getUpdateUser");
+$router->post('/update-user/{id_user}', "AdminController:updateUser","pag.updateUser");
+$router->delete('/delete-user', "AdminController:deleteUser","pag.deleteUser");
 
-$router->get('/update-table', "AdminController:editTabela","pag.getUpdateTable");
-$router->post('/update-table', "AdminController:editarTabela","pag.updateTable");
+$router->get('/update-table', "AdminController:getUpdateTable","pag.getUpdateTable");
+$router->post('/update-table', "AdminController:updateTable","pag.updateTable");
+
 
 $router->group('/usuario');
 $router->get('/', "UserController:home","pag.userHome");

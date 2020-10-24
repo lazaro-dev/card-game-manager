@@ -62,9 +62,24 @@
                 <tr class="container__tr">
                     <td class="container__td"><?= $user['id'] ?></td>
                     <td class="container__td"><?= $user['usuario']; ?></td>
-                    <td class="container__td"><a href="#" class="edition center"></a></td>
-                    <td class="container__td"><a href="#popup" class="delete center"></a></td>
+                    <td class="container__td"><a href="<?= url("admin")."/update-user/{$user['id']}"?>" class="edition center"></a></td>                    
+                    <td class="container__td"><a href="#popup<?= $user['id'] ?>" class="delete center"></a></td>
                 </tr>
+                <div class="popup" id="popup<?= $user['id'] ?>">
+                    <div class="popup__container">            
+                        <div class="popup__group">
+                            <p class="popup__paragh">Deseja apagar?</p>
+                            <div class="popup__group--link">
+                                <form action="<?= url("admin")."/delete-user"?>" method="POST">
+                                    <input hidden type="text" name="_method" value="DELETE"/>
+                                    <input hidden type="text" name="id_user" value="<?= $user['id']?>"/> 
+                                    <button class="popup__confirm"></button>
+                                </form>
+                                <a class="delete" href="#tabela"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <?php
                 endforeach;
                 else:
@@ -74,22 +89,6 @@
             endif; ?>
         </tbody>
 
-    </table>
-
-    <div class="popup" id="popup">
-        <div class="popup__container">
-            
-            <div class="popup__group">
-                <p class="popup__paragh">Deseja apagar?</p>
-                <div class="popup__group--link">
-                    <form action="">
-                        <button class="popup__confirm"></button>
-                    </form>
-                    <a class="delete" href="#tabela"></a>
-                </div>
-            </div>
-        </div>
-    </div>
-          
+    </table>          
 </body>
 </html>

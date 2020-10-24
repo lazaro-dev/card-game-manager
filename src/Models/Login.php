@@ -13,8 +13,6 @@ class Login {
         $mLog = new Select();
         $this->user = $mLog->select("SELECT * FROM usuarios WHERE usuario = :user", "user={$request['usuario']}");
         
-        // var_dump($this->user);
-        // die;
         if(isset($this->user[0]['senha'])&&password_verify($request['senha'],$this->user[0]['senha'])){
             $this->sessao();
             return true;
