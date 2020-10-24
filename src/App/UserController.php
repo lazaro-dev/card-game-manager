@@ -4,6 +4,7 @@ namespace Src\App;
 
 use League\Plates\Engine;
 use Src\Models\Card;
+use Src\Models\Jogo;
 use Src\Models\Usuario;
 class UserController 
 {
@@ -25,8 +26,61 @@ class UserController
     {        
         $ins = new Usuario();
         $table = $ins->getTable($_SESSION['user_id']);
+        // var_dump($table);
+        // die;
         echo $this->view->render("user/dash/user-dash", ['coluna' => $table['colunas'][0], 'cartas' => $table['cartas']]);
     }    
+    
+    public function getInsertJogo()
+    {
+        $jogo = new Jogo();
+        $campo = $jogo->getInsertJogo();
+        echo $this->view->render("user/jogo/insert/insert-jogo", ['campos' => $campo]);
+    }
+
+    public function insertJogo($request)
+    {                
+        if(!empty($request)){            
+            $jogo = new Jogo();
+            $val = $jogo->insertJogo($request);
+
+            if ($val!=false) {
+                $_SESSION['msg'] = "Salvo com sucesso!";
+            } else {
+                $_SESSION['msg'] = "Não foi possivel salvar!";                
+            }
+            $this->router->redirect("pag.userHome");                
+        }else{
+            $_SESSION['msg'] = "Preencha o campo!";
+            $this->router->redirect("pag.getInsertJogo");
+        } 
+    }
+
+    public function getUpdateJogo()
+    {           
+        $jogo = new Jogo();
+        $val = $jogo->getUpdateJogo();        
+        echo $this->view->render("user/jogo/update/update-jogo", ['jogos' => $val, 'id_jogo' => $val['valor']['id']]);
+    }
+
+    public function updateJogo($request)
+    {
+        // var_dump($request);
+        // die;
+        $jogo = new Jogo();
+        $val = $jogo->updateJogo($request);
+        if(!empty($request)){     
+            if ($val!=false) {
+                $_SESSION['msg'] = "Atualizado com sucesso!";
+                $this->router->redirect("pag.userHome");     
+            } else {
+                $_SESSION['msg'] = "Não foi possivel atualizar!";                
+            }       
+        }else{
+            $_SESSION['msg'] = "Campo obrigatório!";
+        }
+        $this->router->redirect("pag.getUpdateJogo");
+    }
 
     public function getInsertCard()
     {       
@@ -51,8 +105,7 @@ class UserController
         }else{
             $_SESSION['msg'] = "Preencha os campos corretamente!";
             $this->router->redirect("pag.getInsertCard");
-        }                
-        // $this->router->redirect("pag.insertCardId", ["id" => $campos]);
+        }                        
     }
     
     public function getInsertModos($request)
@@ -63,21 +116,17 @@ class UserController
     }
 
     public function getInsertCardModo($request)
-    {    
-        // var_dump($request);
-        // die;
+    {      
         $modo = new Card();
         $campos = $modo->getInsertCardModo($request['id_carta'], $request['id_modo']);
         echo $this->view->render("user/card/modos/insert/insert-modo", ["items" => $campos, "id_carta" => $request['id_carta']]);
     }
 
     public function insertCardModo($request)
-    {    
-        
+    {                    
         $card = new Card();
         if ($card->insertCardModo($request)) {
-            $_SESSION['msg'] = "Modo cadastrado com sucesso!";
-            // $this->router->redirect("pag.userHome");
+            $_SESSION['msg'] = "Modo cadastrado com sucesso!";            
             $this->router->redirect("pag.getInsertModos", ["id_carta" => $request['id_carta']]);
         } else {
             $_SESSION['msg'] = "Não foi possivel cadastrar esse modulo!";
@@ -113,8 +162,6 @@ class UserController
     
     public function getUpdateCardModo($request)
     {    
-        // var_dump($request);
-        // die;
         $modo = new Card();
         $campos = $modo->getUpdateCardModo($request['id_carta'], $request['id_modo']);
         echo $this->view->render("user/card/modos/update/update-modo", ["items" => $campos, "id_carta" => $request['id_carta']]);
@@ -122,6 +169,8 @@ class UserController
 
     public function updateCardModo($request)
     {            
+        // var_dump($request);
+        // die;
         $card = new Card();
         if ($card->updateCardModo($request)) {
             $_SESSION['msg'] = "Atualizado com sucesso!";

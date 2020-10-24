@@ -25,7 +25,7 @@ class Insert extends Connection{
         
         try{
             $this->query->execute($this->dados);
-            // var_dump($this->dados);
+            // var_dump($this->query);
             // die;            
             return true;
             // return $this->conn->lastInsertId();

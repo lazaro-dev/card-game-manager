@@ -42,7 +42,13 @@
                     ?>                    
                         <div class="form__box">
                             <label for="<?= $valor['id_atributo_item'] ?>" class="form__label"><?= $valor['descricao'] ?></label>
-                            <input type="radio" name="<?php echo ($item['modo_item_carta_id']!=null)?$item['modo_item_carta_id']: $item['id_item']?>" id="<?= $valor['id_atributo_item'] ?>" value="<?= $valor['id_atributo_item'] ?>" class="form__input" <?php if($valor['checked']=="true"){ echo "checked"; } ?>>
+                            <input type="radio" name="<?php echo ($item['modo_item_carta_id']!=null)?$item['modo_item_carta_id']: $item['id_item']?>" id="<?= $valor['id_atributo_item'] ?>" 
+                            value="<?= $valor['id_atributo_item'] ?>" class="form__input" <?php if($valor['checked']=="true"){ 
+                                                                                                    echo "checked"; 
+                                                                                                } else if($item['modo_item_carta_id']==null&&$valor['descricao']=='Não se aplica'){
+                                                                                                    echo "checked"; 
+                                                                                                }
+                                                                                            ?>>
                         </div>
                     <?php
                         endforeach;
@@ -56,7 +62,7 @@
                 <?php  
                     endforeach;
                 ?>
-            <button type="submit" class="form__btn">Alterar</button>
+            <button type="submit" class="form__btn">Salvar</button>
         </form>
     </section>
 </body>

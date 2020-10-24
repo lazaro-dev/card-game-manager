@@ -2,7 +2,6 @@
 
 namespace Src\Models;
 
-// use Src\Models\utils\Create;
 use Src\Models\utils\Select;
 
 class Usuario {
@@ -13,12 +12,13 @@ class Usuario {
         $cartas = $table->select("SELECT  cart.id id_carta, cart.nome_valor, cart.nome_jogo_carta_valor, cart.jogo_id                                            
                                   FROM jogos 
                                   INNER JOIN cartas cart ON cart.jogo_id = jogos.id                                                           
-                                  WHERE jogos.usuario_id = {$user_id}                                                        
+                                  WHERE jogos.usuario_id = {$user_id}                                                                                    
                                  ");                                        
 
-        $colunas = $table->select("SELECT id id_jogo, tipo_jogo_campo, tipo_jogo_valor, nome_carta_campo, 
-                                          nome_jogo_carta_campo
-                                    FROM jogos                                                                                                            
+        $colunas = $table->select("SELECT jogos.id id_jogo, tab_jogos.tipo_jogo_campo, jogos.tipo_jogo_valor, tab_jogos.nome_carta_campo, 
+                                          tab_jogos.nome_jogo_carta_campo
+                                    FROM jogos
+                                    INNER JOIN tab_jogos ON tab_jogos.id = jogos.tab_jogo_id
                                     WHERE usuario_id = {$user_id} LIMIT 1
                                     ");
 
@@ -29,7 +29,7 @@ class Usuario {
                                      INNER JOIN cartas ON cartas.jogo_id = jogos.id
                                      WHERE usuario_id = {$user_id} LIMIT 1) jog                               
                                INNER JOIN carta_modos ON carta_modos.carta_id = jog.id_carta
-                               INNER JOIN modo_jogos ON modo_jogos.id = carta_modos.modo_jogo_id                               
+                               RIGHT JOIN modo_jogos ON modo_jogos.id = carta_modos.modo_jogo_id                               
                                ORDER BY modo_jogos.id ASC");
 
         $colunas[0]['tipos_col'] = $aux;         
@@ -43,22 +43,11 @@ class Usuario {
                                             WHERE carta_modos.carta_id = {$carta['id_carta']}
                                             GROUP BY modo_item_cartas.carta_modo_id,carta_modos.modo_jogo_id
                                             ORDER BY carta_modos.modo_jogo_id ASC");
-            
-            // var_dump($modos_jogo_linha[$i]);
-            // die;
+                    
             foreach ($cartas[$i]['tipos_jogos'] as $j => $modo) {
                 $cartas[$i]['tipos_jogos'][$j]['string_camp'] = str_replace(",","",$modo['string_camp']);                                
             }
         }
-        
-        if(!empty($modos_jogo_linha[$i]) && count($modos_jogo_linha[$i]) < count($colunas[0]['tipos_col']) ) {
-            
-            // $modos_jogo_linha[$i]
-            // var_dump(count($modos_jogo_linha[$i]) , count($colunas[0]['tipos_col']) );
-            // die;
-        }
-        
-        // $cartas['tipos_jogos'] = $modos_jogo_linha;
         
         $tabela = [
             'colunas' => $colunas,

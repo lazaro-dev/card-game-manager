@@ -3,6 +3,8 @@
 namespace Src\App;
 
 use League\Plates\Engine;
+use Src\Models\Admin;
+
 class AdminController 
 {
     
@@ -21,8 +23,10 @@ class AdminController
     }
     
     public function home():void
-    {                        
-        echo $this->view->render("admin/admin-dash");
+    {    
+        $model = new Admin();
+        $users = $model->getUsers();
+        echo $this->view->render("admin/dash/admin-dash", ['users' => $users]);
     }    
 
 }

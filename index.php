@@ -24,12 +24,16 @@ $router->get('/{errcode}', "ErroController:error");
     
 $router->group('/admin');
 $router->get('/', "AdminController:home","pag.admin");
-$router->get('/edit-tabela', "AdminController:editTabela","pag.editTabela");
-$router->post('/edit-tabela', "AdminController:editarTabela","pag.editarTabela");
-
+$router->get('/update-table', "AdminController:editTabela","pag.getUpdateTable");
+$router->post('/update-table', "AdminController:editarTabela","pag.updateTable");
 
 $router->group('/usuario');
 $router->get('/', "UserController:home","pag.userHome");
+
+$router->get('/insert-jogo', "UserController:getInsertJogo","pag.getInsertJogo");
+$router->post('/insert-jogo', "UserController:insertJogo","pag.insertJogo");
+$router->get('/update-jogo', "UserController:getUpdateJogo","pag.getUpdateJogo");
+$router->post('/update-jogo', "UserController:UpdateJogo","pag.updateJogo");
 
 $router->get('/insert-card', "UserController:getInsertCard","pag.getInsertCard");
 $router->post('/insert-card', "UserController:insertCard","pag.insertCard");
@@ -44,10 +48,6 @@ $router->get('/update-modo/{id_carta}/{id_modo}', "UserController:getUpdateCardM
 $router->post('/update-modo/{id_carta}/{id_modo}', "UserController:updateCardModo","pag.updateModo");
 
 $router->delete('/delete-card', "UserController:deleteCard","pag.deleteCard");
-
-// $router->get('/edit', "UserController:edit","pag.edit");
-// $router->get('/editar', "UserController:editar","pag.editar");
-
 
 $router->dispatch();
 

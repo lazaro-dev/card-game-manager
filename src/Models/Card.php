@@ -10,10 +10,14 @@ use Src\Models\utils\Update;
 
 class Card {
 
-    public function getCamposInserirCart($request=null)
+    public function getCamposInserirCart()
     {
         $model = new Select();
-        $modos['carta_nome'] = $model->select("SELECT nome_carta_campo, nome_jogo_carta_campo FROM jogos WHERE usuario_id = {$_SESSION['user_id']}");
+        $modos['carta_nome'] = $model->select("SELECT tab_jogos.nome_carta_campo, tab_jogos.nome_jogo_carta_campo 
+                                                FROM jogos 
+                                                INNER JOIN tab_jogos ON tab_jogos.id = jogos.tab_jogo_id
+                                                WHERE jogos.usuario_id = {$_SESSION['user_id']}");
+
         $modos['modos'] = $model->select("SELECT id, descricao_modo FROM modo_jogos ORDER BY id ASC");
 
         foreach ($modos['modos'] as $key => $modo) {
@@ -28,11 +32,18 @@ class Card {
     public function getInsertCard()
     {
         $model = new Select();
-        $carta['carta_campos'] = $model->select("SELECT nome_carta_campo, nome_jogo_carta_campo, id jogo_id
-                                                 FROM jogos WHERE usuario_id = {$_SESSION['user_id']} LIMIT 1")[0];
+        $carta['carta_campos'] = $model->select("SELECT tab_jogos.tipo_jogo_campo, tab_jogos.nome_carta_campo,
+                                                        tab_jogos.nome_jogo_carta_campo, jogos.id jogo_id
+                                                 FROM jogos 
+                                                 INNER JOIN tab_jogos ON tab_jogos.id = jogos.tab_jogo_id
+                                                 WHERE jogos.usuario_id = {$_SESSION['user_id']} LIMIT 1")[0];
 
-        $carta['jogos'] = $model->select("SELECT id jogo_id, tipo_jogo_valor
-                                          FROM jogos WHERE usuario_id = {$_SESSION['user_id']}");        
+        $carta['jogos'] = $model->select("SELECT jogos.id jogo_id, jogos.tipo_jogo_valor 
+                                          FROM jogos 
+                                          INNER JOIN tab_jogos ON tab_jogos.id = jogos.tab_jogo_id 
+                                          WHERE jogos.usuario_id = {$_SESSION['user_id']}");        
+            // var_dump($carta);
+            // die;
         return $carta;
     }
 
@@ -72,16 +83,55 @@ class Card {
     }
     
     public function insertCardModo($request)
+    {        
+        if(count($request)==2){
+            return $this->insertAllDefaultModo($request['id_carta'], $request['id_modo']);
+        }else{
+            return $this->updateCardModo($request);
+        }
+    }
+
+    public function insertAllDefaultModo(int $id_carta, int $id_modo)
     {
-        var_dump($request);
-        return $this->updateCardModo($request);
+        $sel = new Select();
+        $ins = new Insert();
+        try{          
+            $Carta_mod = $sel->select("SELECT carta_modos.id
+                                        FROM carta_modos
+                                        LEFT JOIN modo_item_cartas ON modo_item_cartas.carta_modo_id = carta_modos.id               
+                                        WHERE
+                                        modo_item_cartas.carta_modo_id IS NULL AND
+                                        carta_modos.carta_id = {$id_carta} AND 
+                                        carta_modos.modo_jogo_id = {$id_modo}
+                                        ")[0];
+
+            $atributos =  $sel->select("SELECT atributo_items.id atributo_item_id
+                                        FROM atributo_items
+                                        INNER JOIN items ON items.id = atributo_items.item_id
+                                        WHERE atributo_items.descricao = 'ZNão se aplica'
+                                        ");
+            // var_dump($Carta_mod);
+            // die;
+            $temp['carta_modo_id'] = $Carta_mod['id'];
+            $temp['created_at'] = date('Y-m-d H:i:s'); 
+            foreach ($atributos as $key => $value) {                
+                $temp['atributo_item_id'] = $value['atributo_item_id'];
+                $var = $ins->insert("modo_item_cartas", $temp);
+            }
+            
+        }catch(Exception $e){
+            return false;
+        }   
+        return true;   
     }
 
     public function getUpdateCardPart1(int $request)
     {
         $model = new Select();
-        $carta['carta_campos'] = $model->select("SELECT nome_carta_campo, nome_jogo_carta_campo 
-                                                 FROM jogos WHERE usuario_id = {$_SESSION['user_id']}")[0];
+        $carta['carta_campos'] = $model->select("SELECT tab_jogos.nome_carta_campo, tab_jogos.nome_jogo_carta_campo 
+                                                 FROM jogos 
+                                                 INNER JOIN tab_jogos ON tab_jogos.id = jogos.tab_jogo_id
+                                                 WHERE usuario_id = {$_SESSION['user_id']}")[0];
 
         $carta['card_info'] = $model->select("SELECT id id_carta, nome_valor nome_carta_valor, nome_jogo_carta_valor 
                                                FROM cartas WHERE id = {$request}")[0];        
@@ -142,13 +192,13 @@ class Card {
                                                                                 FROM modo_item_cartas 
                                                                                 INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id                                                                                
                                                                                 WHERE 
-                                                                                modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id
+                                                                                carta_modos.modo_jogo_id  = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id
                                                                                 )  
                                                                      THEN (SELECT  GROUP_CONCAT(modo_item_cartas.id)
                                                                             FROM modo_item_cartas 
                                                                             INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id                                                                                
                                                                             WHERE 
-                                                                            modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id                                                                            
+                                                                            carta_modos.modo_jogo_id = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id                                                                            
                                                                             ) 
                                                                      ELSE null
                                                                      END) id_atributo_item                                                              
@@ -169,7 +219,7 @@ class Card {
                                                                                 FROM modo_item_cartas 
                                                                                 INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id                                                                                
                                                                                 WHERE 
-                                                                                modo_item_cartas.carta_modo_id = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id
+                                                                                carta_modos.modo_jogo_id = {$id_modo} AND carta_modos.carta_id = {$id_card} AND atributo_items.id = modo_item_cartas.atributo_item_id
                                                                             ) 
                                                                      THEN 'true'
                                                                      ELSE 'false'
@@ -197,12 +247,14 @@ class Card {
 
     public function updateCardModo($request)
     {        
+        // var_dump(count($request));
+        // die;
         $sel = new Select();
         $teste = $sel->select("SELECT * 
                                  FROM modo_item_cartas 
                                  INNER JOIN carta_modos ON carta_modos.id = modo_item_cartas.carta_modo_id                                                                                
                                  WHERE 
-                                 modo_item_cartas.carta_modo_id = {$request['id_modo']} AND carta_modos.carta_id = {$request['id_carta']}
+                                 carta_modos.modo_jogo_id = {$request['id_modo']} AND carta_modos.carta_id = {$request['id_carta']}
                                     ");
         if(!empty($teste)) {
             $up = new Update();
@@ -232,6 +284,10 @@ class Card {
                         $var = $ins->insert("modo_item_cartas", $temp);
                     }
                 }
+
+                // if(count($request)<14){
+                //     $this->insertAllDefaultModo($request['id_carta'], $request['id_modo']);
+                // }
             }catch(Exception $e){
                 return false;
             }      
