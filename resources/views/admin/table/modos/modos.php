@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
-    <link rel="stylesheet" href="<?=url()?>/resources/views/admin/user/insert/style.css">
+    <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/update/style.css">
 </head>
 <body>
     <div>
@@ -22,14 +22,15 @@
                 </div>
             </a>
 
-            <div>
+            <div>                
+                <a href="<?=url("admin/update-modos")?>" class="header__alterar">Editar Modos</a>
                 <a href="<?=url("admin/insert-user")?>" class="header__alterar">Adicionar usuário</a>
                 <a href="<?=url("logout")?>" class="header__login">Sair</a>
             </div>
         </header>        
     </header>
     <?php            
-        if (isset($_SESSION['msg'])&&!empty($_SESSION['msg'])) {
+         if (isset($_SESSION['msg'])&&!empty($_SESSION['msg'])) {
             echo "<p class='mensagem__error'>".$_SESSION['msg'] . "</p>";
             unset($_SESSION['msg']);
         }else{
@@ -42,29 +43,31 @@
             unset($_SESSION['msgSuc']);
         }
     ?>
-                 
-<section class="section__user">        
+
+<section class="section__form">
 
         <form action="" method="POST">
-        <input hidden type="text" name="_method" value="PUT">
-            <fieldset class="user__fiel">
-                <!-- só use esse legend caso seja o formulario de editar o usuario  -->
-                <legend class="user__name"><?= $user['usuario'] ?></legend>
-                <div class="user__form">
-                    <div class="user__group">
-                        <label for="iuser" class="user__label">Usuário</label>
-                        <input type="text"  name="usuario" id="iuser"  class="user__input" value="<?= $user['usuario'] ?>" required>
-                    </div>
 
-                    <div class="user__group">
-                        <label for="isenha" class="user__label">Senha</label>
-                        <input type="password" name="senha" id="isenha" class="user__input" required>
-                    </div>
+            <input hidden type="text" name="_method" value="PUT">
+            <div class="form__container">
+                <div class="form__box">
+                    <label for="ftipo" class="form__label">Titulo da tabela</label>
+                    <input type="text" name="tipo_jogo_campo" id="ftipo" class="form__input" placeholder="Titulo da tabela" value="<?= $table['tipo_jogo_campo'] ?>" required>
                 </div>
-            </fieldset>
-            <button type="submit" class="btn">Atualizar</button>
+
+                <div class="form__box">
+                    <label for="fcarta" class="form__label">Coluna 1</label>
+                    <input type="text" name="nome_jogo_carta_campo" id="fcarta" class="form__input" placeholder="Coluna 1" value="<?= $table['nome_jogo_carta_campo'] ?>" required>
+                </div>
+
+                <div class="form__box">
+                    <label for="fnome" class="form__label">Coluna 2</label>
+                    <input type="text" name="nome_carta_campo" id="fnome" class="form__input" placeholder="Coluna 2" value="<?= $table['nome_carta_campo'] ?>" required>
+                </div>
+            </div>                                 
+            <input type="submit" class="form__btn" value="Alterar">
         </form>
     </section>
-          
+
 </body>
 </html>

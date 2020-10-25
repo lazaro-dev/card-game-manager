@@ -4,10 +4,10 @@ namespace Src\App;
 
 use League\Plates\Engine;
 use Src\Models\Admin;
+use Src\Models\Table;
 
 class AdminController 
 {
-    
     private $view;
     private $router;
 
@@ -18,7 +18,7 @@ class AdminController
 
         if(!isset($_SESSION['user_acesso'])||($_SESSION['user_acesso'] != 1 && isset($_SESSION['user_acesso']))){     
             $_SESSION['msg'] = "Você não tem essa permição!";       
-            $this->router->redirect("pag.login");            
+            $this->router->redirect("pag.login");
         }
     }
     
@@ -31,8 +31,6 @@ class AdminController
 
     public function getInsertUser()
     {
-        // $model = new Admin();
-        // $users = $model->getInsertUser();
         echo $this->view->render("admin/user/insert/insert-user");
     }
 
@@ -41,7 +39,6 @@ class AdminController
         $model = new Admin();
         if($model->insertUserVal($request)){
             if($model->insertUser($request)){
-
                 $_SESSION['msgSuc'] = "Usuário criado!";
                 $this->router->redirect("pag.admin");
             }else{                
@@ -61,24 +58,56 @@ class AdminController
     }
     
     public function updateUser($request)
-    {        
+    {
         $model = new Admin();
         if($model->updateUser($request)){
             $_SESSION['msgSuc'] = "Usuário atulizado!";
             $this->router->redirect("pag.admin");
         }else{
-            $_SESSION['msg'] = "Não foi possivel atualizar!";         
+            $_SESSION['msg'] = "Não foi possivel atualizar!";
             $this->router->redirect("pag.getUpdateUser");
         }
     }
+
     public function deleteUser($request)
     {
         $model = new Admin();
         if ($model->deleteUser($request['id_user'])) {
-            $_SESSION['msgSuc'] = "Usuário deletada com sucesso!";            
+            $_SESSION['msgSuc'] = "Usuário deletada com sucesso!";
         } else {
             $_SESSION['msg'] = "Não foi possivel deletar essa usuário!";
         }
         $this->router->redirect("pag.admin");
     }
+
+    public function getUpdateTable()
+    {
+        $model = new Table();
+        $table = $model->getUpdateTable();
+        echo $this->view->render("admin/table/update/update-table", ['table' => $table]);
+    }
+
+    public function updateTable($request)
+    {           
+        if(!empty($request)){
+            $table = new Table();            
+            if ($table->updateTable($request)) {
+                $_SESSION['msgSuc'] = "Tabela atualizada!";
+                $this->router->redirect("pag.admin");
+            } else {
+                $_SESSION['msg'] = "Não foi possivel atualizar a tabela!";
+                $this->router->redirect("pag.getUpdateTable");                
+            }
+        }else{
+            $_SESSION['msg'] = "Preencha os campos corretamente!";
+            $this->router->redirect("pag.getUpdateTable");
+        }   
+    }
+    
+    public function getUpdateModos()
+    {
+        $model = new Table();
+        $table = $model->getUpdateModos();
+        echo $this->view->render("admin/table/update/update-table", ['table' => $table]);
+    }    
 }

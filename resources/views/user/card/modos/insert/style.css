@@ -1,3 +1,5 @@
+/* ALTERADO */
+
 .section__form {
     width: 93%;
     margin: 0 auto;
@@ -78,19 +80,7 @@ form {
     text-align: left;
     margin-bottom: 2rem;
     justify-self: center;
-}
-
-@keyframes flash {
-    0% {
-       opacity: 0;
-       transform: scale(0);
-    }
- 
-    100% {
-       opacity: 1;
-       transform: scale(1);
-    }
-}
+} 
 
 .form__paragh {
     font-size: 1.4rem;

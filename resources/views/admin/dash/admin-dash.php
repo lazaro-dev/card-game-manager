@@ -23,6 +23,9 @@
             </a>
 
             <div>
+                <a href="<?=url("admin/update-table")?>" class="header__alterar">Editar tabela</a>
+                <a href="<?=url("admin/update-modos")?>" class="header__alterar">Editar Modos</a>
+                <a href="<?=url("admin/update-modos")?>" class="header__alterar">Editar Itens</a>
                 <a href="<?=url("admin/insert-user")?>" class="header__alterar">Adicionar usuário</a>
                 <a href="<?=url("logout")?>" class="header__login">Sair</a>
             </div>

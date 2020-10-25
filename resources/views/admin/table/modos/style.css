@@ -8,22 +8,20 @@
     animation-name: flash;
     animation-duration: 1s;
     animation-timing-function: ease-in;
-    text-align: center;
 }
 
 form {
     text-align: center;
-    margin-top: 2rem;
 }
 
 .form__container {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(430px,1fr));
 }
 
 .form__box {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 3fr;
     justify-content: center;
     align-items: center;
 }
@@ -39,7 +37,7 @@ form {
     padding: .5rem;
     border-radius: 3px;
     border: none;
-    width: 60%;
+    width: 20rem;
     font-family: inherit;
 }
 
@@ -48,7 +46,7 @@ form {
 }
 
 .form__btn {
-    margin-top: 1rem;
+    margin: 3rem 0;
     padding: .7rem .5rem;
     width: 10rem;
     border-radius: 3px;
@@ -76,19 +74,37 @@ form {
     justify-self: center;
 }
 
-.form__radio--group {
-    text-align: left;
-    margin-bottom: 2rem;
-    justify-self: center;
-} 
-
-.form__paragh {
-    font-size: 1.4rem;
-    color: white;
+.form__fieldset {
+    border: none;
 }
 
-.form__secondary {
-    font-weight: bold;
-    font-size: 1.7rem;
-    color: #217ca7;
+.form__legend {
+    font-size: 1.4rem;
+    color: #2391c4;
+    padding: 2rem 0;
+}
+
+
+@media only screen and (max-width: 63.3125em) {
+    form {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .form__btn {
+        justify-self: center;
+    }
+}
+
+@media only screen and (max-width: 31.25em) {
+    .form__box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form__container {
+        display: flex;
+        flex-direction: column;
+    }
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
-    <link rel="stylesheet" href="<?=url()?>/resources/views/user/card/modos/style.css">
+    <link rel="stylesheet" href="<?=url()?>/resources/views/user/card/modos/update/style.css">
 </head>
 <body>  
     <header class="header">
@@ -42,6 +42,7 @@
     <section class="section__form">
         <h2 class="form__secondary">Tradicional</h2>
         <form action="" method="POST">
+            <input hidden type="text" name="_method" value="PUT">
             <div class="form__container">
                 <?php  
                     foreach ($items['items_campo'] as $item):

@@ -2,8 +2,6 @@
 
 namespace Src\Models;
 
-// use Src\Models\utils\Create;
-
 use Exception;
 use Src\Models\utils\Delete;
 use Src\Models\utils\Insert;

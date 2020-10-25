@@ -43,7 +43,6 @@ class Jogo {
     
     public function updateJogo($request)
     {
-        
         $temp['tipo_jogo_valor'] = $request['tipo_jogo_valor'];
         $temp['updated_at'] = date('Y-m-d H:i:s');        
         

@@ -1,3 +1,17 @@
+     --BIBLIOTECAS USADAS--
 composer require coffeecode/router
 composer require league/plates:v4.0.0-alpha
 composer dump-autoload
+
+
+
+Instruções de instalação
+
+1-intalar o xamp/wamp ou outras com suporte apache
+2-copiar os arquivos do projeto para a pasta referente ao servidor utilizado
+3-importar o banco de dados
+4-intalar o composer
+5-na raiz do projeto pelo terminal, rodar o comando 'composer install'
+6- editar o arquivo Confg.php que se encontra no diretorio a partir da 
+   raiz do projeto './src/Config.php', com os dados do banco local e a 
+   porta juntamente com endereço do projeto

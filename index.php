@@ -7,7 +7,6 @@ $router = new Router(URL);
 
 $router->namespace("Src\App");
 
-
 $router->get('/', 'TableController:home', 'pag.principal');
 
 $router->group('/login');
@@ -25,11 +24,19 @@ $router->get('/', "AdminController:home","pag.admin");
 $router->get('/insert-user', "AdminController:getInsertUser","pag.getInsertUser");
 $router->post('/insert-user', "AdminController:insertUser","pag.insertUser");
 $router->get('/update-user/{id_user}', "AdminController:getUpdateUser","pag.getUpdateUser");
-$router->post('/update-user/{id_user}', "AdminController:updateUser","pag.updateUser");
+$router->put('/update-user/{id_user}', "AdminController:updateUser","pag.updateUser");
 $router->delete('/delete-user', "AdminController:deleteUser","pag.deleteUser");
 
 $router->get('/update-table', "AdminController:getUpdateTable","pag.getUpdateTable");
-$router->post('/update-table', "AdminController:updateTable","pag.updateTable");
+$router->put('/update-table', "AdminController:updateTable","pag.updateTable");
+
+$router->get('/update-modos', "AdminController:getUpdateModos","pag.getUpdateModosTab");
+$router->get('/update-modo', "AdminController:getUpdateModos","pag.getUpdateModoTab");
+$router->put('/update-modo', "AdminController:updateModos","pag.updateModosTab");
+
+$router->get('/update-items', "AdminController:getUpdateItems","pag.getUpdateItems");
+$router->get('/update-item', "AdminController:getUpdateItem","pag.getUpdateItem");
+$router->put('/update-item', "AdminController:updateItem","pag.updateItem");
 
 
 $router->group('/usuario');
@@ -38,7 +45,7 @@ $router->get('/', "UserController:home","pag.userHome");
 $router->get('/insert-jogo', "UserController:getInsertJogo","pag.getInsertJogo");
 $router->post('/insert-jogo', "UserController:insertJogo","pag.insertJogo");
 $router->get('/update-jogo', "UserController:getUpdateJogo","pag.getUpdateJogo");
-$router->post('/update-jogo', "UserController:UpdateJogo","pag.updateJogo");
+$router->put('/update-jogo', "UserController:UpdateJogo","pag.updateJogo");
 
 $router->get('/insert-card', "UserController:getInsertCard","pag.getInsertCard");
 $router->post('/insert-card', "UserController:insertCard","pag.insertCard");
@@ -47,10 +54,10 @@ $router->get('/insert-modo/{id_carta}/{id_modo}', "UserController:getInsertCardM
 $router->post('/insert-modo/{id_carta}/{id_modo}', "UserController:insertCardModo","pag.insertCardModo");
 
 $router->get('/update-card-1/{id}', "UserController:getUpdateCard","pag.getUpdate1");
-$router->post('/update-card-1/{id}', "UserController:updateCard","pag.update1");
+$router->put('/update-card-1/{id}', "UserController:updateCard","pag.update1");
 $router->get('/update-modo/{id_carta}', "UserController:getUpdateCardModos","pag.getUpdateModos");
 $router->get('/update-modo/{id_carta}/{id_modo}', "UserController:getUpdateCardModo","pag.getUpdateModo");
-$router->post('/update-modo/{id_carta}/{id_modo}', "UserController:updateCardModo","pag.updateModo");
+$router->put('/update-modo/{id_carta}/{id_modo}', "UserController:updateCardModo","pag.updateModo");
 
 $router->delete('/delete-card', "UserController:deleteCard","pag.deleteCard");
 

@@ -26,8 +26,6 @@ class UserController
     {        
         $ins = new Usuario();
         $table = $ins->getTable($_SESSION['user_id']);
-        // var_dump($table);
-        // die;
         echo $this->view->render("user/dash/user-dash", ['coluna' => $table['colunas'][0], 'cartas' => $table['cartas']]);
     }    
     
@@ -65,8 +63,6 @@ class UserController
 
     public function updateJogo($request)
     {
-        // var_dump($request);
-        // die;
         $jogo = new Jogo();
         $val = $jogo->updateJogo($request);
         if(!empty($request)){     
@@ -168,9 +164,7 @@ class UserController
     }
 
     public function updateCardModo($request)
-    {            
-        // var_dump($request);
-        // die;
+    {                   
         $card = new Card();
         if ($card->updateCardModo($request)) {
             $_SESSION['msgSuc'] = "Atualizado com sucesso!";

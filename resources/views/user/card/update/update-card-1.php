@@ -41,6 +41,7 @@
             }
         ?>
         <form action="" method="POST">
+            <input hidden type="text" name="_method" value="PUT">
             <div class="form__container">
                 <!-- <div class="form__box">
                     <label for="ftipo" class="form__label">Tipo de Jogo</label>
