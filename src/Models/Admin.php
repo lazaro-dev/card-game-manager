@@ -62,4 +62,14 @@ class Admin {
         return $del->delete("usuarios", "WHERE id =:id", "id={$id_user}");
     }
 
+    public function valPass(int $id_user ,string $senha)
+    {                
+        $sel = new Select();
+        $user = $sel->select("SELECT senha FROM usuarios WHERE id = :id", "id={$id_user}")[0];
+        if(isset($user)&&password_verify($senha ,$user['senha'])){
+            return true;
+        }else{
+            return false;
+        }                        
+    }
 }

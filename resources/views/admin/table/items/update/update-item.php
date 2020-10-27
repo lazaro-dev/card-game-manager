@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
-    <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/update/style.css">
+    <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/items/update/style.css">
 </head>
 <body>
     <div>
@@ -45,24 +45,23 @@
     ?>
 
 <section class="section__form">
+
         <form action="" method="POST">
-        <!-- <?= url("admin")."/update-modo"?> -->
-            <!-- <input hidden type="text" name="_method" value="GET">  -->
-            <div class="form__container">           
 
-                <label for="modo">Modalidades</label>
-                <select name="id_modo" id="modo">
-                    <?php 
-                        foreach ($modos as $modo):
-                    ?>
-                        <option value="<?= $modo['id']?>"><?= $modo['descricao_modo'] ?></option>
-                    <?php  
-                        endforeach;
-                    ?>
-                </select>                             
-            </div>
-
-            <button type="submit" class="form__btn">Avançar</button>
+            <input hidden type="text" name="_method" value="PUT">
+            <?php 
+                foreach ($atributos as $atributo):
+            ?>
+                <div class="form__container">
+                    <div class="form__box">
+                        <label for="ftipo" class="form__label"><?= $nome_item ?></label>
+                        <input type="text" name="<?= $atributo['id'] ?>" id="ftipo" class="form__input" placeholder="Titulo da tabela" value="<?= $atributo['descricao'] ?>" required>
+                    </div>
+                </div>            
+            <?php  
+                endforeach;
+            ?>                     
+            <input type="submit" class="form__btn" value="Alterar">
         </form>
     </section>
 

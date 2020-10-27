@@ -1,0 +1,87 @@
+/* ALTERADO */
+
+.section__user {
+    padding: 4rem;
+    animation-name: flash;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    width: 93%;
+    margin: 0 auto;
+}
+
+.user__name {
+    color: #2391c4;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
+}
+
+.user__fiel {
+    border: none;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+.user__form {
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+   width: 100%;
+   flex-wrap: wrap;
+}
+
+.user__group {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.user__input {
+    padding: .5rem;
+    border-radius: 3px;
+    border: none;
+    width: 20rem;
+    font-family: inherit;
+}
+
+.user__input:focus {
+    outline: none;
+}
+
+.user__label {
+
+    padding: .3rem;
+    font-size: .9rem;
+    color: #2391c4;
+    font-family: inherit;
+}
+
+.btn {
+    margin-top: 3rem;
+    padding: .7rem .5rem;
+    width: 10rem;
+    border-radius: 3px;
+    cursor: pointer;
+    justify-self: center;
+    grid-column: 1 / -1;
+    transition: all .3s;
+    background-color: #2391c4;
+    border: none;
+    color: white;
+    font-family: inherit;
+}
+
+@media only screen and (max-width: 37.5em) {
+    .user__group {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+    }
+}

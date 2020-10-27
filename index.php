@@ -31,12 +31,17 @@ $router->get('/update-table', "AdminController:getUpdateTable","pag.getUpdateTab
 $router->put('/update-table', "AdminController:updateTable","pag.updateTable");
 
 $router->get('/update-modos', "AdminController:getUpdateModos","pag.getUpdateModosTab");
-$router->get('/update-modo', "AdminController:getUpdateModos","pag.getUpdateModoTab");
-$router->put('/update-modo', "AdminController:updateModos","pag.updateModosTab");
+$router->post('/update-modos', "AdminController:getUpdateModo1","pag.getUpdateModo1Tab");
+$router->get('/update-modo/{id_modo}', "AdminController:getUpdateModo","pag.getUpdateModoTab");
+$router->put('/update-modo/{id_modo}', "AdminController:updateModo","pag.updateModoTab");
 
 $router->get('/update-items', "AdminController:getUpdateItems","pag.getUpdateItems");
-$router->get('/update-item', "AdminController:getUpdateItem","pag.getUpdateItem");
-$router->put('/update-item', "AdminController:updateItem","pag.updateItem");
+$router->post('/update-items', "AdminController:getUpdateItem1","pag.getUpdateItem1");
+$router->get('/update-item/{id_item}', "AdminController:getUpdateItem","pag.getUpdateItem");
+$router->put('/update-item/{id_item}', "AdminController:updateItem","pag.updateItem");
+
+$router->get('/update-password', "AdminController:getUpdatePassword","pag.getUpdatePassword");
+$router->put('/update-password/{id_user}', "AdminController:updatePassword","pag.updatePassword");
 
 
 $router->group('/usuario');

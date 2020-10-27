@@ -1,0 +1,110 @@
+/* ALTERADO */
+
+.section__form {
+    width: 93%;
+    margin: 0 auto;
+    padding: 2rem;
+    margin-top: 2rem;
+    animation-name: flash;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+}
+
+form {
+    text-align: center;
+}
+
+.form__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(430px,1fr));
+}
+
+.form__box {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__label {
+    padding: .3rem;
+    font-size: .9rem;
+    color: #2391c4;
+    font-family: inherit;
+}
+
+.form__input {
+    padding: .5rem;
+    border-radius: 3px;
+    border: none;
+    width: 20rem;
+    font-family: inherit;
+}
+
+.form__input:focus {
+    outline: none;
+}
+
+.form__btn {
+    margin: 3rem 0;
+    padding: .7rem .5rem;
+    width: 10rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .3s;
+    background-color: #2391c4;
+    border: none;
+    color: white;
+    font-family: inherit;
+}
+
+.form__btn:hover {
+    transform: translateY(-.2rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.form__btn:active {
+    transform: translateY(0);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.form__card {
+    margin-top: 2rem;
+    align-self: center;
+    justify-self: center;
+}
+
+.form__fieldset {
+    border: none;
+}
+
+.form__legend {
+    font-size: 1.4rem;
+    color: #2391c4;
+    padding: 2rem 0;
+}
+
+
+@media only screen and (max-width: 63.3125em) {
+    form {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .form__btn {
+        justify-self: center;
+    }
+}
+
+@media only screen and (max-width: 31.25em) {
+    .form__box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form__container {
+        display: flex;
+        flex-direction: column;
+    }
+}

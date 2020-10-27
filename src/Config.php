@@ -10,8 +10,8 @@ function url(string $uri = null):string
     if($uri){
         return URL . '/'. $uri;
     }
-    
-    return URL;    
+        
+    return URL;
 }
 
 //Configurações de banco

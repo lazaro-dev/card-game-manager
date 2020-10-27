@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
-    <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/update/style.css">
+    <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/items/style.css">
 </head>
 <body>
     <div>
@@ -46,16 +46,16 @@
 
 <section class="section__form">
         <form action="" method="POST">
-        <!-- <?= url("admin")."/update-modo"?> -->
+        <!-- <?= url("admin")."/update-items"?> -->
             <!-- <input hidden type="text" name="_method" value="GET">  -->
             <div class="form__container">           
 
-                <label for="modo">Modalidades</label>
-                <select name="id_modo" id="modo">
+                <label for="item">Items</label>
+                <select name="id_item" id="item">
                     <?php 
-                        foreach ($modos as $modo):
+                        foreach ($items as $item):
                     ?>
-                        <option value="<?= $modo['id']?>"><?= $modo['descricao_modo'] ?></option>
+                        <option value="<?= $item['id']?>"><?= $item['descricao'] ?></option>
                     <?php  
                         endforeach;
                     ?>
