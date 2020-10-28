@@ -27,6 +27,9 @@ $router->get('/update-user/{id_user}', "AdminController:getUpdateUser","pag.getU
 $router->put('/update-user/{id_user}', "AdminController:updateUser","pag.updateUser");
 $router->delete('/delete-user', "AdminController:deleteUser","pag.deleteUser");
 
+$router->get('/table-user/{id_user}', "AdminController:getTableUser","pag.getTableUser");
+
+
 $router->get('/update-table', "AdminController:getUpdateTable","pag.getUpdateTable");
 $router->put('/update-table', "AdminController:updateTable","pag.updateTable");
 

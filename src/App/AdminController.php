@@ -5,6 +5,7 @@ namespace Src\App;
 use League\Plates\Engine;
 use Src\Models\Admin;
 use Src\Models\Table;
+use Src\Models\Usuario;
 
 class AdminController 
 {
@@ -187,9 +188,7 @@ class AdminController
     }
 
     public function updateItem($request)
-    {
-        // var_dump($request);
-        // die;   
+    {        
         if(!empty($request)){
             $table = new Table();            
             if ($table->updateItem($request)) {
@@ -204,4 +203,12 @@ class AdminController
         $this->router->redirect("pag.getUpdateItem", ["id_item" => $request['id_item']]);
     }
 
+    public function getTableUser($request)
+    {
+        // var_dump($request);
+        // die;   
+        $ins = new Usuario();
+        $table = $ins->getTable($request['id_user']);
+        echo $this->view->render("admin/table/table", ['coluna' => $table['colunas'][0], 'cartas' => $table['cartas']]);
+    }
 }

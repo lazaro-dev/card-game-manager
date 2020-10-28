@@ -95,13 +95,12 @@ class UserController
                 $_SESSION['msgSuc'] = "Salvo com sucesso!";
                 $this->router->redirect("pag.getInsertModos", ["id_carta" => $id['id_carta']]);
             } else {
-                $_SESSION['msg'] = "Não foi possivel salvar!";
-                $this->router->redirect("pag.getInsertCard");                
+                $_SESSION['msg'] = "Não foi possivel salvar!";                
             }
         }else{
             $_SESSION['msg'] = "Preencha os campos corretamente!";
-            $this->router->redirect("pag.getInsertCard");
         }                        
+        $this->router->redirect("pag.getInsertCard");
     }
     
     public function getInsertModos($request)
@@ -179,7 +178,7 @@ class UserController
     {                  
         $card = new Card();
         if ($card->deleteCard($request['id_carta'])) {
-            $_SESSION['msgSuc'] = "Carta deletada com sucesso!";            
+            $_SESSION['msgSuc'] = "Carta deletada com sucesso!";
         } else {
             $_SESSION['msg'] = "Não foi possivel deletar essa carta!";
         }

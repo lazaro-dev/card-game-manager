@@ -54,6 +54,7 @@
             <tr class="container__tr">
                 <th class="container__th"><h2 class="container__secondary">ID</h2></th>
                 <th class="container__th"><h2 class="container__secondary">Usuário</h2></th>
+                <th class="container__th"><h2 class="container__secondary">Tabela</h2></th>
                 <th class="container__th"><h2 class="container__secondary">Editar</h2></th>
                 <th class="container__th"><h2 class="container__secondary">Apagar</h2></th>
             </tr>
@@ -66,7 +67,8 @@
                 <tr class="container__tr">
                     <td class="container__td"><?= $user['id'] ?></td>
                     <td class="container__td"><?= $user['usuario']; ?></td>
-                    <td class="container__td"><a href="<?= url("admin")."/update-user/{$user['id']}"?>" class="edition center"></a></td>                    
+                    <td class="container__td"><a href="<?= url("admin")."/table-user/{$user['id']}"?>" class="edition center"></a></td>
+                    <td class="container__td"><a href="<?= url("admin")."/update-user/{$user['id']}"?>" class="edition center"></a></td>
                     <td class="container__td"><a href="#popup<?= $user['id'] ?>" class="delete center"></a></td>
                 </tr>
                 <div class="popup" id="popup<?= $user['id'] ?>">

@@ -3,7 +3,6 @@
 namespace Src\Models;
 
 use Exception;
-use Src\Models\utils\Insert;
 use Src\Models\utils\Select;
 use Src\Models\utils\Update;
 

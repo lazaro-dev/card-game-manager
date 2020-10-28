@@ -52,7 +52,7 @@ class Usuario {
         $tabela = [
             'colunas' => $colunas,
             'cartas' => $cartas
-        ];        
+        ];
 
         // var_dump($tabela);
         // die;

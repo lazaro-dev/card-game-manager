@@ -8,6 +8,7 @@ class TableController
 {
     private $view;
     private $router;
+    
     public function __construct($router)
     {
         $this->router = $router;
@@ -18,12 +19,9 @@ class TableController
     {        
         $this->router->redirect("login");
     }
-    
-    
+        
     public function login():void
     {
-        // var_dump('che');
-        // die;
         echo $this->view->render("login/login");
     }
 }

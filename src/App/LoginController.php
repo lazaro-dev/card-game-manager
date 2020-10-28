@@ -10,7 +10,6 @@ class LoginController
 {
     /** @var Router */
     private $router;
-
     private $view;
 
     public function __construct($router)
