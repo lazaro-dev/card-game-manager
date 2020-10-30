@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tabela</title>
+    <link rel="shortcut icon" type="image/png" href="<?=url()?>/resources/assets/img/icon.jpg">
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
     <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/style.css">
 </head>
@@ -21,7 +22,6 @@
                     </div>
                 </div>
             </a>
-
             <div>
                 <a href="<?=url("admin/update-table")?>" class="header__alterar">Editar tabela</a>
                 <a href="<?=url("admin/update-modos")?>" class="header__alterar">Editar Modos</a>
@@ -106,5 +106,8 @@
         endif;
     ?>
     </div>    
+    <div class="come__div">
+        <a href="<?= url("admin")?> " class="come__back">Voltar</a>
+    </div>
 </body>
 </html>

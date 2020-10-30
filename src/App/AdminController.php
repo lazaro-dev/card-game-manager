@@ -149,14 +149,14 @@ class AdminController
     }
 
     public function updateModo($request)
-    {           
+    {
         if(!empty($request)){
-            $table = new Table();            
+            $table = new Table();
             if ($table->updateModo($request)) {
                 $_SESSION['msgSuc'] = "Modo atualizada!";
                 $this->router->redirect("pag.getUpdateModosTab");
             } else {
-                $_SESSION['msg'] = "Não foi possivel atualizar o modo!";                
+                $_SESSION['msg'] = "Não foi possivel atualizar o modo!";
             }
         }else{
             $_SESSION['msg'] = "Preencha os campos corretamente!";

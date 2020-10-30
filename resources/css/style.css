@@ -1,25 +1,3 @@
-/*style.css
-M
-Tipo
-Folha de estilo
-Tamanho
-5 KB (4.804 bytes)
-Armazenamento usado
-0 bytes
-Local
-Global
-Proprietário
-Marcus Vinicius
-Modificado em
-17:40 por Marcus Vinicius
-Aberto em
-22:09 por mim
-Criado em
-4 de out. de 2020
-Sem descrição
-Os leitores podem fazer o download
- ALTERADO */
-
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
  
 * {
@@ -137,24 +115,32 @@ input {
    opacity: 0;
    visibility: hidden;
    transition: all .3s;
-   transform: scale(0)
 }
 
 .popup:target {
    opacity: 1;
    visibility: visible;
-   transform: scale(1);
 }
+
+.popup:target .popup__container {
+   opacity: 1;
+   visibility: visible;
+   transform: translate(-50%,-50%) scale(1);
+}
+
 
 .popup__container {
    position: absolute;
-   transform: translate(-50%,-50%);
+   transform: translate(-50%,-50%) scale(0);
    top: 50%;
    left: 50%;
    width: 22rem;
    height: 17rem;
    background-color:#f1f2f6;
    border-radius: 3px;
+   opacity: 0;
+   visibility: hidden;
+   transition: all 1s;
 }
 
 .popup__paragh {
@@ -175,6 +161,7 @@ input {
    display: flex;
    justify-content: space-between;
    align-items: center;
+   transform: translateX(-20%);
 }
 
 .popup__confirm {
@@ -185,7 +172,6 @@ input {
    background-color: #2391c4;
    transition: all .3s;
    cursor: pointer;
-   margin-top: .5rem;
 }
 
 .popup__confirm:focus {
@@ -194,6 +180,46 @@ input {
 
 .popup__confirm:hover {
    background-color: #1a7199;
+}
+
+.form__center {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+
+/* VOLTAR */
+.come__div {
+   font-size: 1.4rem;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   padding: 1rem 1.5rem;
+}
+
+.come__back {
+   color: #56CCF2;
+   text-decoration: none;
+   position: relative;
+   padding: .4rem .6rem;
+   border-radius: 3px;
+   transition: color .3s, background-color .5s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+}
+
+.come__back::before {
+   content: "\2190";
+   margin-right: .4rem;
+   transition: margin-right .5s, color .1s;
+}
+
+.come__back:hover::before {
+   margin-right: .8rem;
+}
+
+.come__back:hover {
+   background-color: #56CCF2;
+   color: black;
 }
 
 
@@ -277,6 +303,10 @@ input {
    .header__div {
       top: -.6rem;
       left: -1.8rem;
+   }
+
+   .form__center {
+      flex-direction: column;
    }
 
 }

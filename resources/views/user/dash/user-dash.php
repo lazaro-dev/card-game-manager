@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Usuário</title>
+    <link rel="shortcut icon" type="image/png" href="<?=url()?>/resources/assets/img/icon.jpg">
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
     <link rel="stylesheet" href="<?=url()?>/resources/views/user/dash/style.css">
 </head>

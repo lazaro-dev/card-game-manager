@@ -1,25 +1,3 @@
-/*style.css
-M
-Tipo
-Folha de estilo
-Tamanho
-3 KB (2.781 bytes)
-Armazenamento usado
-0 bytes
-Local
-ListaUsuario
-Proprietário
-Marcus Vinicius
-Modificado em
-16:45 por Marcus Vinicius
-Aberto em
-22:08 por mim
-Criado em
-17:40
-Sem descrição
-Os leitores podem fazer o download
- ALTERADO */
-
 .container {
     text-align: left;
     width: 80%;
@@ -31,7 +9,7 @@ Os leitores podem fazer o download
 
 .container__th,
 .container__td {
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
 .container__secondary {
@@ -45,6 +23,7 @@ Os leitores podem fazer o download
     box-shadow: 0 2px 2px -2px #0E1119;
     position: relative;
     font-weight: normal;
+    transition: all .4s;
 }
 
 .container__th {
@@ -69,14 +48,14 @@ Os leitores podem fazer o download
  }
  
 .container__td:hover {
-   background-color: #FFF842;
-   color: #403E10;
+   background-color: #0D1821;
+   color: #2391c4;
    font-weight: bold;
    
-   box-shadow:  #7F7C21 -3px 3px;
+   box-shadow:  #172B3A -3px 3px;
    transform: translate(.3rem,-.3rem);
    
-   transition: all .4s;
+   
 }
 
 .container__tr:hover {
@@ -109,7 +88,114 @@ Os leitores podem fazer o download
     top: 50%;
 }
 
-@media only screen and (max-width:50em) {
+/* OLHO DE TANDERA */
+.container__cornea {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: black;
+    clip-path: ellipse(29% 16% at 50% 50%);
+    position: absolute;
+    z-index: 1;
+    background-image: radial-gradient( black, #FEDF72 70%);
+    left: 1.7%;
+    transition: all .7s;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+}
+
+
+.container__triangulo {
+    width: 4.0625rem;
+    height: 4.0625rem;
+    background-image: linear-gradient(to right bottom, #B89000 ,#FEDF72 80%);
+    clip-path: polygon(50% 68%, 0 0, 100% 0);
+    position: absolute;
+    transform: translate(-50%,-25%);
+    top: 50%;
+    left: 50%;
+}
+
+.container__pupila {
+    width: 1.25rem;
+    height: 1.25rem;
+    background-image: radial-gradient( #FEDF72 5%, #B89000 25%);
+    clip-path: circle(15% at 50% 50%);
+    position: absolute;
+    z-index: 3;
+    left: 2.55%;
+    transition: all .3s;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+}
+
+.container__olho:hover .container__pupila{
+    transform: translate(-50%,-50%) scale(1.5);
+}
+
+.container__olho:hover .container__cornea {
+    transform: translate(-50%,-50%) scale(1.3);
+}
+
+.container__diagonal--esquerdo {
+    width: 0.875rem;
+    height: 0.9375rem;
+    border-bottom: 1px solid black;
+    transform: rotateZ(110deg) translate(-47%,168%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.container__diagonal--direito {
+    width: 0.875rem;
+    height: 0.9375rem;
+    border-bottom: 1px solid black;
+    transform: rotateZ(67deg) translate(-78%,-180%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.container__reta--inferior {
+    width: 0.9375rem;
+    height: 0.9375rem;
+    border-bottom: 1px solid black;
+    position: absolute;
+    transform: translate(-51%, 24%);
+    top: 50%;
+    left: 50%;
+}
+
+.container__reta--dupla {
+    width: 1.43755rem;
+    height: 1.875rem;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    position: absolute;
+    transform: translate(-50%,-54%);
+    top: 50%;
+    left: 50%;
+}
+
+.container__reta--central {
+    width: 0.0625rem;
+    background-color: black;
+    height: 2.125rem;
+    position: absolute;
+    z-index: 0;
+    transform: translateY(-48%);
+    top: 50%;
+    left: 50%;
+}
+
+.container__olho {
+    display: inline-block;
+}
+
+@media only screen and (max-width:56.25em) {
     .container {
         text-align: left;
         overflow: hidden;
@@ -122,14 +208,13 @@ Os leitores podem fazer o download
      .container thead, 
      .container tbody, 
      .container__th, 
-     .container__td, 
-     .container__tr{
+     .container__td{
         display: block;
      }
      
      .container__th, 
      .container__td {
-        height: 55px;
+        height: 65px;
         width: 250px;
      } 
      
@@ -150,15 +235,23 @@ Os leitores podem fazer o download
      }
 
      .container__tr {
-        padding: 0
+        padding: 0;
     }
 
     .container__td {
+        padding-bottom: 3rem;
+        padding-top: 1.5rem;
         text-align: center;
     }
 
-    .container__td, .container__th {
+    .container__th {
         padding-bottom: 3rem;
         padding-top: 1rem;
-     }
+    }
+
+    .container__triangulo {
+        height: 3rem;
+        clip-path: polygon(50% 94%, 0 0, 100% 0);
+        transform: translate(-50%,-35%);
+    }
 }

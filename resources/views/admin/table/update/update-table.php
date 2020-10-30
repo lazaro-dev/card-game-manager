@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Editar Tabela</title>
+    <link rel="shortcut icon" type="image/png" href="<?=url()?>/resources/assets/img/icon.jpg">
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
     <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/update/style.css">
 </head>
@@ -22,13 +23,16 @@
                 </div>
             </a>
 
-            <div>                
+            <div>                                
                 <a href="<?=url("admin/update-modos")?>" class="header__alterar">Editar Modos</a>
+                <a href="<?=url("admin/update-items")?>" class="header__alterar">Editar Itens</a>
                 <a href="<?=url("admin/insert-user")?>" class="header__alterar">Adicionar usuário</a>
+                <a href="<?=url("admin/update-password")?>" class="header__alterar">Atualizar Senha</a>
                 <a href="<?=url("logout")?>" class="header__login">Sair</a>
             </div>
         </header>        
     </header>
+    
     <?php            
          if (isset($_SESSION['msg'])&&!empty($_SESSION['msg'])) {
             echo "<p class='mensagem__error'>".$_SESSION['msg'] . "</p>";
@@ -64,10 +68,12 @@
                     <label for="fnome" class="form__label">Coluna 2</label>
                     <input type="text" name="nome_carta_campo" id="fnome" class="form__input" placeholder="Coluna 2" value="<?= $table['nome_carta_campo'] ?>" required>
                 </div>
-            </div>                                 
+            </div>
             <input type="submit" class="form__btn" value="Alterar">
         </form>
     </section>
-
+    <div class="come__div">
+        <a href="<?= url("admin")?> " class="come__back">Voltar</a>
+    </div>
 </body>
 </html>

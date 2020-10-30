@@ -167,7 +167,7 @@ class UserController
         $card = new Card();
         if ($card->updateCardModo($request)) {
             $_SESSION['msgSuc'] = "Atualizado com sucesso!";
-            $this->router->redirect("pag.userHome");
+            $this->router->redirect("pag.getUpdateModos", ["id_carta" => $request['id_carta']]);
         } else {
             $_SESSION['msg'] = "Não foi possivel atualizar!";
             $this->router->redirect("pag.getUpdateModo", ["id_carta" => $request['id_carta'],"id_modo" => $request['id_modo']]);

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Itens</title>
+    <link rel="shortcut icon" type="image/png" href="<?=url()?>/resources/assets/img/icon.jpg">
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
     <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/items/style.css">
 </head>
@@ -23,8 +24,10 @@
             </a>
 
             <div>                
-                <a href="<?=url("admin/update-modos")?>" class="header__alterar">Editar Modos</a>
+                <a href="<?=url("admin/update-table")?>" class="header__alterar">Editar tabela</a>
+                <a href="<?=url("admin/update-modos")?>" class="header__alterar">Editar Modos</a>                
                 <a href="<?=url("admin/insert-user")?>" class="header__alterar">Adicionar usuário</a>
+                <a href="<?=url("admin/update-password")?>" class="header__alterar">Atualizar Senha</a>
                 <a href="<?=url("logout")?>" class="header__login">Sair</a>
             </div>
         </header>        
@@ -44,14 +47,11 @@
         }
     ?>
 
-<section class="section__form">
+<section class="section__select">
         <form action="" method="POST">
-        <!-- <?= url("admin")."/update-items"?> -->
-            <!-- <input hidden type="text" name="_method" value="GET">  -->
-            <div class="form__container">           
-
-                <label for="item">Items</label>
-                <select name="id_item" id="item">
+        <!-- <?= url("admin")."/update-items"?> -->            
+            <div class="form__center">                           
+                <select class="form__select" name="id_item" id="item">
                     <?php 
                         foreach ($items as $item):
                     ?>
@@ -62,9 +62,11 @@
                 </select>                             
             </div>
 
-            <button type="submit" class="form__btn">Avançar</button>
+            <button type="submit" class="select__btn">Avançar</button>
         </form>
     </section>
-
+    <div class="come__div">
+        <a href="<?= url("admin")?> " class="come__back">Voltar</a>
+    </div>
 </body>
 </html>

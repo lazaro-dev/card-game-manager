@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Modos</title>
+    <link rel="shortcut icon" type="image/png" href="<?=url()?>/resources/assets/img/icon.jpg">
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
-    <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/update/style.css">
+    <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/modos/style.css">
 </head>
 <body>
     <div>
@@ -23,8 +24,10 @@
             </a>
 
             <div>                
-                <a href="<?=url("admin/update-modos")?>" class="header__alterar">Editar Modos</a>
+                <a href="<?=url("admin/update-table")?>" class="header__alterar">Editar tabela</a>                
+                <a href="<?=url("admin/update-items")?>" class="header__alterar">Editar Itens</a>
                 <a href="<?=url("admin/insert-user")?>" class="header__alterar">Adicionar usuário</a>
+                <a href="<?=url("admin/update-password")?>" class="header__alterar">Atualizar Senha</a>
                 <a href="<?=url("logout")?>" class="header__login">Sair</a>
             </div>
         </header>        
@@ -44,14 +47,14 @@
         }
     ?>
 
-<section class="section__form">
+<section class="section__select">
         <form action="" method="POST">
         <!-- <?= url("admin")."/update-modo"?> -->
             <!-- <input hidden type="text" name="_method" value="GET">  -->
-            <div class="form__container">           
+            <div class="form__center">           
 
-                <label for="modo">Modalidades</label>
-                <select name="id_modo" id="modo">
+                <!-- <label for="modo">Modalidades</label> -->
+                <select class="form__select" name="id_modo" id="modo">  
                     <?php 
                         foreach ($modos as $modo):
                     ?>
@@ -62,9 +65,11 @@
                 </select>                             
             </div>
 
-            <button type="submit" class="form__btn">Avançar</button>
+            <button type="submit" class="select__btn">Avançar</button>
         </form>
     </section>
-
+    <div class="come__div">
+        <a href="<?= url("admin")?> " class="come__back">Voltar</a>
+    </div>
 </body>
 </html>

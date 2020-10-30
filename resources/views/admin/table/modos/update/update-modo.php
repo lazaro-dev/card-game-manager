@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Modo</title>
+    <link rel="shortcut icon" type="image/png" href="<?=url()?>/resources/assets/img/icon.jpg">
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
     <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/modos/update/style.css">
 </head>
@@ -23,8 +24,11 @@
             </a>
 
             <div>                
+                <a href="<?=url("admin/update-table")?>" class="header__alterar">Editar tabela</a>
                 <a href="<?=url("admin/update-modos")?>" class="header__alterar">Editar Modos</a>
+                <a href="<?=url("admin/update-items")?>" class="header__alterar">Editar Itens</a>
                 <a href="<?=url("admin/insert-user")?>" class="header__alterar">Adicionar usuário</a>
+                <a href="<?=url("admin/update-password")?>" class="header__alterar">Atualizar Senha</a>
                 <a href="<?=url("logout")?>" class="header__login">Sair</a>
             </div>
         </header>        
@@ -58,6 +62,8 @@
             <input type="submit" class="form__btn" value="Alterar">
         </form>
     </section>
-
+    <div class="come__div">
+        <a href="<?= url("admin/update-modos")?> " class="come__back">Voltar</a>
+    </div>
 </body>
 </html>

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Modo</title>
+    <link rel="shortcut icon" type="image/png" href="<?=url()?>/resources/assets/img/icon.jpg">
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
     <link rel="stylesheet" href="<?=url()?>/resources/views/user/card/modos/insert/style.css">
 </head>
@@ -78,5 +79,8 @@
             <button type="submit" class="form__btn">Salvar</button>
         </form>
     </section>  
+    <div class="come__div">
+        <a href="<?= url("usuario/update-modo").'/'.$id_carta?> " class="come__back">Voltar</a>
+    </div>
 </body>
 </html>

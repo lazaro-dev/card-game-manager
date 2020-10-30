@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin</title>
+    <link rel="shortcut icon" type="image/png" href="<?=url()?>/resources/assets/img/icon.jpg">
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
     <link rel="stylesheet" href="<?=url()?>/resources/views/admin/dash/style.css">
 </head>
@@ -66,8 +67,20 @@
             ?>
                 <tr class="container__tr">
                     <td class="container__td"><?= $user['id'] ?></td>
-                    <td class="container__td"><?= $user['usuario']; ?></td>
-                    <td class="container__td"><a href="<?= url("admin")."/table-user/{$user['id']}"?>" class="edition center"></a></td>
+                    <td class="container__td"><?= $user['usuario']; ?></td>                    
+                    <td class="container__td">
+                    <!-- OLHO DE TANDERA -->
+                    <a href="<?= url("admin")."/table-user/{$user['id']}"?>" class="container__olho">
+                        <div class="container__cornea"></div>
+                        <div class="container__triangulo"></div>
+                        <div class="container__pupila"></div>
+                        <div class="container__diagonal--esquerdo"></div>
+                        <div class="container__diagonal--direito"></div>
+                        <div class="container__reta--inferior"></div>
+                        <div class="container__reta--dupla"></div>
+                        <div class="container__reta--central"></div>
+                    </a>
+                </td>
                     <td class="container__td"><a href="<?= url("admin")."/update-user/{$user['id']}"?>" class="edition center"></a></td>
                     <td class="container__td"><a href="#popup<?= $user['id'] ?>" class="delete center"></a></td>
                 </tr>
