@@ -81,9 +81,7 @@ class AdminController
         $this->router->redirect("pag.admin");
     }
     public function getUpdatePassword()
-    {
-        // $model = new Admin();
-        // $user = $model->getUser($_SESSION['user_id']);        
+    {   
         echo $this->view->render("admin/password/update/update-password", ['user' => $_SESSION['user'], 'id_user' => $_SESSION['user_id']]);
     }
 
@@ -204,11 +202,16 @@ class AdminController
     }
 
     public function getTableUser($request)
-    {
-        // var_dump($request);
-        // die;   
+    { 
         $ins = new Usuario();
         $table = $ins->getTable($request['id_user']);
-        echo $this->view->render("admin/table/table", ['coluna' => $table['colunas'][0], 'cartas' => $table['cartas']]);
+        echo $this->view->render("admin/table/table", ['coluna' => $table['colunas'][0], 'cartas' => $table['cartas'], 'jogos' => $table['jogos']]);
+    }
+
+    public function getTableUserPost($request)
+    {  
+        $ins = new Usuario();
+        $table = $ins->getTable($request['id_user'], $request['id_jogo']);
+        echo $this->view->render("admin/table/table", ['coluna' => $table['colunas'][0], 'cartas' => $table['cartas'], 'jogos' => $table['jogos']]);
     }
 }

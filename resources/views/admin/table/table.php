@@ -46,6 +46,25 @@
             unset($_SESSION['msgSuc']);
         }
     ?>
+
+    <section class="section__select">
+        <form action="" method="POST">              
+            <div class="form__center">                           
+                <select class="form__select" name="id_jogo" id="jogo">
+                    <?php 
+                        foreach ($jogos as $jogo):
+                    ?>
+                        <option value="<?= $jogo['jogo_id']?>"><?= $jogo['tipo_jogo_valor'] ?></option>
+                    <?php  
+                        endforeach;
+                    ?>
+                </select>                             
+            </div>
+
+            <button type="submit" class="select__btn">Avançar</button>
+        </form>
+    </section>
+
     <?php  
         if (isset($coluna['tipo_jogo_campo'])&&!empty($coluna['tipo_jogo_campo'])):
     ?>

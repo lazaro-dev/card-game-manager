@@ -76,9 +76,7 @@ class UserController
     public function getUpdateJogo($request)
     {           
         $jogo = new Jogo();
-        $val = $jogo->getUpdateJogo($request['id_jogo']);              
-        // var_dump($val);
-        // die;
+        $val = $jogo->getUpdateJogo($request['id_jogo']);
         echo $this->view->render("user/jogo/update/update-jogo", ['jogos' => $val, 'id_jogo' => $request['id_jogo']]);
     }
 
@@ -120,33 +118,33 @@ class UserController
             }
         }else{
             $_SESSION['msg'] = "Preencha os campos corretamente!";
-        }                        
+        }
         $this->router->redirect("pag.getInsertCard");
     }
     
     public function getInsertModos($request)
     {
         $modos = new Card();
-        $campos = $modos->getInsertModos($request['id_carta']);        
+        $campos = $modos->getInsertModos($request['id_carta']);
         echo $this->view->render("user/card/modos/modos", ["modos" => $campos, "id_carta" => $request["id_carta"]]);
     }
 
     public function getInsertCardModo($request)
-    {      
+    {
         $modo = new Card();
         $campos = $modo->getInsertCardModo($request['id_carta'], $request['id_modo']);
         echo $this->view->render("user/card/modos/insert/insert-modo", ["items" => $campos, "id_carta" => $request['id_carta']]);
     }
 
     public function insertCardModo($request)
-    {                    
+    {
         $card = new Card();
         if ($card->insertCardModo($request)) {
-            $_SESSION['msgSuc'] = "Modo cadastrado com sucesso!";            
+            $_SESSION['msgSuc'] = "Modo cadastrado com sucesso!";
             $this->router->redirect("pag.getInsertModos", ["id_carta" => $request['id_carta']]);
         } else {
             $_SESSION['msg'] = "Não foi possivel cadastrar esse modulo!";
-            $this->router->redirect("pag.getInsertCardModo", ["id_carta" => $request['id_carta'],"id_modo" => $request['id_modo']]);
+            $this->router->redirect("pag.getInsertCardModo", ["id_carta" => $request['id_carta'], "id_modo" => $request['id_modo']]);
         }
     }
 
