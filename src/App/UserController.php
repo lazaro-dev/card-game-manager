@@ -23,11 +23,18 @@ class UserController
     }
     
     public function home():void
-    {        
+    {                 
         $ins = new Usuario();
         $table = $ins->getTable($_SESSION['user_id']);
-        echo $this->view->render("user/dash/user-dash", ['coluna' => $table['colunas'][0], 'cartas' => $table['cartas']]);
+        echo $this->view->render("user/dash/user-dash", ['coluna' => $table['colunas'][0], 'cartas' => $table['cartas'], 'jogos' => $table['jogos']]);
     }    
+
+    public function homePost($request)
+    {
+        $ins = new Usuario();
+        $table = $ins->getTable($_SESSION['user_id'], $request['id_jogo']);
+        echo $this->view->render("user/dash/user-dash", ['coluna' => $table['colunas'][0], 'cartas' => $table['cartas'], 'jogos' => $table['jogos']]);        
+    }
     
     public function getInsertJogo()
     {
@@ -54,28 +61,42 @@ class UserController
         } 
     }
 
-    public function getUpdateJogo()
+    public function getUpdateJogos()
+    {
+        $jogo = new Jogo();
+        $jogos = $jogo->getUpdateJogos($_SESSION['user_id']);             
+        echo $this->view->render("user/jogo/jogos", ['jogos' => $jogos]);
+    }
+
+    public function getUpdateJogo1($request)
+    {
+        $this->router->redirect("pag.getUpdateJogo", ["id_jogo" => $request['id_jogo']]);
+    }
+
+    public function getUpdateJogo($request)
     {           
         $jogo = new Jogo();
-        $val = $jogo->getUpdateJogo();        
-        echo $this->view->render("user/jogo/update/update-jogo", ['jogos' => $val, 'id_jogo' => $val['valor']['id']]);
+        $val = $jogo->getUpdateJogo($request['id_jogo']);              
+        // var_dump($val);
+        // die;
+        echo $this->view->render("user/jogo/update/update-jogo", ['jogos' => $val, 'id_jogo' => $request['id_jogo']]);
     }
 
     public function updateJogo($request)
     {
-        $jogo = new Jogo();
-        $val = $jogo->updateJogo($request);
-        if(!empty($request)){     
+        if(!empty($request)){
+            $jogo = new Jogo();
+            $val = $jogo->updateJogo($request);
             if ($val!=false) {
                 $_SESSION['msgSuc'] = "Atualizado com sucesso!";
-                $this->router->redirect("pag.userHome");     
+                $this->router->redirect("pag.getUpdateJogos");
             } else {
-                $_SESSION['msg'] = "Não foi possivel atualizar!";                
-            }       
+                $_SESSION['msg'] = "Não foi possivel atualizar!";
+            }
         }else{
             $_SESSION['msg'] = "Campo obrigatório!";
         }
-        $this->router->redirect("pag.getUpdateJogo");
+        $this->router->redirect("pag.getUpdateJogos");
     }
 
     public function getInsertCard()

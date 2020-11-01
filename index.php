@@ -49,11 +49,14 @@ $router->put('/update-password/{id_user}', "AdminController:updatePassword","pag
 
 $router->group('/usuario');
 $router->get('/', "UserController:home","pag.userHome");
+$router->post('/', "UserController:homePost","pag.userHomePost");
 
 $router->get('/insert-jogo', "UserController:getInsertJogo","pag.getInsertJogo");
 $router->post('/insert-jogo', "UserController:insertJogo","pag.insertJogo");
-$router->get('/update-jogo', "UserController:getUpdateJogo","pag.getUpdateJogo");
-$router->put('/update-jogo', "UserController:UpdateJogo","pag.updateJogo");
+$router->get('/update-jogos', "UserController:getUpdateJogos","pag.getUpdateJogos");
+$router->post('/update-jogos', "UserController:getUpdateJogo1","pag.getUpdateJogo1");
+$router->get('/update-jogo/{id_jogo}', "UserController:getUpdateJogo","pag.getUpdateJogo");
+$router->put('/update-jogo/{id_jogo}', "UserController:UpdateJogo","pag.updateJogo");
 
 $router->get('/insert-card', "UserController:getInsertCard","pag.getInsertCard");
 $router->post('/insert-card', "UserController:insertCard","pag.insertCard");

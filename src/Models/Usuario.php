@@ -6,20 +6,36 @@ use Src\Models\utils\Select;
 
 class Usuario {
     
-    public function getTable(int $user_id)
+    public function getTable(int $user_id, int $id_jogo = null)
     {
+        // $id_jogo = 11;
+        // $aux1 = (isset($id_jogo))? "AND jogos.id =".$id_jogo : '';
+        
         $table = new Select();
+        
+        if(!isset($id_jogo)){
+            $lim = $table->select("SELECT  id
+                                    FROM jogos                                                                                               
+                                    WHERE usuario_id = {$user_id} LIMIT 1
+                                ");
+            $aux1 = (!empty($lim[0]))? "AND jogos.id =".$lim[0]['id'] : '';
+        }else{            
+            $aux1 = "AND jogos.id =".$id_jogo;
+        }
+        // var_dump($aux1);
+        // die;
+        
         $cartas = $table->select("SELECT  cart.id id_carta, cart.nome_valor, cart.nome_jogo_carta_valor, cart.jogo_id                                            
                                   FROM jogos 
                                   INNER JOIN cartas cart ON cart.jogo_id = jogos.id                                                           
-                                  WHERE jogos.usuario_id = {$user_id}                                                                                    
+                                  WHERE jogos.usuario_id = {$user_id} {$aux1}
                                  ");                                        
 
         $colunas = $table->select("SELECT jogos.id id_jogo, tab_jogos.tipo_jogo_campo, jogos.tipo_jogo_valor, tab_jogos.nome_carta_campo, 
                                           tab_jogos.nome_jogo_carta_campo
                                     FROM jogos
                                     INNER JOIN tab_jogos ON tab_jogos.id = jogos.tab_jogo_id
-                                    WHERE usuario_id = {$user_id} LIMIT 1
+                                    WHERE usuario_id = {$user_id} {$aux1}
                                     ");
 
         $aux = $table->select("SELECT jog.id_jogo id_jogo, modo_jogos.id id_modo_jogo, modo_jogos.descricao_modo
@@ -49,9 +65,15 @@ class Usuario {
             }
         }
         
+        $jogos = $carta['jogos'] = $table->select("SELECT jogos.id jogo_id, jogos.tipo_jogo_valor 
+                                                    FROM jogos 
+                                                    INNER JOIN tab_jogos ON tab_jogos.id = jogos.tab_jogo_id 
+                                                    WHERE jogos.usuario_id = {$user_id}");
+
         $tabela = [
             'colunas' => $colunas,
-            'cartas' => $cartas
+            'cartas' => $cartas,
+            'jogos' => $jogos
         ];
 
         // var_dump($tabela);

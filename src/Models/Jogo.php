@@ -16,10 +16,10 @@ class Jogo {
     }
     public function insertJogo($request)
     {
-        $sel = new Select();
-        $jogo = $sel->select("SELECT * FROM jogos WHERE usuario_id = {$_SESSION['user_id']}");
+        // $sel = new Select();
+        // $jogo = $sel->select("SELECT * FROM jogos WHERE usuario_id = {$_SESSION['user_id']}");
         
-        if($jogo==null){         
+        // if($jogo==null){         
             $ins = new Insert();
             $temp['tipo_jogo_valor'] = $request['tipo_jogo_valor'];      
             $temp['usuario_id'] = $_SESSION['user_id'];             
@@ -28,16 +28,26 @@ class Jogo {
             $var = $ins->insert("jogos", $temp);
 
             return $var;
-        }else{
-            return false;
-        }
+        // }else{
+        //     return false;
+        // }
+    }
+
+    public function getUpdateJogos(int $user_id)
+    {
+        $sel = new Select();
+        $jogos = $sel->select("SELECT jogos.id jogo_id, jogos.tipo_jogo_valor 
+                                                    FROM jogos 
+                                                    INNER JOIN tab_jogos ON tab_jogos.id = jogos.tab_jogo_id 
+                                                    WHERE jogos.usuario_id = {$user_id}");
+        return $jogos;                                                    
     }
     
-    public function getUpdateJogo()
+    public function getUpdateJogo(int $id_jogo)
     {
         $sel = new Select();
         $jogo['campos'] = $this->getInsertJogo();
-        $jogo['valor'] = $sel->select("SELECT * FROM jogos WHERE usuario_id = {$_SESSION['user_id']}")[0];
+        $jogo['valor'] = $sel->select("SELECT * FROM jogos WHERE usuario_id = {$_SESSION['user_id']} AND id = {$id_jogo}")[0];
         return $jogo;
     }
     

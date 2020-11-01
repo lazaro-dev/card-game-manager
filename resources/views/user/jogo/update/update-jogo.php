@@ -63,7 +63,7 @@
         </form>
     </section>
     <div class="come__div">
-        <a href="<?= url("usuario")?> " class="come__back">Voltar</a>
+        <a href="<?= url("usuario/update-jogos")?> " class="come__back">Voltar</a>
     </div>
 </body>
 </html>

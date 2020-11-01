@@ -23,7 +23,7 @@
 
         <div>                        
             <a href="<?=url("usuario/insert-jogo")?>" class="header__alterar">Inserir Jogo</a>
-            <a href="<?=url("usuario/update-jogo")?>" class="header__alterar">Editar Jogo</a>    
+            <a href="<?=url("usuario/update-jogos")?>" class="header__alterar">Editar Jogo</a>    
             <a href="<?=url("logout")?>" class="header__login">Sair</a>
         </div>
     </header>
