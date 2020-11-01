@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inserir</title>
+    <link rel="shortcut icon" type="image/png" href="<?=url()?>/resources/assets/img/icon.jpg">
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
     <link rel="stylesheet" href="<?=url()?>/resources/views/user/card/insert/style.css">
 </head>
@@ -21,8 +22,9 @@
         </a>
 
         <div>
-            <a href="<?=url("usuario")?>" class="header__login">Home</a>
-            <a href="<?=url("logout")?>" class="header__login">Logout</a>
+            <a href="<?=url("usuario/insert-jogo")?>" class="header__alterar">Inserir Jogo</a>
+            <a href="<?=url("usuario/update-jogo")?>" class="header__alterar">Editar Jogo</a>            
+            <a href="<?=url("logout")?>" class="header__login">Sair</a>
         </div>
     </header>
     
@@ -43,18 +45,13 @@
     
     <section class="section__form">
         <form action="" method="POST">
-            <div class="form__container">
-                <!-- <div class="form__box">
-                    <label for="ftipo" class="form__label">Tipo de Jogo</label>
-                    <input type="text" name="" id="ftipo" class="form__input">
-                </div> -->
-
-                <label for="jogo"><?= $campos['carta_campos']['tipo_jogo_campo']?></label>
+            <div class="form__container">                
+                
                 <select name="jogo_id" id="jogo">
                     <?php  
                         foreach ($campos['jogos'] as $jogo):
                     ?>
-                        <option value="<?= $jogo['jogo_id']?>"><?= $jogo['tipo_jogo_valor']?></option>                        
+                        <option value="<?= $jogo['jogo_id']?>"><?= $jogo['tipo_jogo_valor']?></option>
                     <?php  
                         endforeach;
                     ?>
@@ -75,5 +72,8 @@
             <button type="submit" class="form__btn">Salvar e avançar</button>
         </form>
     </section>
+    <div class="come__div">
+        <a href="<?= url("usuario")?> " class="come__back">Voltar</a>
+    </div>
 </body>
 </html>

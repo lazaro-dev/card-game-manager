@@ -131,7 +131,7 @@ class UserController
 
     public function getUpdateCard($request)
     {
-        $up = new Card();        
+        $up = new Card();
         $campos = $up->getUpdateCardPart1($request['id']);
         echo $this->view->render("user/card/update/update-card-1", ["campos" => $campos]);
     }

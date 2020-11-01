@@ -21,9 +21,10 @@
              </div>
         </a>
 
-        <div>
-            <a href="<?=url("usuario")?>" class="header__login">Home</a>
-            <a href="<?=url("logout")?>" class="header__login">Logout</a>
+        <div>            
+            <a href="<?=url("usuario/update-jogo")?>" class="header__alterar">Editar Jogo</a>
+            <a href="<?=url("usuario/insert-card")?>" class="header__alterar">Adicionar carta</a>
+            <a href="<?=url("logout")?>" class="header__login">Sair</a>
         </div>
     </header>
     

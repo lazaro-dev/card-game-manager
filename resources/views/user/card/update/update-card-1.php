@@ -21,8 +21,10 @@
              </div>
         </a>
         <div>
-            <a href="<?=url("usuario")?>" class="header__login">Home</a>
-            <a href="<?=url("logout")?>" class="header__login">Logout</a>
+            <a href="<?=url("usuario/insert-jogo")?>" class="header__alterar">Inserir Jogo</a>
+            <a href="<?=url("usuario/update-jogo")?>" class="header__alterar">Editar Jogo</a>
+            <a href="<?=url("usuario/insert-card")?>" class="header__alterar">Adicionar carta</a>
+            <a href="<?=url("logout")?>" class="header__login">Sair</a>
         </div>
     </header>
 
@@ -44,10 +46,18 @@
         <form action="" method="POST">
             <input hidden type="text" name="_method" value="PUT">
             <div class="form__container">
-                <!-- <div class="form__box">
-                    <label for="ftipo" class="form__label">Tipo de Jogo</label>
-                    <input type="text" name="" id="ftipo" class="form__input">
-                </div> -->
+           
+                
+                <select class="form__select" name="jogo_id" id="jogo">
+                    <?php  
+                        foreach ($campos['jogos'] as $jogo):
+                    ?>
+                        <option value="<?= $jogo['jogo_id']?>"><?= $jogo['tipo_jogo_valor']?></option>
+                    <?php  
+                        endforeach;
+                    ?>
+                </select>
+
                 <div class="form__box">
                     <label for="fnome" class="form__label"><?= $campos['carta_campos']['nome_jogo_carta_campo']?></label>
                     <input type="text" name="nome_jogo_carta_valor" id="fnome" class="form__input" required value="<?php if (isset($campos['card_info'])) {

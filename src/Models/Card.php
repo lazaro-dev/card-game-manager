@@ -134,7 +134,11 @@ class Card {
                                                  WHERE usuario_id = {$_SESSION['user_id']}")[0];
 
         $carta['card_info'] = $model->select("SELECT id id_carta, nome_valor nome_carta_valor, nome_jogo_carta_valor 
-                                               FROM cartas WHERE id = {$request}")[0];        
+                                               FROM cartas WHERE id = {$request}")[0];   
+        $carta['jogos'] = $model->select("SELECT jogos.id jogo_id, jogos.tipo_jogo_valor 
+                                          FROM jogos 
+                                          INNER JOIN tab_jogos ON tab_jogos.id = jogos.tab_jogo_id 
+                                          WHERE jogos.usuario_id = {$_SESSION['user_id']}");
         return $carta;
     }
     
