@@ -54,7 +54,7 @@
 
             <input hidden type="text" name="_method" value="PUT">
             <div class="form__container">
-                <div class="form__box">
+                <div class="form__center">
                     <label for="ftipo" class="form__label">Descrição do modo</label>
                     <input type="text" name="descricao_modo" id="ftipo" class="form__input" placeholder="Titulo da tabela" value="<?= $modo['descricao_modo'] ?>" required>
                 </div>

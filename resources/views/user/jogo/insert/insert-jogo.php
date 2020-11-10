@@ -51,7 +51,7 @@
                     <input type="text" name="" id="ftipo" class="form__input">
                 </div> -->
             
-                <div class="form__box">
+                <div class="form__center">
                     <label for="fnome" class="form__label"><?= $campos['tipo_jogo_campo']?></label>
                     <input type="text" name="tipo_jogo_valor" id="fnome" class="form__input" required>
                 </div>             

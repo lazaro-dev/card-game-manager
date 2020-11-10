@@ -77,6 +77,10 @@ form {
     font-family: inherit;
 }
 
+.btn:focus {
+    outline: none;
+}
+
 @media only screen and (max-width: 37.5em) {
     .user__group {
         display: flex;

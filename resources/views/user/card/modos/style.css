@@ -219,6 +219,16 @@ form {
     .form__btn {
         justify-self: center;
     }
+    
+    .section__form {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 52.8125em) {
+    .form__adjuster {
+        grid-template-columns: repeat(auto-fit,minmax(280px,1fr));    
+    }
 }
 
 @media only screen and (max-width: 31.25em) {
@@ -230,5 +240,11 @@ form {
     .form__container {
         display: flex;
         flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 25em) {
+    .form__adjuster {
+        grid-template-columns: repeat(auto-fit,minmax(220px,1fr));    
     }
 }

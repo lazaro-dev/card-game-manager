@@ -143,7 +143,7 @@
     width: 0.875rem;
     height: 0.9375rem;
     border-bottom: 1px solid black;
-    transform: rotateZ(110deg) translate(-47%,168%);
+    transform: rotateZ(110deg) translate(-50%,168%);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -171,24 +171,26 @@
 
 .container__reta--dupla {
     width: 1.43755rem;
-    height: 1.875rem;
+    height: 1.9rem;
     border-right: 1px solid black;
     border-left: 1px solid black;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
     position: absolute;
-    transform: translate(-50%,-54%);
+    transform: translate(-50%,-55%);
     top: 50%;
     left: 50%;
 }
 
 .container__reta--central {
-    width: 0.0625rem;
+    width: 0.09375rem;
     background-color: black;
-    height: 2.125rem;
+    height: 2.180rem;
     position: absolute;
     z-index: 0;
     transform: translateY(-48%);
     top: 50%;
-    left: 50%;
+    left: 49.8%;
 }
 
 .container__olho {
@@ -212,11 +214,20 @@
         display: block;
      }
      
-     .container__th, 
-     .container__td {
+    .container__td {
         height: 65px;
-        width: 250px;
+        width: 170px;
+        font-size: 1rem;
      } 
+     
+     .container__th {
+        height: 65px;
+        width: 175px;
+     }
+     
+    .container__secondary {
+        font-size: 1.2rem;
+    }
      
      .container thead {
         float: left;

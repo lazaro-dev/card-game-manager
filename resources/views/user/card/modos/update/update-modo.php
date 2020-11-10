@@ -72,6 +72,7 @@
                 <?php  
                     endforeach;
                 ?>
+                </div>
             <button type="submit" class="form__btn">Alterar</button>
         </form>
     </section>

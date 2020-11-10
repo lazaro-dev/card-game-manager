@@ -47,30 +47,29 @@
         }
     ?>
                  
-    <section class="section__user">        
-
+    <section class="section__form">        
         <form action="<?= url("admin")."/update-password".'/'.$id_user ?>" method="POST">
         <input hidden type="text" name="_method" value="PUT">
             <fieldset class="user__fiel">                
                 <legend class="user__name"><?= $user ?></legend>
-                <div class="user__form">
-                    <div class="user__group">
-                        <label for="iuser" class="user__label">Usuário</label>
-                        <input type="text"  name="usuario" id="iuser"  class="user__input" value="<?= $user ?>" required>
+                <div class="form__container">
+                    <div class="form__box">
+                        <label for="iuser" class="form__label">Usuário &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                        <input type="text"  name="usuario" id="iuser"  class="form__input" value="<?= $user ?>" required>
                     </div>
 
-                    <div class="user__group">
-                        <label for="isenha" class="user__label">Senha Atual</label>
-                        <input type="password" name="senhaAtual" id="isenha" class="user__input" required>
+                    <div class="form__box">
+                        <label for="isenha" class="form__label">Senha Atual</label>
+                        <input type="password" name="senhaAtual" id="isenha" class="form__input" required>
                     </div>
 
-                    <div class="user__group">
-                        <label for="isenha" class="user__label">Nova Senha</label>
-                        <input type="password" name="senha" id="isenha" class="user__input" required>
+                    <div class="form__box">
+                        <label for="isenha" class="form__label">Nova Senha</label>
+                        <input type="password" name="senha" id="isenha" class="form__input" required>
                     </div>
                 </div>
             </fieldset>
-            <button type="submit" class="btn">Atualizar</button>
+            <button type="submit" class="form__btn">Atualizar</button>
         </form>
     </section>
     <div class="come__div">

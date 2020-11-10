@@ -1,5 +1,3 @@
-/* ALTERADO */
-
 .section__form {
     width: 93%;
     margin: 0 auto;
@@ -70,6 +68,10 @@ form {
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
+.form__btn:focus {
+    outline: none;
+}
+
 .form__card {
     margin-top: 2rem;
     align-self: center;
@@ -80,7 +82,19 @@ form {
     text-align: left;
     margin-bottom: 2rem;
     justify-self: center;
-} 
+}
+
+@keyframes flash {
+    0% {
+       opacity: 0;
+       transform: scale(0);
+    }
+ 
+    100% {
+       opacity: 1;
+       transform: scale(1);
+    }
+}
 
 .form__paragh {
     font-size: 1.4rem;
@@ -91,4 +105,10 @@ form {
     font-weight: bold;
     font-size: 1.7rem;
     color: #217ca7;
+}
+
+@media only screen and (max-width: 68.75em) {
+    .section__form {
+        width: 100%;
+    }
 }

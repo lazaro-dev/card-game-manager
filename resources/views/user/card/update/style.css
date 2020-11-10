@@ -13,17 +13,16 @@
 
 form {
     text-align: center;
-    margin-top: 2rem;
 }
 
 .form__container {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(450px,1fr));
 }
 
 .form__box {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 3fr;
     justify-content: center;
     align-items: center;
 }
@@ -39,7 +38,7 @@ form {
     padding: .5rem;
     border-radius: 3px;
     border: none;
-    width: 60%;
+    width: 20rem;
     font-family: inherit;
 }
 
@@ -70,6 +69,10 @@ form {
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
+.form__btn:focus {
+    outline: none;
+}
+
 .form__card {
     margin-top: 2rem;
     align-self: center;
@@ -91,4 +94,33 @@ form {
     font-weight: bold;
     font-size: 1.7rem;
     color: #217ca7;
+}
+
+ @media only screen and (max-width: 65.9375em) {
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .section__form {
+        width: 100%;
+    }
+    
+    .form__btn {
+        justify-self: center;
+    }
+}
+
+@media only screen and (max-width: 31.25em) {
+    .form__box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form__container {
+        display: flex;
+        flex-direction: column;
+    }
 }

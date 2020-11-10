@@ -142,7 +142,6 @@
    background-color: #c94556;
 }
 
-
 /* ALTERADO */
 
 .form__select {
@@ -172,23 +171,31 @@
 }
 
 .section__select {
-   padding: 5rem;
+   padding: 3rem;
    text-align: center;
    animation-name: flash;
    animation-duration: 1s;
    animation-timing-function: ease-in;
 }
 
+.section__select form {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+
 .select__btn {
-   padding: 1rem 1.5rem;
+   padding: 1.15rem 1.5rem;
    cursor: pointer;
    border: none;
    background-color: #56CCF2;
    color: white;
    border-radius: 3px;
-   margin-top: 2rem;
    position: relative;
+   margin-left: 1rem;
 }
+
 
 .select__btn::after {
    content: "";
@@ -211,4 +218,29 @@
 
 .select__btn:focus {
    outline: none;
+}
+
+@media only screen and (max-width:37.5em) {
+    .container__td {
+        height: 65px;
+        width: 170px;
+        font-size: 1rem;
+    } 
+     
+    .container__th {
+        height: 65px;
+        width: 175px;
+    }
+     
+    .container__secondary {
+        font-size: 1.2rem;
+    }
+
+    .section__select form {
+      flex-direction: column;
+   }
+  
+   .select__btn {
+      margin-top: 2rem;
+   }
 }

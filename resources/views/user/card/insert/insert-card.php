@@ -46,17 +46,19 @@
     <section class="section__form">
         <form action="" method="POST">
             <div class="form__container">                
+                <div class="form__box">
+                    <label></label>
+                    <select name="jogo_id" id="jogo" class="form__input">
+                        <?php  
+                            foreach ($campos['jogos'] as $jogo):
+                        ?>
+                            <option value="<?= $jogo['jogo_id']?>"><?= $jogo['tipo_jogo_valor']?></option>
+                        <?php  
+                            endforeach;
+                        ?>
+                    </select>
+                </div>
                 
-                <select name="jogo_id" id="jogo">
-                    <?php  
-                        foreach ($campos['jogos'] as $jogo):
-                    ?>
-                        <option value="<?= $jogo['jogo_id']?>"><?= $jogo['tipo_jogo_valor']?></option>
-                    <?php  
-                        endforeach;
-                    ?>
-                </select>
-
                 <div class="form__box">
                     <label for="fnome" class="form__label"><?= $campos['carta_campos']['nome_jogo_carta_campo']?></label>
                     <input type="text" name="nome_jogo_carta_valor" id="fnome" class="form__input" required>
