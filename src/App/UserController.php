@@ -97,6 +97,24 @@ class UserController
         $this->router->redirect("pag.getUpdateJogos");
     }
 
+    public function getDeleteJogo()
+    {
+        $jogo = new Jogo();
+        $jogos = $jogo->getDeleteJogo($_SESSION['user_id']);
+        echo $this->view->render("user/jogo/delete/delete", ["jogos" => $jogos]);
+    }
+
+    public function deleteJogo($request)
+    {      
+        $jogo = new Jogo();
+        if($jogo->deleteJogo($request['id_jogo'])){
+            $_SESSION['msgSuc'] = "Deletado com sucesso!";
+        }else{
+            $_SESSION['msg'] = "Não foi possivel deletar!";
+        }
+        $this->router->redirect("usuario");
+    }
+
     public function getInsertCard()
     {       
         $card = new Card();        
@@ -126,7 +144,12 @@ class UserController
     {
         $modos = new Card();
         $campos = $modos->getInsertModos($request['id_carta']);
-        echo $this->view->render("user/card/modos/modos", ["modos" => $campos, "id_carta" => $request["id_carta"]]);
+        
+        echo $this->view->render("user/card/modos/modos", [
+            "modos" => $campos['campos'], 
+            "id_carta" => $request["id_carta"], 
+            "nome_carta" => $campos['carta'][0]['nome_valor']
+            ]);
     }
 
     public function getInsertCardModo($request)
@@ -171,7 +194,11 @@ class UserController
     {
         $modos = new Card();        
         $campos = $modos->getUpdateCardModos($request['id_carta']);
-        echo $this->view->render("user/card/modos/modos", ["modos" => $campos, "id_carta" => $request["id_carta"]]);
+        echo $this->view->render("user/card/modos/modos", [
+            "modos" => $campos['campos'],
+            "id_carta" => $request["id_carta"],
+            "nome_carta" => $campos['carta'][0]['nome_valor']
+            ]);
     }
     
     public function getUpdateCardModo($request)
@@ -182,7 +209,7 @@ class UserController
     }
 
     public function updateCardModo($request)
-    {                   
+    {
         $card = new Card();
         if ($card->updateCardModo($request)) {
             $_SESSION['msgSuc'] = "Atualizado com sucesso!";

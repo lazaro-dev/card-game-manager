@@ -6,7 +6,12 @@
     <title>Itens</title>
     <link rel="shortcut icon" type="image/png" href="<?=url()?>/resources/assets/img/icon.jpg">
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
-    <link rel="stylesheet" href="<?=url()?>/resources/views/user/jogo/style.css">
+    <link rel="stylesheet" href="<?=url()?>/resources/views/user/jogo/delete/style.css">
+
+    <script >
+        window.onload = () => alert('Essa alteração não pode ser revertida depois de feita, a REMOÇÃO é em cascata!!');
+        
+    </script>
 </head>
 <body>
     <div>
@@ -47,25 +52,25 @@
         }
     ?>
 
-<section class="section__select">
-        <form action="" method="POST">        
-            <div class="form__center">                           
+    <section class="section__select">
+        <form action="" method="POST">
+            <input hidden type="text" name="_method" value="DELETE"/>
+            <div class="form__center">
                 <select class="form__select" name="id_jogo" id="jogo">
-                    <?php 
+                    <?php
                         foreach ($jogos as $jogo):
                     ?>
-                        <option value="<?= $jogo['jogo_id']?>"><?= $jogo['tipo_jogo_valor'] ?></option>
-                    <?php  
+                        <option value="<?= $jogo['id']?>"><?= $jogo['tipo_jogo_valor'] ?></option>
+                    <?php
                         endforeach;
                     ?>
                 </select>                             
             </div>
-
             <button type="submit" class="select__btn">Avançar</button>
         </form>
     </section>
     <div class="come__div">
-        <a href="<?= url("usuario")?> " class="come__back">Voltar</a>
+        <a href="<?= url("usuario")?>" class="come__back">Voltar</a>
     </div>
 </body>
 </html>

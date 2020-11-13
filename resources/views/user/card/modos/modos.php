@@ -23,7 +23,9 @@
 
         <div>
             <a href="<?=url("usuario/insert-jogo")?>" class="header__alterar">Inserir Jogo</a>
-            <a href="<?=url("usuario/update-jogos")?>" class="header__alterar">Editar Jogo</a>    
+            <a href="<?=url("usuario/update-jogos")?>" class="header__alterar">Editar Jogo</a>
+            <a href="<?=url("usuario/delete-jogo")?>" class="header__alterar">Delete Jogo</a>
+            <a href="<?=url("usuario/insert-card")?>" class="header__alterar">Adicionar carta</a>
             <a href="<?=url("logout")?>" class="header__login">Sair</a>
         </div>
     </header>
@@ -43,21 +45,7 @@
         }
     ?>
     <section class="section__form">
-        <!-- <form action="" method="POST"> -->
-            <!-- <div class="form__container">        
-
-                <div class="form__box">
-                    <label for="fnome" class="form__label"><?= $campos['carta_nome'][0]['nome_jogo_carta_campo']?></label>
-                    <input type="text" name="nome_jogo_carta_valor" id="fnome" class="form__input" required >
-                </div>
-
-                <div class="form__box">
-                    <label for="fcarta" class="form__label"><?= $campos['carta_nome'][0]['nome_carta_campo'] ?></label>
-                    <input type="text" name="nome_valor_carta" id="fcarta" class="form__input" required >
-                </div>
-                
-            </div> -->
-
+        <h2 class="form__secondary"><?=$nome_carta?></h2>
                                                 
             <div class="form__adjuster">
                 <?php  
@@ -70,6 +58,11 @@
                                 <ul class="form__list--card">
                                 <?php
                                     if($mod['items']):
+                                ?>
+                                    <p class="form__category">                                
+                                        <?=$mod['descricao_modo']?>
+                                    </p>
+                                <?php
                                         foreach ($mod['items'] as $atr):
                                 ?>
                                     <li class="form__list"><?=$atr['item_desc'] ?>: <span class="form__item"><?= $atr['atr_desc'] ?></span></li>       
@@ -79,12 +72,14 @@
                                 ?>
                                     <div class="form__icon">
                                         <!-- Passe o mouse sobre o card -->
+                                        <?=$mod['descricao_modo']?>
                                     </div>
                                 <?php                                
                                     endif;
                                 ?>
                                 </ul>
                             </div>
+                            
                             <div class="form__card--back form__cards">
                                 <p class="form__paragh"><?=$mod['descricao_modo']?></p>
                                 <?php

@@ -23,7 +23,9 @@
 
         <div>                        
             <a href="<?=url("usuario/insert-jogo")?>" class="header__alterar">Inserir Jogo</a>
-            <a href="<?=url("usuario/update-jogos")?>" class="header__alterar">Editar Jogo</a>    
+            <a href="<?=url("usuario/update-jogos")?>" class="header__alterar">Editar Jogo</a>
+            <a href="<?=url("usuario/delete-jogo")?>" class="header__alterar">Delete Jogo</a>
+            <a href="<?=url("usuario/insert-card")?>" class="header__alterar">Adicionar carta</a>
             <a href="<?=url("logout")?>" class="header__login">Sair</a>
         </div>
     </header>
@@ -42,7 +44,7 @@
         }
     ?>
     <section class="section__form">
-        <h2 class="form__secondary">Tradicional</h2>
+        <h2 class="form__secondary"><?= $items['cabeca']['nome_valor']?> - <?= $items['cabeca']['descricao_modo']?></h2>
         <form action="" method="POST">
             <div class="form__container">
                 <?php  

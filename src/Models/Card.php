@@ -73,7 +73,14 @@ class Card {
     }
 
     public function getInsertModos(int $request)
-    {           
+    {    
+        // $model = new Select();
+        // $carta = $model->select("SELECT nome_valor, nome_jogo_carta_valor FROM cartas WHERE id = {$request}");
+        // $result = [
+        //     'campos' => $this->getUpdateCardModos($request),
+        //     'carta' => $carta
+        // ];
+        // return $result;
         return $this->getUpdateCardModos($request);
     }
 
@@ -176,8 +183,14 @@ class Card {
                                                   INNER JOIN items ON atributo_items.item_id = items.id 
                                                   WHERE carta_modos.modo_jogo_id = {$modo['id_modo_jogo']} AND carta_modos.carta_id = {$request}
                                                     ");                       
-        }           
-        return $modos;
+        }
+
+        $carta = $model->select("SELECT nome_valor, nome_jogo_carta_valor FROM cartas WHERE id = {$request}");
+        $result = [
+            'campos' => $modos,
+            'carta' => $carta
+        ];           
+        return $result;
     }
 
     public function getUpdateCardModo(int $id_card, int $id_modo)

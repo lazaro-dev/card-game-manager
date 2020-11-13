@@ -20,8 +20,8 @@ class Delete extends Connection
         $this->query = "DELETE FROM {$this->tabela} {$this->termos}";
         $this->query = parent::getConn()->prepare($this->query);
 
-        try {
-            $this->query->execute($this->values);            
+        try {            
+            $this->query->execute($this->values);   
             return true;
         } catch (Exception $ex) {
             return false;

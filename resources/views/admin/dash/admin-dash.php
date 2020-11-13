@@ -35,7 +35,7 @@
     </header>
     <?php            
          if (isset($_SESSION['msg'])&&!empty($_SESSION['msg'])) {
-            echo "<p class='mensagem__error'>".$_SESSION['msg'] . "</p>";
+            echo "<p class='mensagem__error'>" . $_SESSION['msg'] . "</p>";
             unset($_SESSION['msg']);
         }else{
             unset($_SESSION['msg']);
@@ -48,8 +48,6 @@
         }
     ?>
 
-          
-       
     <table class="container" id="tabela">
         <thead>
             <tr class="container__tr">
@@ -70,7 +68,7 @@
                     <td class="container__td"><?= $user['usuario']; ?></td>                    
                     <td class="container__td">
                     <!-- OLHO DE TANDERA -->
-                    <a href="<?= url("admin")."/table-user/{$user['id']}"?>" class="container__olho">
+                        <a href="<?= url("admin")."/table-user/{$user['id']}"?>" class="container__olho">
                         <div class="container__cornea"></div>
                         <div class="container__triangulo"></div>
                         <div class="container__pupila"></div>

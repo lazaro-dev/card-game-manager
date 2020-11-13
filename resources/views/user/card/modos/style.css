@@ -92,6 +92,7 @@ form {
     -webkit-backface-visibility: hidden;
     transition: all .8s ease;
     padding: 1rem 0;
+    height: 31rem;
 }
 
 .form__card--from {
@@ -105,7 +106,6 @@ form {
     background: -webkit-linear-gradient(to left, #004e92, #000428);  
     background: linear-gradient(to left, #004e92, #000428);
     transform: rotateY(180deg);
-    height: 100%;
 
     display: grid;
     text-align: center;
@@ -176,6 +176,7 @@ form {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
     column-gap: 1.5rem;
+    row-gap: 2rem; /*NOVO*/
 }
 
 .form__icon {
@@ -207,6 +208,23 @@ form {
     left: 50%;
     font-size: 10rem;   
 }
+
+.form__category { /*NOVO*/
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.form__secondary {
+    font-weight: bold;
+    font-size: 1.7rem;
+    color: #EFF7FF;
+    justify-content: center;
+    display: flex;
+}
+
 
  @media only screen and (max-width: 65.9375em) {
     form {

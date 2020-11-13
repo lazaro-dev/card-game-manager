@@ -2,6 +2,7 @@
 
 namespace Src\Models;
 
+use Src\Models\utils\Delete;
 use Src\Models\utils\Insert;
 use Src\Models\utils\Select;
 use Src\Models\utils\Update;
@@ -61,5 +62,19 @@ class Jogo {
             return true;
         else
             return false;        
+    }
+
+    public function getDeleteJogo(int $id_user)
+    {
+        $sel= new Select();
+        $jogos = $sel->select("SELECT id, tipo_jogo_valor FROM jogos WHERE usuario_id = {$id_user}");       
+        return $jogos;
+    }
+
+    public function deleteJogo(int $id_jogo)
+    {
+        $del = new Delete();
+        $var = $del->delete("jogos", "WHERE id =:id AND usuario_id = :id_user", "id={$id_jogo}&id_user={$_SESSION['user_id']}");
+        return $var;
     }
 }

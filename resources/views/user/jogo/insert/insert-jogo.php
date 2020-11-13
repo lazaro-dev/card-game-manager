@@ -22,7 +22,9 @@
         </a>
 
         <div>            
+            <a href="<?=url("usuario/insert-jogo")?>" class="header__alterar">Inserir Jogo</a>
             <a href="<?=url("usuario/update-jogos")?>" class="header__alterar">Editar Jogo</a>
+            <a href="<?=url("usuario/delete-jogo")?>" class="header__alterar">Delete Jogo</a>
             <a href="<?=url("usuario/insert-card")?>" class="header__alterar">Adicionar carta</a>
             <a href="<?=url("logout")?>" class="header__login">Sair</a>
         </div>

@@ -59,6 +59,9 @@ $router->post('/update-jogos', "UserController:getUpdateJogo1","pag.getUpdateJog
 $router->get('/update-jogo/{id_jogo}', "UserController:getUpdateJogo","pag.getUpdateJogo");
 $router->put('/update-jogo/{id_jogo}', "UserController:UpdateJogo","pag.updateJogo");
 
+$router->get('/delete-jogo', "UserController:getDeleteJogo","pag.getDeleteJogo");
+$router->delete('/delete-jogo', "UserController:deleteJogo","pag.deleteJogo");
+
 $router->get('/insert-card', "UserController:getInsertCard","pag.getInsertCard");
 $router->post('/insert-card', "UserController:insertCard","pag.insertCard");
 $router->get('/insert-modo/{id_carta}', "UserController:getInsertModos","pag.getInsertModos");
