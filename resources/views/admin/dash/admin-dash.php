@@ -48,6 +48,9 @@
         }
     ?>
 
+    <?php 
+        if($users):         
+    ?>
     <table class="container" id="tabela">
         <thead>
             <tr class="container__tr">
@@ -60,7 +63,7 @@
         </thead>
 
         <tbody>
-            <?php if($users): 
+            <?php
                 foreach ($users as $user):
             ?>
                 <tr class="container__tr">
@@ -101,7 +104,7 @@
                 endforeach;
                 else:
             ?>
-                <h2>Sem dados</h2>
+                <h2>Sem usuários</h2>
             <?php
             endif; ?>
         </tbody>

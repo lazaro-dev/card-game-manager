@@ -52,23 +52,33 @@
         }
     ?>
 
-    <section class="section__select">
-        <form action="" method="POST">
-            <input hidden type="text" name="_method" value="DELETE"/>
-            <div class="form__center">
-                <select class="form__select" name="id_jogo" id="jogo">
-                    <?php
-                        foreach ($jogos as $jogo):
-                    ?>
-                        <option value="<?= $jogo['id']?>"><?= $jogo['tipo_jogo_valor'] ?></option>
-                    <?php
-                        endforeach;
-                    ?>
-                </select>                             
-            </div>
-            <button type="submit" class="select__btn">Avançar</button>
-        </form>
-    </section>
+    <?php  
+        if (isset($jogos)&&!empty($jogos)):
+    ?>
+        <section class="section__select">
+            <form action="" method="POST">
+                <input hidden type="text" name="_method" value="DELETE"/>
+                <div class="form__center">
+                    <select class="form__select" name="id_jogo" id="jogo">
+                        <?php
+                            foreach ($jogos as $jogo):
+                        ?>
+                            <option value="<?= $jogo['id']?>"><?= $jogo['tipo_jogo_valor'] ?></option>
+                        <?php
+                            endforeach;
+                        ?>
+                    </select>                             
+                </div>
+                <button type="submit" class="select__btn">Avançar</button>
+            </form>
+        </section>
+    <?php  
+        else:
+    ?>
+        <h1>Sem jogos cadastrados</h1>
+    <?php  
+        endif;
+    ?>
     <div class="come__div">
         <a href="<?= url("usuario")?>" class="come__back">Voltar</a>
     </div>

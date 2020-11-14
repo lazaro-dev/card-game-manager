@@ -43,8 +43,7 @@
         }else{
             unset($_SESSION['msgSuc']);
         }
-    ?>
-    
+    ?>    
     <section class="section__form">
         <form action="" method="POST">
             <input hidden type="text" name="_method" value="PUT">
@@ -64,6 +63,7 @@
             <button type="submit" class="form__btn">Salvar</button>
         </form>
     </section>
+   
     <div class="come__div">
         <a href="<?= url("usuario/update-jogos")?> " class="come__back">Voltar</a>
     </div>

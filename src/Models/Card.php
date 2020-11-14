@@ -36,7 +36,8 @@ class Card {
                                                         tab_jogos.nome_jogo_carta_campo, jogos.id jogo_id
                                                  FROM jogos 
                                                  INNER JOIN tab_jogos ON tab_jogos.id = jogos.tab_jogo_id
-                                                 WHERE jogos.usuario_id = {$_SESSION['user_id']} LIMIT 1")[0];
+                                                 WHERE jogos.usuario_id = {$_SESSION['user_id']} LIMIT 1");
+        $carta['carta_campos'] = ($carta['carta_campos'])?$carta['carta_campos'][0]:$carta['carta_campos'];
 
         $carta['jogos'] = $model->select("SELECT jogos.id jogo_id, jogos.tipo_jogo_valor 
                                           FROM jogos 
@@ -139,13 +140,24 @@ class Card {
                                                  FROM jogos 
                                                  INNER JOIN tab_jogos ON tab_jogos.id = jogos.tab_jogo_id
                                                  WHERE usuario_id = {$_SESSION['user_id']}")[0];
-
-        $carta['card_info'] = $model->select("SELECT id id_carta, nome_valor nome_carta_valor, nome_jogo_carta_valor 
+         
+        $carta['card_info'] = $model->select("SELECT id id_carta, nome_valor nome_carta_valor, nome_jogo_carta_valor, jogo_id
                                                FROM cartas WHERE id = {$request}")[0];   
-        $carta['jogos'] = $model->select("SELECT jogos.id jogo_id, jogos.tipo_jogo_valor 
+                                               
+        $carta['jogos'] = $model->select("SELECT jogos.id jogo_id, jogos.tipo_jogo_valor, 
+                                            (CASE WHEN
+                                                EXISTS(SELECT *
+                                                       FROM cartas 
+                                                       WHERE cartas.id = {$request} AND jogos.id = cartas.jogo_id
+                                                        )  
+                                            THEN 'true'
+                                            ELSE 'false'
+                                            END) checked
                                           FROM jogos 
                                           INNER JOIN tab_jogos ON tab_jogos.id = jogos.tab_jogo_id 
                                           WHERE jogos.usuario_id = {$_SESSION['user_id']}");
+        // var_dump($carta);
+        // die;
         return $carta;
     }
     

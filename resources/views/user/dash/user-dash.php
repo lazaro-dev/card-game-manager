@@ -74,7 +74,7 @@
         if (isset($coluna['tipo_jogo_campo'])&&!empty($coluna['tipo_jogo_campo'])):
     ?>
         <table class="container" id="tabela">
-            <caption class="container__caption"><?= $coluna['tipo_jogo_campo']?>: <span><?= $coluna['tipo_jogo_valor'] ?></span></caption>
+            <caption class="container__caption"><?= $coluna['tipo_jogo_campo']?>: &nbsp;<span><?= $coluna['tipo_jogo_valor'] ?></span></caption>
             <thead>
                 <tr class="container__tr">
                     <th class="container__th"><h2 class="container__secondary"><?= $coluna['nome_jogo_carta_campo'] ?></h2></th>

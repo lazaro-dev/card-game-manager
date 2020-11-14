@@ -15,3 +15,44 @@ Instruções de instalação
 6- editar o arquivo Confg.php que se encontra no diretorio a partir da 
    raiz do projeto './src/Config.php', com os dados do banco local e a 
    porta juntamente com endereço do projeto
+
+
+
+   RewriteEngine On
+Options All -Indexes
+
+# ROUTER WWW Redirect.
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ROUTER HTTPS Redirect
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ROUTER URL Rewrite
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?route=/$1 [L,QSA]
+
+<?php
+session_start();
+ob_start();
+
+//URL DO PROJETO
+define('URL','https://www.lazaro.tech');
+
+function url(string $uri = null):string
+{
+    if($uri){
+        return URL . '/'. $uri;
+    }
+    
+    return URL;    
+}
+
+//Configurações de banco
+define('HOST','localhost');
+define('USER','u802791430_web_multi');
+define('PASS','*^l6YmXps8C+');
+define('DBNAME','u802791430_web_multi');

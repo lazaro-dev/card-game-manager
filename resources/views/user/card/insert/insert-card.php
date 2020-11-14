@@ -45,37 +45,48 @@
         }
     ?>
     
-    <section class="section__form">
-        <form action="" method="POST">
-            <div class="form__container">                
-                <div class="form__box">
-                    <label></label>
-                    <select name="jogo_id" id="jogo" class="form__input">
-                        <?php  
-                            foreach ($campos['jogos'] as $jogo):
-                        ?>
-                            <option value="<?= $jogo['jogo_id']?>"><?= $jogo['tipo_jogo_valor']?></option>
-                        <?php  
-                            endforeach;
-                        ?>
-                    </select>
-                </div>
-                
-                <div class="form__box">
-                    <label for="fnome" class="form__label"><?= $campos['carta_campos']['nome_jogo_carta_campo']?></label>
-                    <input type="text" name="nome_jogo_carta_valor" id="fnome" class="form__input" required>
+    <?php  
+        if (isset($campos['jogos'])&&!empty($campos['jogos'])):
+    ?>
+
+        <section class="section__form">
+            <form action="" method="POST">
+                <div class="form__container">                
+                    <div class="form__box">
+                        <label></label>
+                        <select name="jogo_id" id="jogo" class="form__input">
+                            <?php  
+                                foreach ($campos['jogos'] as $jogo):
+                            ?>
+                                <option value="<?= $jogo['jogo_id']?>"><?= $jogo['tipo_jogo_valor']?></option>
+                            <?php  
+                                endforeach;
+                            ?>
+                        </select>
+                    </div>
+                    
+                    <div class="form__box">
+                        <label for="fnome" class="form__label"><?= $campos['carta_campos']['nome_jogo_carta_campo']?></label>
+                        <input type="text" name="nome_jogo_carta_valor" id="fnome" class="form__input" required>
+                    </div>
+
+                    <div class="form__box">
+                        <label for="fcarta" class="form__label"><?= $campos['carta_campos']['nome_carta_campo'] ?></label>
+                        <input type="text" name="nome_valor" id="fcarta" class="form__input" required >
+                    </div>
+                    
                 </div>
 
-                <div class="form__box">
-                    <label for="fcarta" class="form__label"><?= $campos['carta_campos']['nome_carta_campo'] ?></label>
-                    <input type="text" name="nome_valor" id="fcarta" class="form__input" required >
-                </div>
-                
-            </div>
-
-            <button type="submit" class="form__btn">Salvar e avançar</button>
-        </form>
-    </section>
+                <button type="submit" class="form__btn">Salvar e avançar</button>
+            </form>
+        </section>
+    <?php  
+        else:
+    ?>
+        <h1>Sem jogo cadastrado</h1>
+    <?php  
+        endif;
+    ?>
     <div class="come__div">
         <a href="<?= url("usuario")?> " class="come__back">Voltar</a>
     </div>

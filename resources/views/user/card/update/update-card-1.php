@@ -54,7 +54,7 @@
                         <?php  
                             foreach ($campos['jogos'] as $jogo):
                         ?>
-                            <option value="<?= $jogo['jogo_id']?>"><?= $jogo['tipo_jogo_valor']?></option>
+                            <option value="<?= $jogo['jogo_id']?>" <?php if($jogo['checked']=="true"){ echo "selected"; } ?>><?= $jogo['tipo_jogo_valor']?></option>
                         <?php  
                             endforeach;
                         ?>
