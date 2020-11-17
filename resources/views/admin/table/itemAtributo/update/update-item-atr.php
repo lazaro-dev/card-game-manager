@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itens</title>
+    <title>Item</title>
     <link rel="shortcut icon" type="image/png" href="<?=url()?>/resources/assets/img/icon.jpg">
     <link rel="stylesheet" href="<?=url()?>/resources/css/style.css">
-    <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/items/style.css">
+    <link rel="stylesheet" href="<?=url()?>/resources/views/admin/table/itemAtributo/update/style.css">
 </head>
 <body>
     <div>
@@ -49,26 +49,22 @@
         }
     ?>
 
-<section class="section__select">
-        <form action="" method="POST">
-        <!-- <?= url("admin")."/update-items"?> -->            
-            <div class="form__center">                           
-                <select class="form__select" name="id_item" id="item">
-                    <?php 
-                        foreach ($items as $item):
-                    ?>
-                        <option value="<?= $item['id']?>"><?= $item['descricao'] ?></option>
-                    <?php  
-                        endforeach;
-                    ?>
-                </select>                             
-            </div>
+<section class="section__form">
 
-            <button type="submit" class="select__btn">Avançar</button>
+        <form action="" method="POST">
+
+            <input hidden type="text" name="_method" value="PUT">
+            <div class="form__container">
+                <div class="form__center">
+                    <label for="ftipo" class="form__label">Descrição do item</label>
+                    <input type="text" name="descricao" id="ftipo" class="form__input" placeholder="Titulo da tabela" value="<?= $item['descricao'] ?>" required>
+                </div>
+            </div>                                 
+            <input type="submit" class="form__btn" value="Alterar">
         </form>
     </section>
     <div class="come__div">
-        <a href="<?= url("admin")?> " class="come__back">Voltar</a>
+        <a href="<?= url("admin/update-items-atributo")?> " class="come__back">Voltar</a>
     </div>
 </body>
 </html>

@@ -1,0 +1,69 @@
+/* ALTERADO */
+
+.form__select {
+    padding: 1rem;
+    border-radius: 3px;
+    border: none;
+    width: 25rem;
+    font-family: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    position: relative;
+    background-image: url(../../../../assets/img/Blue\ Neon\ Arrow\ Down.jpg);
+    background-size: 1.3rem;
+    background-repeat: no-repeat;
+    background-position: 98%;
+    cursor: pointer;
+    transition: all .3s; 
+    background-color: #061f3e;   
+    color: #54dce6;
+    font-size: 1rem;
+}
+
+.form__select:hover {
+
+}
+
+.section__select {
+    padding: 5rem;
+    text-align: center;
+    animation-name: flash;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+}
+
+.select__btn {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    background-color: #56CCF2;
+    color: white;
+    border-radius: 3px;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.select__btn::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    top: 0;
+    left: 0;
+    background-color: #56CCF2;
+    z-index: -1;
+    transition: all .6s;
+}
+
+.select__btn:hover::after {
+    transform: scale(1.4,1.6);
+    opacity: 0;
+}
+
+.select__btn:focus {
+    outline: none;
+}

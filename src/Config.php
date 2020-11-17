@@ -3,7 +3,7 @@ session_start();
 ob_start();
 
 //URL DO PROJETO
-define('URL','http://localhost:83/CursoPHP(MVC)/multimidia');
+define('URL','http://localhost:8080/multimidia');
 
 function url(string $uri = null):string
 {

@@ -39,6 +39,13 @@ $router->post('/update-modos', "AdminController:getUpdateModo1","pag.getUpdateMo
 $router->get('/update-modo/{id_modo}', "AdminController:getUpdateModo","pag.getUpdateModoTab");
 $router->put('/update-modo/{id_modo}', "AdminController:updateModo","pag.updateModoTab");
 
+//
+$router->get('/update-items-atributo', "AdminController:getUpdateItemsAtributo","pag.getUpdateItemsAtributo");
+$router->post('/update-items-atributo', "AdminController:getUpdateItemsAtributo1","pag.getUpdateItemsAtributo1");
+$router->get('/update-item-atributo/{id_item}', "AdminController:getUpdateItemAtributo","pag.getUpdateItemAtributo");
+$router->put('/update-item-atributo/{id_item}', "AdminController:updateItemAtributo","pag.updateItemAtributo");
+//
+
 $router->get('/update-items', "AdminController:getUpdateItems","pag.getUpdateItems");
 $router->post('/update-items', "AdminController:getUpdateItem1","pag.getUpdateItem1");
 $router->get('/update-item/{id_item}', "AdminController:getUpdateItem","pag.getUpdateItem");

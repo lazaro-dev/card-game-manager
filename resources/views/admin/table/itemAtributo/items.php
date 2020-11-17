@@ -50,8 +50,7 @@
     ?>
 
 <section class="section__select">
-        <form action="" method="POST">
-        <!-- <?= url("admin")."/update-items"?> -->            
+        <form action="" method="POST">        
             <div class="form__center">                           
                 <select class="form__select" name="id_item" id="item">
                     <?php 

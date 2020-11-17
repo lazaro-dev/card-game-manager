@@ -78,4 +78,18 @@ class Table {
         return true;    
     }
 
+    public function getUpdateItemAtributo(int $request)
+    {
+        $sel = new Select();
+        $item = $sel->select("SELECT id, descricao FROM items WHERE id = {$request}")[0];
+        return $item;
+    }
+
+    public function updateItemAtributo($request)
+    {
+        $up = new Update();
+        $temp['descricao'] = $request['descricao'];
+        $var = $up->update("items", $temp, "WHERE id = :id", "id={$request['id_item']}");
+        return $var;
+    }
 }

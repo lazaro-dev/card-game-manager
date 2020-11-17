@@ -201,6 +201,46 @@ class AdminController
         $this->router->redirect("pag.getUpdateItem", ["id_item" => $request['id_item']]);
     }
 
+    //inicio
+    public function getUpdateItemsAtributo()
+    {
+        $model = new Table();
+        $items = $model->getUpdateItems();
+        echo $this->view->render("admin/table/itemAtributo/items", ['items' => $items]);
+    }
+
+    public function getUpdateItemsAtributo1($request)
+    {
+        $this->router->redirect("pag.getUpdateItemAtributo", ["id_item" => $request['id_item']]);
+    }
+
+    public function getUpdateItemAtributo($request)
+    {
+        $model = new Table();
+        $item = $model->getUpdateItemAtributo($request['id_item']);
+        echo $this->view->render("admin/table/itemAtributo/update/update-item-atr", [
+            'item' => $item,                 
+            'id_item' => $request['id_item']
+            ]);          
+    }
+
+    public function updateItemAtributo($request)
+    { 
+        if(!empty($request)){
+            $table = new Table();            
+            if ($table->updateItemAtributo($request)) {
+                $_SESSION['msgSuc'] = "Item atualizado!";
+                $this->router->redirect("pag.getUpdateItemsAtributo");
+            } else {
+                $_SESSION['msg'] = "Não foi possivel atualizar o item!";                
+            }
+        }else{
+            $_SESSION['msg'] = "Preencha os campos corretamente!";
+        }
+        $this->router->redirect("pag.getUpdateItemAtributo", ["id_item" => $request['id_item']]);
+    }
+    //fim
+
     public function getTableUser($request)
     { 
         $ins = new Usuario();
